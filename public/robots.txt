@@ -1,0 +1,12 @@
+# *
+User-agent: *
+Allow: /*
+
+Disallow: /api/*
+
+# Host
+Host: https://beaute.maisonfabiencarrichon.ch
+
+# Sitemaps
+Sitemap: https://beaute.maisonfabiencarrichon.ch/sitemap.xml
+Sitemap: https://beaute.maisonfabiencarrichon.ch/sitemap-0.xml

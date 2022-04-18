@@ -1,0 +1,14 @@
+{
+  "section-contact-title": "Contact us",
+  "section-footer-contact-title": "Our contact details",
+  "section-contact-form-send": "Send",
+  "section-footer-form-send": "Send",
+  "section-footer-form-name": "Name*",
+  "section-footer-form-subject": "Subject*",
+  "section-footer-form-email": "Email*",
+  "section-footer-form-message": "Message*",
+  "section-footer-form-success": "Your message has been sent. We will contact you shortly.",
+  "form-failed": "Unknown error. please try again later.",
+  "form-field-required": "This field is required.",
+  "form-field-invalid": "Invalid format."
+}
