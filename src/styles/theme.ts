@@ -5,7 +5,7 @@ export const mainTheme = {
   secondColor: '#ffffff',
   thirdColor: '#eaeaea',
   backgrounColor: '#F1F1F1',
-  doreColor: '#85714d',
+  doreColor: '#827252',
   whiteColor: '#f2f1ea',
 
   textColor: '#0a0a0a',
@@ -17,7 +17,7 @@ export const mainTheme = {
   h3FontSize: '21px',
   normalFontSize: '15px',
   smallFontSize: '13px',
-  buttonFontSize: '20px',
+  buttonFontSize: '25px',
 
   titleFont: "'Atlantic Cruise',sans-serif",
   bodyFont: "'Montserrat',sans-serif",
@@ -80,11 +80,34 @@ export const GlobalStyles = createGlobalStyle`
   font-weight: 700;
   font-display: swap;
 }
+*{
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth; 
+}
+
+::-webkit-scrollbar {
+  height: 0.35rem;
+  width: 0.35rem;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #b3b3b3;
+  border-radius: 10px;
+}
+::selection {
+  color:#fff;
+  background-color: var(--first-color);
+}
   body {
     color: ${({ theme }) => theme.textColor};
     font-family: 'Montserrat','PT Sans', sans-serif;
     transition: all 0.50s linear;
+    background-color: #fff ;
   }
+  a{text-decoration: none;}
 
     /* ------------------------------- */
   /* Glide controls style */

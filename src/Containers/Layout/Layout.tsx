@@ -4,20 +4,19 @@ import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 
 import {
+  ButtonLink,
   FooterDataType,
   ImageType,
   LangDataType,
-  MenuActionType,
   MenuType,
   SeoDataType,
 } from '../../utils/types';
-import Footer from './Footer';
 import Header from './Header';
 
 type LayoutProps = {
   seoData: SeoDataType;
   menuItems?: MenuType[];
-  menuAction?: MenuActionType;
+  menuActions?: ButtonLink[];
   logo?: ImageType;
   logoInvert?: ImageType;
   children: ReactNode;
@@ -28,10 +27,10 @@ type LayoutProps = {
 const Layout = ({
   seoData,
   menuItems,
-  children,
+  // children,
   logo,
-  menuAction,
-  footerData,
+  menuActions,
+  // footerData,
   langData,
 }: LayoutProps) => {
   const router = useRouter();
@@ -182,11 +181,11 @@ const Layout = ({
         <Header
           menuItems={menuItems}
           logo={logo}
-          menuAction={menuAction}
+          menuActions={menuActions}
           langData={langData}
         />
-        <main>{children}</main>
-        <Footer {...footerData} langData={langData} />
+        {/*  <main>{children}</main>
+        <Footer {...footerData} langData={langData} /> */}
       </Fragment>
     </Fragment>
   );

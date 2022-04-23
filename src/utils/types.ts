@@ -7,8 +7,8 @@ type HrefTarget = '_blank' | '_self' | '_parent' | '_top' | 'framename';
 
 export interface ButtonLink {
   text: string;
-  target?: HrefTarget;
-  url?: string;
+  target: HrefTarget;
+  url: string;
 }
 export interface HomeDataType {
   header: HeaderDataType;
@@ -50,15 +50,12 @@ export interface FavIcon {
 }
 
 export type ContactField = RichTextBlock[];
+
 export interface MenuDataType {
   menuItems: MenuType[];
-  menuAction: MenuActionType;
+  menuActions: ButtonLink[];
 }
 
-export interface MenuActionType {
-  label: string;
-  url: string;
-}
 export interface MenuType {
   id: string;
   label: string;

@@ -5,7 +5,6 @@ import { AppProps } from 'next/app';
 import TagManager from 'react-gtm-module';
 import { ThemeProvider } from 'styled-components';
 
-import '../styles/main.css';
 import { GlobalStyles, mainTheme } from '../styles/theme';
 
 const tagManagerArgs = {

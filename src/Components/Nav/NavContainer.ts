@@ -13,11 +13,12 @@ export const NavContainer = styled.nav`
     li a {
       color: #3b3b3b;
       position: relative;
-      font-size: 22px;
+      font-size: 18px;
       font-family: ${(props) => props.theme.titleFont};
       font-weight: 300;
       padding: 10px;
       transition: 0.3s;
+      color: ${({ theme }) => theme.doreColor};
       &:hover {
         color: ${({ theme }) => theme.doreColor};
       }

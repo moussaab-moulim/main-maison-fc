@@ -3,13 +3,7 @@ import React, { FC } from 'react';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import About from '../Containers/About/About';
-import Contact from '../Containers/Contact/Contact';
-import Header from '../Containers/Header/Header';
 import { Layout } from '../Containers/Layout/Layout';
-import Services from '../Containers/Services/Services';
-import Statement from '../Containers/Statement/Statement';
-import Visions from '../Containers/Visions/Visions';
 import {
   mapFooterData,
   mapGlobalSettingsData,
@@ -39,12 +33,15 @@ interface IndexProps {
 export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
   // console.log(`local : ${locale}\n locals :${locales}\n`);
   const fetchedMenu = (await getMenu(locale!)).data.menu;
+  // console.log('menu', fetchedMenu);
   const fetchedSiteSettings = (await getGlobalSettings(locale!)).data
     .site_settings;
+  // console.log('fetchedSiteSettings', fetchedSiteSettings);
   const fetchedHomeData = (await getHomePageData(locale!)).data.home;
 
   // mapping fetched data
   const menuData: MenuDataType = mapMenuData(fetchedMenu);
+  console.log('menuMapped', menuData);
   const globalSettingsData: GlobalSettingsDataType =
     mapGlobalSettingsData(fetchedSiteSettings);
   const homeData: HomeDataType = mapHomeData(
@@ -64,7 +61,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale!, ['common'])),
-      homeData,
+      // homeData,
       menuData,
       globalSettingsData,
       footerData,
@@ -78,7 +75,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
 };
 
 const Index: FC<IndexProps> = ({
-  homeData,
+  // homeData,
   menuData,
   globalSettingsData,
   footerData,
@@ -89,18 +86,19 @@ const Index: FC<IndexProps> = ({
     <Layout
       seoData={seoData}
       menuItems={menuData.menuItems}
-      menuAction={menuData.menuAction}
+      menuActions={menuData.menuActions}
       logo={globalSettingsData.logo}
       logoInvert={globalSettingsData.logoInvert}
       footerData={footerData}
       langData={langData}
     >
+      {/*
       <Header {...homeData.header} />
       <About {...homeData.about} />
       <Services {...homeData.services} />
       <Visions {...homeData.visions} />
       <Statement {...homeData.statement} />
-      <Contact {...homeData.contact} />
+      <Contact {...homeData.contact} /> */}
     </Layout>
   );
 };

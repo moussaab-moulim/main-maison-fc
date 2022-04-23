@@ -30,8 +30,8 @@ export const mapImages = (images: any[]): ImageType[] => {
 
 export const mapButton = (button: any): ButtonLink => ({
   text: button.text,
-  url: button.spans[0]?.data.url ?? '#',
-  target: button.spans[0]?.data.target ?? '_self',
+  url: button.spans?.[0]?.data?.url ?? '#',
+  target: button.spans?.[0]?.data?.target ?? '_self',
 });
 
 export const mapVisions = (visions: any[]): VisionType[] => {
@@ -104,10 +104,9 @@ export const mapMenuData = (queryResult: any): MenuDataType => {
       clickabale: item.clickabale,
       parentId: item.parent_id,
     })),
-    menuAction: {
-      label: queryResult.menu_action[0].label,
-      url: queryResult.menu_action[0].url,
-    },
+    menuActions: queryResult.menu_action.map((action: any) =>
+      mapButton(action.button[0])
+    ),
   };
 };
 export const mapGlobalSettingsData = (

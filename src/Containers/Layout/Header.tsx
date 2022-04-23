@@ -13,15 +13,15 @@ import SectionInner from '../../Components/Section/SectionInner';
 import {
   ImageType,
   MenuType,
-  MenuActionType,
   LangDataType,
   ButtonType,
+  ButtonLink,
 } from '../../utils/types';
 
 interface HeaderProps {
   logo?: ImageType;
   menuItems?: MenuType[];
-  menuAction?: MenuActionType;
+  menuActions?: ButtonLink[];
   langData: LangDataType;
 }
 
@@ -54,16 +54,83 @@ const HeaderContainer = styled.header`
 `;
 
 const MenuActionButton = styled(Button)`
-  border: 1px solid;
-  border-radius: 3px;
-  padding: 10px 24px;
-  padding-bottom: 15px;
+  padding: 9px 24px;
   position: relative;
-  color: ${(props) => props.theme.firstColor};
+  color: ${(props) => props.theme.doreColor};
   background-color: transparent;
   font-family: ${(props) => props.theme.titleFont};
   font-weight: 300;
   cursor: pointer;
+  font-size: 16px;
+
+  border: none;
+  &::before,
+  &::after {
+    content: '';
+    width: 0;
+    height: 1px;
+    position: absolute;
+    transition: all 0.2s linear;
+    background: ${(props) => props.theme.doreColor};
+  }
+  &::before {
+    width: 100%;
+
+    right: 0;
+    top: 0;
+  }
+  &::after {
+    width: 50%;
+    right: 0;
+    bottom: 0;
+    transition-delay: 0.2s;
+  }
+  span {
+    display: block;
+    &::before,
+    &::after {
+      content: '';
+      width: 1px;
+      height: 0;
+      position: absolute;
+      transition: all 0.2s linear;
+      background: ${(props) => props.theme.doreColor};
+    }
+    &::after {
+      height: 100%;
+
+      right: 0;
+      bottom: 0;
+    }
+    ::before {
+      transition-delay: 0s;
+      left: 0;
+      bottom: 0;
+    }
+  }
+  :hover {
+    border: none;
+    background: transparent;
+    color: ${(props) => props.theme.doreColor};
+
+    ::before,
+    ::after {
+      width: 100%;
+    }
+    ::after {
+      transition-delay: 0s;
+    }
+    span {
+      ::before,
+      ::after {
+        height: 100%;
+      }
+      ::before {
+        transition-delay: 0.2s;
+      }
+    }
+  }
+
   @media (max-width: 768px) {
     border: none;
     font-size: 18px;
@@ -85,7 +152,7 @@ const MobileMenuButton = styled.button`
   }
 `;
 
-const Header = ({ logo, menuItems, menuAction, langData }: HeaderProps) => {
+const Header = ({ logo, menuItems, menuActions, langData }: HeaderProps) => {
   const [offset, setOffset] = useState(0);
   const [toggleMobileMenu, setToggleMobileMenu] = useState(false);
   const handleToggle = () => {
@@ -131,16 +198,17 @@ const Header = ({ logo, menuItems, menuAction, langData }: HeaderProps) => {
                 </li>
               ))}
           </ul>
-          {menuAction && (
-            <Link href={menuAction.url} passHref>
-              <MenuActionButton
-                buttonType={ButtonType.Light}
-                onClick={handleToggle}
-              >
-                {menuAction.label}
-              </MenuActionButton>
-            </Link>
-          )}
+          {menuActions &&
+            menuActions.map((menuAction: ButtonLink, index: number) => (
+              <Link key={index} href={menuAction.url} passHref>
+                <MenuActionButton
+                  buttonType={ButtonType.Light}
+                  onClick={handleToggle}
+                >
+                  <span>{menuAction.text}</span>
+                </MenuActionButton>
+              </Link>
+            ))}
           {langData && (
             <LanguageSwitcher {...langData} onClick={handleToggle} />
           )}

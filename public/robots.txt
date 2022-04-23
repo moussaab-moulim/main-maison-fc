@@ -5,8 +5,8 @@ Allow: /*
 Disallow: /api/*
 
 # Host
-Host: https://beaute.maisonfabiencarrichon.ch
+Host: https://maisonfabiencarrichon.ch
 
 # Sitemaps
-Sitemap: https://beaute.maisonfabiencarrichon.ch/sitemap.xml
-Sitemap: https://beaute.maisonfabiencarrichon.ch/sitemap-0.xml
+Sitemap: https://maisonfabiencarrichon.ch/sitemap.xml
+Sitemap: https://maisonfabiencarrichon.ch/sitemap-0.xml

@@ -31,8 +31,6 @@ export const getHomePageData = async (lang: string) => {
           salon_id
           prices_id
           vision_id
-          appointment_id
-          products_id
           statement_id
           contact_id
           header_slider {
@@ -84,8 +82,7 @@ export const getMenu = async (lang: string) => {
             parent_id
           }
           menu_action {
-            label
-            url
+            button
           }
         }
       }

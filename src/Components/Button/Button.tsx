@@ -11,8 +11,8 @@ const buttonCss = (props: ButtonProps & any) => css`
   text-align: center;
   padding: 12px 30px;
   padding-bottom: 18px;
-  min-width: 187px;
-  max-width: 187px;
+  min-width: 157px;
+  max-width: 157px;
   background-color: ${props.buttonType === ButtonType.Dark
     ? props.theme.doreColor
     : 'transparent'};
