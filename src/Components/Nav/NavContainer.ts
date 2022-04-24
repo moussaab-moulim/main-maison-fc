@@ -6,7 +6,7 @@ export const NavContainer = styled.nav`
   justify-content: flex-end;
   align-items: center;
   gap: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   ul {
     display: flex;
     list-style-type: none;

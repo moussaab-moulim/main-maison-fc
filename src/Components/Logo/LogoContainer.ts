@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const LogoContainer = styled.figure`
   display: block;
-  width: 45px;
+  width: 56px;
   &.footer-logo {
-    width: 45px;
+    width: 56px;
   }
   @media screen and (max-width: 1440px) and (min-width: 1025px) {
     &:not(.sticky-logo):not(.footer-logo) {

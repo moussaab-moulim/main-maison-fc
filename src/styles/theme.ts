@@ -4,7 +4,7 @@ export const mainTheme = {
   firstColor: '#000000',
   secondColor: '#ffffff',
   thirdColor: '#eaeaea',
-  backgrounColor: '#F1F1F1',
+  backgrounColor: '#f2f1ea',
   doreColor: '#827252',
   whiteColor: '#f2f1ea',
 
@@ -17,7 +17,7 @@ export const mainTheme = {
   h3FontSize: '21px',
   normalFontSize: '15px',
   smallFontSize: '13px',
-  buttonFontSize: '25px',
+  buttonFontSize: '22px',
 
   titleFont: "'Atlantic Cruise',sans-serif",
   bodyFont: "'Montserrat',sans-serif",
@@ -99,7 +99,7 @@ export const GlobalStyles = createGlobalStyle`
 }
 ::selection {
   color:#fff;
-  background-color: var(--first-color);
+  background-color: ${({ theme }) => theme.doreColor};;
 }
   body {
     color: ${({ theme }) => theme.textColor};
@@ -132,7 +132,7 @@ export const GlobalStyles = createGlobalStyle`
       .prev_arrow,
       .next_arrow {
         display: block;
-        width: 24px;
+        width: 44px;
         height: 2px;
         background-color: ${({ theme }) => theme.textColorLite};
         transition: width 0.3s ease;
@@ -157,12 +157,12 @@ export const GlobalStyles = createGlobalStyle`
         &.next_arrow {
           &::before {
             right: 0;
-            transform: rotate(0);
+            transform: rotate(42deg);
             transform-origin: top right;
           }
           &::after {
             right: 0;
-            transform: rotate(0);
+            transform: rotate(-42deg);
             transform-origin: 14px 2px;
           }
         }
@@ -170,12 +170,12 @@ export const GlobalStyles = createGlobalStyle`
         &.prev_arrow {
           &::before {
             left: 0;
-            transform: rotate(0);
+            transform: rotate(-42deg);
             transform-origin: top left;
           }
           &::after {
             left: 0;
-            transform: rotate(0);
+            transform: rotate(42deg);
             transform-origin: 0 2px;
           }
         }
@@ -187,7 +187,7 @@ export const GlobalStyles = createGlobalStyle`
 
       &:hover {
         > span {
-          width: 45px;
+          width: 55px;
           border-radius: 4px;
           background-color: ${({ theme }) => theme.firstColor};
           @media only screen and (max-width: 667px) {

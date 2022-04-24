@@ -14,6 +14,7 @@ export const Text = styled.p`
   font-family: ${({ theme }) => theme.bodyFont};
   color: ${({ theme }) => theme.textColor};
   font-size: ${({ theme }) => theme.normalFontSize};
+  font-weight: 300;
   margin: 0 0 18px;
 `;
 const RichTextWrapper = styled.div<TextPrismicProps>`
@@ -23,6 +24,7 @@ const RichTextWrapper = styled.div<TextPrismicProps>`
     font-size: ${(props) =>
       props.size ? props.size : props.theme.normalFontSize};
     margin: 0 0 18px;
+    font-weight: 300;
   }
 `;
 

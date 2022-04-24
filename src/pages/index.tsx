@@ -3,7 +3,13 @@ import React, { FC } from 'react';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
+import About from '../Containers/About/About';
+import Contact from '../Containers/Contact/Contact';
+import Header from '../Containers/Header/Header';
 import { Layout } from '../Containers/Layout/Layout';
+import Services from '../Containers/Services/Services';
+import Statement from '../Containers/Statement/Statement';
+import Visions from '../Containers/Visions/Visions';
 import {
   mapFooterData,
   mapGlobalSettingsData,
@@ -41,7 +47,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
 
   // mapping fetched data
   const menuData: MenuDataType = mapMenuData(fetchedMenu);
-  console.log('menuMapped', menuData);
+  // console.log('menuMapped', menuData);
   const globalSettingsData: GlobalSettingsDataType =
     mapGlobalSettingsData(fetchedSiteSettings);
   const homeData: HomeDataType = mapHomeData(
@@ -57,11 +63,11 @@ export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
 
   const seoData: SeoDataType = mapSeoData(globalSettingsData, homeData.seo);
   // const { currentLang, isMyMainLanguage } = manageLocal(locales!, locale!);
-  // console.log('footer data', footerData.menuItems);
+  console.log('footer data', footerData.menuItems);
   return {
     props: {
       ...(await serverSideTranslations(locale!, ['common'])),
-      // homeData,
+      homeData,
       menuData,
       globalSettingsData,
       footerData,
@@ -75,7 +81,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
 };
 
 const Index: FC<IndexProps> = ({
-  // homeData,
+  homeData,
   menuData,
   globalSettingsData,
   footerData,
@@ -92,13 +98,12 @@ const Index: FC<IndexProps> = ({
       footerData={footerData}
       langData={langData}
     >
-      {/*
       <Header {...homeData.header} />
       <About {...homeData.about} />
       <Services {...homeData.services} />
       <Visions {...homeData.visions} />
       <Statement {...homeData.statement} />
-      <Contact {...homeData.contact} /> */}
+      <Contact {...homeData.contact} />
     </Layout>
   );
 };

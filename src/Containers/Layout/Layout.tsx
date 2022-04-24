@@ -27,7 +27,7 @@ type LayoutProps = {
 const Layout = ({
   seoData,
   menuItems,
-  // children,
+  children,
   logo,
   menuActions,
   // footerData,
@@ -184,7 +184,8 @@ const Layout = ({
           menuActions={menuActions}
           langData={langData}
         />
-        {/*  <main>{children}</main>
+        <main>{children}</main>
+        {/* 
         <Footer {...footerData} langData={langData} /> */}
       </Fragment>
     </Fragment>

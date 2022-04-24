@@ -10,7 +10,6 @@ const buttonCss = (props: ButtonProps & any) => css`
   cursor: pointer;
   text-align: center;
   padding: 12px 30px;
-  padding-bottom: 18px;
   min-width: 157px;
   max-width: 157px;
   background-color: ${props.buttonType === ButtonType.Dark

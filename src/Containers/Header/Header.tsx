@@ -11,7 +11,7 @@ import Column from '../../Components/Section/Column';
 import Section from '../../Components/Section/Section';
 import SectionInner from '../../Components/Section/SectionInner';
 import { Text } from '../../Components/Text/Text';
-import { HeaderDataType } from '../../utils/types';
+import { ButtonType, HeaderDataType } from '../../utils/types';
 
 interface HeaderProps extends HeaderDataType {}
 
@@ -49,8 +49,9 @@ const Header = (headerProps: HeaderProps) => {
             <Text>{headerProps.description}</Text>
             <Link href={headerProps.button?.url!} passHref prefetch={false}>
               <ButtonLink
-                style={{ maxWidth: 210 }}
+                style={{ maxWidth: 216 }}
                 target={headerProps.button?.target}
+                buttonType={ButtonType.Dark}
               >
                 {headerProps.button?.text}
               </ButtonLink>

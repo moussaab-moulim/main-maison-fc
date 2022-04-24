@@ -10,7 +10,7 @@ import Image from '../../Components/Image';
 import Lightbox from '../../Components/Lightbox/Lightbox';
 import { VerticalSpace } from '../../Components/Space/Space';
 import { TextPrismic } from '../../Components/Text/Text';
-import { AboutDataType } from '../../utils/types';
+import { AboutDataType, ButtonType } from '../../utils/types';
 import AboutWrapper, {
   Container,
   ContentArea,
@@ -25,7 +25,7 @@ const About = (aboutProps: AboutProps) => {
   const glideOptions = {
     type: 'slider',
     rewind: true,
-    autoplay: 3000,
+    autoplay: false,
     animationDuration: 1000,
     rewindDuration: 2000,
     hoverpause: true,
@@ -61,13 +61,17 @@ const About = (aboutProps: AboutProps) => {
           <Heading2>{aboutProps.title}</Heading2>
 
           <TextPrismic render={aboutProps.description} />
-          <VerticalSpace size={20} />
+          <VerticalSpace size={40} />
           <Link href={aboutProps.button?.url!} passHref prefetch={false}>
-            <ButtonLink target={aboutProps.button?.target}>
+            <ButtonLink
+              buttonType={ButtonType.Dark}
+              target={aboutProps.button?.target}
+            >
               {aboutProps.button?.text}
             </ButtonLink>
           </Link>
-          <VerticalSpace size={20} />
+
+          <VerticalSpace size={60} />
           {/* </Fade> */}
         </ContentArea>
 

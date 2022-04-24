@@ -8,7 +8,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyles, mainTheme } from '../styles/theme';
 
 const tagManagerArgs = {
-  gtmId: 'GTM-M6JQ8JJ',
+  gtmId: 'GTM-K7TWV9W',
 };
 
 const MyApp = ({ Component, pageProps }: AppProps) => {

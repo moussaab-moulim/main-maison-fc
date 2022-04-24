@@ -58,9 +58,9 @@ export const CircleLoader = styled.div`
 `;
 
 const AboutWrapper = styled.section`
-  padding-top: 30px;
+  padding-top: 90px;
   margin-bottom: 81px;
-  background-color: ${({ theme }) => theme.secondColor};
+  background-color: ${({ theme }) => theme.backgrounColor};
   @media only screen and (max-width: 1440px) {
     margin-bottom: 60px;
   }
@@ -78,6 +78,7 @@ export const Container = styled.div`
   padding: 0 20px;
   display: flex;
   align-items: center;
+  flex-direction: column;
   @media only screen and (max-width: 1600px) {
     padding: 0 81px;
   }
@@ -88,29 +89,30 @@ export const Container = styled.div`
     padding: 0 30px;
   }
   @media only screen and (max-width: 767px) {
-    flex-direction: column;
+    /* flex-direction: column; */
   }
 `;
 
 export const ContentArea = styled.div`
-  width: 595px;
+  width: 100%;
   padding-right: 88px;
+  text-align: center;
   @media only screen and (max-width: 1600px) {
-    width: 560px;
+    /* width: 560px; */
   }
   @media only screen and (max-width: 1360px) {
-    width: 40%;
+    /* width: 40%; */
   }
   @media only screen and (max-width: 1200px) {
-    width: 45%;
+    /* width: 45%; */
   }
   @media only screen and (max-width: 768px) {
-    width: 100%;
+    /* width: 100%; */
     padding-right: 50px;
   }
   @media only screen and (max-width: 425px) {
     padding-right: 0;
-    text-align: center;
+    /* text-align: center; */
     margin-bottom: 20px;
   }
 
@@ -153,8 +155,9 @@ export const CarouselArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 1280px;
   @media only screen and (max-width: 1600px) {
-    width: calc(100% - 560px);
+    width: calc(100%);
   }
   @media only screen and (max-width: 1360px) {
     width: 60%;
@@ -171,12 +174,12 @@ export const CarouselArea = styled.div`
       .item_wrapper {
         display: block;
         height: 100vh;
-        max-height: 540px;
+        max-height: 421px;
         border-radius: 20px;
         overflow: hidden;
         position: relative;
         @media only screen and (max-width: 1440px) {
-          max-height: 460px;
+          /* max-height: 460px; */
         }
         @media only screen and (max-width: 1200px) {
           max-height: 420px;
@@ -247,9 +250,13 @@ export const CarouselArea = styled.div`
     }
 
     .glide__controls {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
       > div {
         > span {
-          &.next_arrow {
+          /*   &.next_arrow,
+          &.prev_arrow {
             width: 45px;
             background-color: ${({ theme }) => theme.firstColor};
             @media only screen and (max-width: 667px) {
@@ -265,7 +272,7 @@ export const CarouselArea = styled.div`
               background-color: ${({ theme }) => theme.firstColor};
               transform: rotate(-42deg);
             }
-          }
+          } */
         }
       }
     }

@@ -34,8 +34,8 @@ const HeaderContainer = styled.header`
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  height: 80px;
-  max-height: 80px;
+  height: 71px;
+  max-height: 71px;
   transition: 0.2s height, 0.4s background-color ease-in-out;
   z-index: 9998;
 
