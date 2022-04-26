@@ -29,6 +29,7 @@ function Services(servicesProps: ServicesProps) {
               description={e.description}
               iconUrl={e.iconUrl}
               cardUrl={e.serviceUrl}
+              index={i}
             />
           ))}
         </ServicesContainer>

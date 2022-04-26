@@ -210,10 +210,11 @@ const ContactForm = () => {
             <div className="form-row button-container">
               <Button
                 type="submit"
-                buttonType={ButtonType.Dark}
+                buttonType={ButtonType.Light}
                 style={{ textTransform: 'uppercase', borderRadius: 0 }}
+                className="border-animation"
               >
-                {t('section-contact-form-send')}
+                <span>{t('section-contact-form-send')}</span>
               </Button>
             </div>
           </Form>

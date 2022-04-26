@@ -50,6 +50,7 @@ function VisionsSection(visionProps: VisionsProps) {
                             prefetch={false}
                           >
                             <ButtonLink
+                              style={{ maxWidth: 216 }}
                               buttonType={ButtonType.Dark}
                               target={vision.button?.target}
                             >
@@ -88,20 +89,25 @@ function VisionsSection(visionProps: VisionsProps) {
               data-glide-el="controls[nav]"
               type={2}
             >
-              {visionProps.visions.map((vision: VisionType, index: number) => (
-                <button
-                  className="glide__bullet"
-                  data-glide-dir={`=${index}`}
-                  key={`glide_bullet--key${index}`}
-                >
-                  <Image
-                    src={vision.image.url}
-                    alt={vision.image.alt}
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                </button>
-              ))}
+              <span className="inside-box">
+                <span className="outside-box"></span>
+                {visionProps.visions.map(
+                  (vision: VisionType, index: number) => (
+                    <button
+                      className="glide__bullet"
+                      data-glide-dir={`=${index}`}
+                      key={`glide_bullet--key${index}`}
+                    >
+                      <Image
+                        src={vision.image.url}
+                        alt={vision.image.alt}
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                    </button>
+                  )
+                )}
+              </span>
             </Column>
           </div>
         </CarouselWrapper>

@@ -7,6 +7,7 @@ interface ButtonProps {
 }
 
 const buttonCss = (props: ButtonProps & any) => css`
+  position: relative;
   cursor: pointer;
   text-align: center;
   padding: 12px 30px;
@@ -26,10 +27,81 @@ const buttonCss = (props: ButtonProps & any) => css`
   font-family: ${props.theme.titleFont};
   font-weight: 300;
   letter-spacing: 1px;
+  transition: all 0.2s ease-in-out;
+  &.border-animation {
+    border-radius: 0px;
+    border: none;
+    &::before,
+    &::after {
+      content: '';
+      width: 0;
+      height: 1px;
+      position: absolute;
+      transition: all 0.2s linear;
+      background: ${props.theme.doreColor};
+    }
+    &::before {
+      width: 100%;
+
+      right: 0;
+      top: 0;
+    }
+    &::after {
+      width: 50%;
+      right: 0;
+      bottom: 0;
+      transition-delay: 0.2s;
+    }
+    span {
+      display: block;
+      &::before,
+      &::after {
+        content: '';
+        width: 1px;
+        height: 0;
+        position: absolute;
+        transition: all 0.2s linear;
+        background: ${props.theme.doreColor};
+      }
+      &::after {
+        height: 100%;
+
+        right: 0;
+        bottom: 0;
+      }
+      ::before {
+        transition-delay: 0s;
+        left: 0;
+        bottom: 0;
+      }
+    }
+    &:hover {
+      border: none;
+      background: transparent;
+      color: ${props.theme.doreColor};
+
+      ::before,
+      ::after {
+        width: 100%;
+      }
+      ::after {
+        transition-delay: 0s;
+      }
+      span {
+        ::before,
+        ::after {
+          height: 100%;
+        }
+        ::before {
+          transition-delay: 0.2s;
+        }
+      }
+    }
+  }
   &:hover,
   &.hover {
     background-color: ${props.buttonType === ButtonType.Dark
-      ? props.theme.secondColor
+      ? 'transparent'
       : props.theme.doreColor};
     border-color: ${props.buttonType === ButtonType.Dark
       ? props.theme.firstColor

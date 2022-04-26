@@ -17,7 +17,7 @@ export const mainTheme = {
   h3FontSize: '21px',
   normalFontSize: '15px',
   smallFontSize: '13px',
-  buttonFontSize: '22px',
+  buttonFontSize: '18px',
 
   titleFont: "'Atlantic Cruise',sans-serif",
   bodyFont: "'Montserrat',sans-serif",

@@ -170,6 +170,59 @@ export const CarouselWrapper = styled.div`
       @media only screen and (max-width: 768px) {
         height: 535px;
       }
+      .inside-box {
+        display: block;
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          transition: all 0.2s linear;
+          background: #fff;
+          z-index: 3;
+        }
+        &::before {
+          width: 4px;
+          height: 90%;
+          left: 5%;
+          bottom: 10%;
+        }
+        &::after {
+          width: 95%;
+          height: 4px;
+          bottom: 10%;
+          left: 5%;
+        }
+        .outside-box {
+          display: block;
+          width: 100%;
+          height: 100%;
+          border: 4px solid ${({ theme }) => theme.doreColor};
+          position: absolute;
+          top: -10%;
+          left: 5%;
+          z-index: 1;
+          &::before,
+          &::after {
+            content: '';
+            position: absolute;
+            transition: all 0.2s linear;
+            background: ${({ theme }) => theme.doreColor};
+            z-index: 2;
+          }
+          &::before {
+            width: 4px;
+            height: 10%;
+            left: -4px;
+            top: -4px;
+          }
+          &::after {
+            width: 5%;
+            height: 4px;
+            bottom: -4px;
+            right: -4px;
+          }
+        }
+      }
       > button {
         width: 100%;
         max-width: 574px;

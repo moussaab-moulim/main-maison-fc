@@ -108,7 +108,7 @@ const MenuActionButton = styled(Button)`
       bottom: 0;
     }
   }
-  :hover {
+  &:hover {
     border: none;
     background: transparent;
     color: ${(props) => props.theme.doreColor};
