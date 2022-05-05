@@ -12,10 +12,16 @@ import { NavContainer } from '../../Components/Nav/NavContainer';
 import Column from '../../Components/Section/Column';
 import SectionInner from '../../Components/Section/SectionInner';
 import { TextPrismic } from '../../Components/Text/Text';
-import { FooterDataType, LangDataType, MenuType } from '../../utils/types';
+import {
+  DocumentMeta,
+  FooterDataType,
+  LangDataType,
+  MenuType,
+} from '../../utils/types';
 
 interface FooterProps extends FooterDataType {
   langData: LangDataType;
+  documentMeta: DocumentMeta;
 }
 const FooterContainer = styled.footer`
   width: 100%;
@@ -73,6 +79,7 @@ const Footer = ({
   logo,
   copyrightText,
   langData,
+  documentMeta,
 }: FooterProps) => {
   const { t } = useTranslation('common');
   return (
@@ -114,7 +121,13 @@ const Footer = ({
             </ul>
           </NavContainer>
           {/* <SubscriptionForm /> */}
-          {langData && <LanguageSwitcher className="footer" {...langData} />}
+          {langData && documentMeta.alternateLanguages.length > 0 && (
+            <LanguageSwitcher
+              meta={documentMeta.meta}
+              className="footer"
+              {...langData}
+            />
+          )}
         </Column>
       </FooterInner>
       <Line />

@@ -16,6 +16,7 @@ import {
   LangDataType,
   ButtonType,
   ButtonLink,
+  DocumentMeta,
 } from '../../utils/types';
 
 interface HeaderProps {
@@ -23,6 +24,7 @@ interface HeaderProps {
   menuItems?: MenuType[];
   menuActions?: ButtonLink[];
   langData: LangDataType;
+  documentMeta: DocumentMeta;
 }
 
 const HeaderContainer = styled.header`
@@ -152,7 +154,13 @@ const MobileMenuButton = styled.button`
   }
 `;
 
-const Header = ({ logo, menuItems, menuActions, langData }: HeaderProps) => {
+const Header = ({
+  logo,
+  menuItems,
+  menuActions,
+  langData,
+  documentMeta,
+}: HeaderProps) => {
   const [offset, setOffset] = useState(0);
   const [toggleMobileMenu, setToggleMobileMenu] = useState(false);
   const handleToggle = () => {
@@ -168,7 +176,11 @@ const Header = ({ logo, menuItems, menuActions, langData }: HeaderProps) => {
     };
   }, []);
   return (
-    <HeaderContainer className={offset > 0 ? 'sticky' : ''}>
+    <HeaderContainer
+      className={
+        offset > 0 || documentMeta.meta.type === 'service' ? 'sticky' : ''
+      }
+    >
       <SectionInner className="menu-inner">
         {logo && (
           <LogoContainer className={`${offset > 0 ? 'sticky-logo' : ''}`}>
@@ -209,8 +221,12 @@ const Header = ({ logo, menuItems, menuActions, langData }: HeaderProps) => {
                 </MenuActionButton>
               </Link>
             ))}
-          {langData && (
-            <LanguageSwitcher {...langData} onClick={handleToggle} />
+          {langData && documentMeta.alternateLanguages.length > 0 && (
+            <LanguageSwitcher
+              {...langData}
+              meta={documentMeta.meta}
+              onClick={handleToggle}
+            />
           )}
         </NavContainer>
         <MobileMenuButton onClick={handleToggle}>

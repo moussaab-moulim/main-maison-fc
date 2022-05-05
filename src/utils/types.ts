@@ -14,18 +14,35 @@ export interface HomeDataType {
   header: HeaderDataType;
   services: ServicesDataType;
   about: AboutDataType;
+  prices: PricesDataType;
   visions: VisionDataType;
+  offer: OfferDataType;
+  blog: BlogDataType;
   statement: StatementDataType;
   contact: ContactDataType;
-  seo: PageSeoDataType;
+  seo: PageSettings;
 }
 
-export interface PageSeoDataType {
+export interface IMeta {
+  id: string;
+  uid: string;
+  type: string;
+  lang: string;
+}
+export interface DocumentMeta {
+  meta: IMeta;
+  tags?: string[];
+  alternateLanguages: IMeta[];
+  firstPublicationDate?: string;
+  lastPublicationDate?: string;
+}
+export interface PageSettings {
+  documentMeta: DocumentMeta;
   title: string;
-  metaTitle: string;
-  metaDescription: string;
-  keywords: string;
-  // TODO images
+  metaTitle?: string;
+  metaDescription?: string;
+  keywords?: string;
+  url: string;
 }
 export interface GlobalSettingsDataType {
   siteName: string;
@@ -140,4 +157,47 @@ export interface SeoDataType {
 export interface LangDataType {
   currentLanguage: string;
   languages: string[];
+}
+export interface TreatmentType {
+  category?: string;
+  treatment: string;
+  price: string;
+  description: RichTextBlock[];
+  button?: ButtonLink;
+  image?: ImageType;
+}
+export interface PricesDataType extends Common {
+  pricesTitle: string;
+  pricesList: TreatmentType[];
+}
+export interface OfferDataType extends Common {
+  offerTitle: string;
+  offerImage: ImageType;
+  offerDescription: RichTextBlock[];
+  offerButton: ButtonLink;
+}
+
+export interface PostDataType extends PageSettings {
+  cursor?: string;
+  postImage: ImageType;
+  postContent?: RichTextBlock[];
+}
+export interface BlogDataType extends Common {
+  blogTitle: string;
+  totalCount?: number;
+  hasNextPage?: boolean;
+  hasPreviousPage?: boolean;
+  startCursor?: string;
+  endCursor?: string;
+  posts: PostDataType[];
+}
+
+export interface PostPageDataType {
+  post: PostDataType;
+  blog: BlogDataType;
+  seo: SeoDataType;
+}
+export interface ServiceDataType extends PageSettings {
+  serviceImage: ImageType;
+  treatments: TreatmentType[];
 }

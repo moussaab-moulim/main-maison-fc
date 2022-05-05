@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Image from 'next/image';
 import styled from 'styled-components';
 
 import BackgroundWrapper from '../../Components/BackgroundWrapper';
+import Image from '../../Components/Image';
 import Column from '../../Components/Section/Column';
 import Section from '../../Components/Section/Section';
 import SectionInner from '../../Components/Section/SectionInner';
@@ -13,9 +13,15 @@ import { StatementDataType } from '../../utils/types';
 
 interface StatementProps extends StatementDataType {}
 const StatementText = styled(TextPrismic)`
-  padding-right: 180px;
+  text-align: center;
+  padding: 0 10rem;
+  p:nth-child(2) {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+
   @media only screen and (max-width: 768px) {
-    padding-right: 60px;
+    padding: 0 5rem;
   }
   @media only screen and (max-width: 425px) {
     padding-right: 0px;
@@ -52,11 +58,11 @@ const Statement = (statementProps: StatementProps) => {
         />
       </StatementBackground>
       <SectionInner>
-        <Column type={2} className="right">
+        <Column>
           <StatementText
             render={statementProps.text}
             color={mainTheme.secondColor}
-            size="16px"
+            size="30px"
           />
         </Column>
       </SectionInner>

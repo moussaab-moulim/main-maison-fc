@@ -3,8 +3,8 @@ import React, { ComponentPropsWithoutRef } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { linkResolver, hrefResolver } from '../../../prismicConfiguration';
-import { LangDataType } from '../../utils/types';
+import { linkResolver } from '../../../prismicConfiguration';
+import { IMeta, LangDataType } from '../../utils/types';
 
 interface ContainerProps {
   count: number;
@@ -80,13 +80,18 @@ const Flag = styled.div<FlagProps>`
   justify-content: center;
   font-size: 14px;
 `;
-
+interface LanguageSwitcherProps
+  extends LangDataType,
+    ComponentPropsWithoutRef<'div'> {
+  meta: IMeta;
+}
 const LanguageSwitcher = ({
   onClick,
   languages,
   currentLanguage,
   className,
-}: LangDataType & ComponentPropsWithoutRef<'div'>) => {
+  meta,
+}: LanguageSwitcherProps) => {
   return (
     <LanguageContainer className={className} count={languages.length}>
       <Flag current>
@@ -104,12 +109,7 @@ const LanguageSwitcher = ({
           (language: string, index: number) =>
             language !== currentLanguage && (
               <li key={index}>
-                <Link
-                  locale={language}
-                  as={linkResolver(language)}
-                  href={hrefResolver(language)}
-                  passHref
-                >
+                <Link locale={language} href={linkResolver(meta)} passHref>
                   <a>
                     <Flag onClick={onClick}>
                       {/* <Image

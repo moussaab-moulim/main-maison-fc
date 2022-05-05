@@ -32,8 +32,13 @@ function generateQueries(responsive?: {
 const Column = styled.div<ColumnProps>`
   display: flex;
   flex-flow: column nowrap;
-  width: ${(props) => (props.type ? `${100 / props.type}%` : '100%')};
-  flex-basis: ${(props) => (props.type ? `${100 / props.type}%` : '100%')};
+  gap: 15px;
+  width: calc(
+    (${(props) => (props.type ? `${100 / props.type}%` : '100%')}) - 15px
+  );
+  flex-basis: calc(
+    (${(props) => (props.type ? `${100 / props.type}%` : '100%')}) - 15px
+  );
   margin: 10px 0;
   &.right {
     margin-left: auto;

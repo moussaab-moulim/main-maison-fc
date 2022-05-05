@@ -10,5 +10,9 @@
   "section-footer-form-success": "Votre message a été envoyé. Nous vous contacterons dans les meilleurs délais.",
   "form-failed": "Erreur inconnu. Veuillez ressayer plus tard.",
   "form-field-required": "Ce champs est requis.",
-  "form-field-invalid": "Format invalid."
+  "form-field-invalid": "Format invalid.",
+  "section-blog-id": "blog",
+  "section-blog-title": "blog",
+  "section-blog-button-more": "Voir tous les articles",
+  "post-section-blog-title": "dernières articles"
 }

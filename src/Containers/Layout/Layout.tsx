@@ -5,12 +5,14 @@ import { useRouter } from 'next/router';
 
 import {
   ButtonLink,
+  DocumentMeta,
   FooterDataType,
   ImageType,
   LangDataType,
   MenuType,
   SeoDataType,
 } from '../../utils/types';
+import Footer from './Footer';
 import Header from './Header';
 
 type LayoutProps = {
@@ -22,6 +24,7 @@ type LayoutProps = {
   children: ReactNode;
   footerData: FooterDataType;
   langData: LangDataType;
+  documentMeta: DocumentMeta;
 };
 
 const Layout = ({
@@ -30,8 +33,9 @@ const Layout = ({
   children,
   logo,
   menuActions,
-  // footerData,
+  footerData,
   langData,
+  documentMeta,
 }: LayoutProps) => {
   const router = useRouter();
   return (
@@ -179,14 +183,19 @@ const Layout = ({
       />
       <Fragment>
         <Header
+          documentMeta={documentMeta}
           menuItems={menuItems}
           logo={logo}
           menuActions={menuActions}
           langData={langData}
         />
         <main>{children}</main>
-        {/* 
-        <Footer {...footerData} langData={langData} /> */}
+
+        <Footer
+          {...footerData}
+          documentMeta={documentMeta}
+          langData={langData}
+        />
       </Fragment>
     </Fragment>
   );

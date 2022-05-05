@@ -1,62 +1,74 @@
+/* eslint-disable no-underscore-dangle */
 import React, { FC } from 'react';
 
-import { GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import About from '../Containers/About/About';
-import Blog from '../Containers/Blog/Blog';
-import Contact from '../Containers/Contact/Contact';
-import Header from '../Containers/Header/Header';
-import { Layout } from '../Containers/Layout/Layout';
-import Offer from '../Containers/Offer/Offer';
-import Prices from '../Containers/Prices/Prices';
-import Services from '../Containers/Services/Services';
-import Statement from '../Containers/Statement/Statement';
-import Visions from '../Containers/Visions/Visions';
+import { linkResolver } from '../../../prismicConfiguration';
+import Blog from '../../Containers/Blog/Blog';
+import PostContent from '../../Containers/Blog/PostContent';
+import PostHeader from '../../Containers/Blog/PostHeader';
+import { Layout } from '../../Containers/Layout/Layout';
 import {
+  mapBlog,
   mapFooterData,
   mapGlobalSettingsData,
-  mapHomeData,
   mapMenuData,
+  mapPost,
   mapSeoData,
-} from '../utils/mapper';
+} from '../../utils/mapper';
 import {
+  getBolgPost,
   getBolgPosts,
   getGlobalSettings,
-  getHomePageData,
   getMenu,
-} from '../utils/queries';
+} from '../../utils/queries';
 import {
+  BlogDataType,
   FooterDataType,
   GlobalSettingsDataType,
-  HomeDataType,
   LangDataType,
   MenuDataType,
+  PostDataType,
   SeoDataType,
-} from '../utils/types';
+} from '../../utils/types';
 
 interface IndexProps {
-  homeData: HomeDataType;
+  postData: PostDataType;
+  blogData: BlogDataType;
   menuData: MenuDataType;
   globalSettingsData: GlobalSettingsDataType;
   footerData: FooterDataType;
   seoData: SeoDataType;
   langData: LangDataType;
 }
+export const getStaticPaths: GetStaticPaths = async () => {
+  const fetchedBolgPosts = (await getBolgPosts()).data.allPosts.edges;
 
-export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
+  return {
+    paths: fetchedBolgPosts.map((post: any) => linkResolver(post.node._meta)),
+    fallback: false,
+  };
+};
+export const getStaticProps: GetStaticProps = async ({
+  params,
+  locale,
+  locales,
+}) => {
   const fetchedMenu = (await getMenu(locale!)).data.menu;
   const fetchedSiteSettings = (await getGlobalSettings(locale!)).data
     .site_settings;
-  const fetchedHomeData = (await getHomePageData(locale!)).data.home;
+  const fetchedPostData = (await getBolgPost(params!.uid as string, locale!))
+    .data.post;
   const fetchedBolgPosts = (await getBolgPosts(locale!, 3)).data.allPosts;
   // mapping fetched data
   const menuData: MenuDataType = mapMenuData(fetchedMenu);
   const globalSettingsData: GlobalSettingsDataType =
     mapGlobalSettingsData(fetchedSiteSettings);
-  const homeData: HomeDataType = mapHomeData(
-    fetchedHomeData,
-    globalSettingsData,
+  const postData: PostDataType = mapPost(fetchedPostData);
+
+  const blogData: BlogDataType = mapBlog(
+    'post-section-blog-title',
     fetchedBolgPosts
   );
 
@@ -66,12 +78,13 @@ export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
     menuData
   );
 
-  const seoData: SeoDataType = mapSeoData(globalSettingsData, homeData.seo);
+  const seoData: SeoDataType = mapSeoData(globalSettingsData, postData);
   // const { currentLang, isMyMainLanguage } = manageLocal(locales!, locale!);
   return {
     props: {
       ...(await serverSideTranslations(locale!, ['common'])),
-      homeData,
+      postData,
+      blogData,
       menuData,
       globalSettingsData,
       footerData,
@@ -85,7 +98,8 @@ export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
 };
 
 const Index: FC<IndexProps> = ({
-  homeData,
+  postData,
+  blogData,
   menuData,
   globalSettingsData,
   footerData,
@@ -94,7 +108,6 @@ const Index: FC<IndexProps> = ({
 }) => {
   return (
     <Layout
-      documentMeta={homeData.seo.documentMeta}
       seoData={seoData}
       menuItems={menuData.menuItems}
       menuActions={menuData.menuActions}
@@ -102,16 +115,15 @@ const Index: FC<IndexProps> = ({
       logoInvert={globalSettingsData.logoInvert}
       footerData={footerData}
       langData={langData}
+      documentMeta={postData.documentMeta}
     >
-      <Header {...homeData.header} />
-      <About {...homeData.about} />
-      <Services {...homeData.services} />
-      <Prices {...homeData.prices} />
-      <Visions {...homeData.visions} />
-      <Blog {...homeData.blog} />
-      <Offer {...homeData.offer} />
-      <Statement {...homeData.statement} />
-      <Contact {...homeData.contact} />
+      <PostHeader
+        image={postData.postImage}
+        title={postData.title}
+        date={postData.documentMeta.firstPublicationDate!}
+      />
+      <PostContent content={postData.postContent!} />
+      <Blog {...blogData} />
     </Layout>
   );
 };

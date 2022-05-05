@@ -12,25 +12,44 @@ export const client = new ApolloClient({
   }),
   cache: new InMemoryCache(),
 });
-// TODO fix lang
+
+const metaQuery = `
+_meta {
+  type
+  id
+  uid
+  firstPublicationDate
+  lastPublicationDate
+  lang
+  tags
+  alternateLanguages{
+    lang
+    uid
+    type
+    id
+  }
+}`;
+const postMainQuery = `
+${metaQuery}
+title
+post_image`;
 export const getHomePageData = async (lang: string) => {
   return client.query({
     query: gql`
       query {
         home(uid: "home", lang: "${lang}") {
-          _meta {
-            id
-            uid
-          }
+          ${metaQuery}
           title
           meta_title
           meta_description
           keywords
           header_id
           services_id
+          prices_id
           salon_id
           prices_id
           vision_id
+          offer_id
           statement_id
           contact_id
           header_slider {
@@ -44,6 +63,14 @@ export const getHomePageData = async (lang: string) => {
             icon
             service_name
             service_description
+            link
+          }
+          prices_title
+          prices_list{
+            offer_category
+            offer
+            offer_price
+            offer_description
           }
           salon_title
           salon_description
@@ -57,6 +84,10 @@ export const getHomePageData = async (lang: string) => {
             vision_description
             vision_button
           }
+          offer_title
+          offer_image
+          offer_description
+          offer_button
           statement_background
           statement_text
         }
@@ -70,9 +101,7 @@ export const getMenu = async (lang: string) => {
     query: gql`
       query {
         menu(uid: "menu", lang: "${lang}") {
-          _meta {
-            uid
-          }
+          ${metaQuery}
           menu_items {
             id
             label
@@ -94,10 +123,7 @@ export const getGlobalSettings = async (lang: string) => {
     query: gql`
       query {
         site_settings(uid: "site_settings", lang: "${lang}") {
-          _meta {
-            uid
-            lang
-          }
+          ${metaQuery}
           site_name
           description
           domain
@@ -113,6 +139,118 @@ export const getGlobalSettings = async (lang: string) => {
           search_console_verification_key
           map_embed_url
           theme_color
+        }
+      }
+    `,
+  });
+};
+
+export const getBolgPosts = async (lang?: string, count?: number) => {
+  return client.query({
+    query: gql`
+      query {
+        allPosts(${
+          lang === undefined ? '' : `lang: "${lang}"`
+        }, sortBy: meta_firstPublicationDate_DESC${
+      count === undefined ? '' : `,first:${count}`
+    }) {
+          totalCount
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+            startCursor
+            endCursor
+          }
+          edges {
+            cursor
+            node {
+              ${postMainQuery}
+            }
+          }
+        }
+      }
+    `,
+  });
+};
+export const getBolgPost = async (uid: string, lang: string) => {
+  return client.query({
+    query: gql`
+      query {
+        post(uid:"${uid}",lang: "${lang}") {
+          
+            ${postMainQuery}
+              meta_title
+              meta_description
+              keywords
+              post_content
+            
+        }
+      }
+    `,
+  });
+};
+export const getBolgPage = async (lang: string) => {
+  return client.query({
+    query: gql`
+      query {
+        blog(uid:"blog",lang: "${lang}") {
+          
+            ${metaQuery}
+            title
+              meta_title
+              meta_description
+              keywords
+            
+        }
+      }
+    `,
+  });
+};
+export const getServicePages = async () => {
+  return client.query({
+    query: gql`
+      query {
+        allServices {
+          totalCount
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+            startCursor
+            endCursor
+          }
+          edges {
+            cursor
+            node {
+              ${metaQuery}
+            }
+          }
+        }
+      }
+    `,
+  });
+};
+
+export const getServicePage = async (uid: string, lang: string) => {
+  return client.query({
+    query: gql`
+      query {
+        service(uid:"${uid}",lang: "${lang}") {
+          
+            ${metaQuery}
+              meta_title
+              meta_description
+              keywords
+              title
+    header_id
+    service_image
+    sub_service{
+      sub_service_title
+      sub_service_image
+      sub_service_price
+      sub_service_description
+      sub_service_button
+    }
+            
         }
       }
     `,

@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import Glide from '@glidejs/glide';
 import Link from 'next/link';
 
 import { ButtonLink } from '../../Components/Button/Button';
@@ -9,7 +8,6 @@ import Image from '../../Components/Image';
 import Column from '../../Components/Section/Column';
 import Section from '../../Components/Section/Section';
 import SectionInner from '../../Components/Section/SectionInner';
-import { VerticalSpace } from '../../Components/Space/Space';
 import { Text } from '../../Components/Text/Text';
 import { ButtonType, VisionDataType, VisionType } from '../../utils/types';
 import '@glidejs/glide/dist/css/glide.core.min.css';
@@ -18,7 +16,7 @@ import { ButtonsContainer, CarouselWrapper } from './Visions.style';
 interface VisionsProps extends VisionDataType {}
 
 function VisionsSection(visionProps: VisionsProps) {
-  useEffect(() => {
+  /*  useEffect(() => {
     const glide = new Glide('#glide_carousel', {
       type: 'slider',
       perView: 1,
@@ -27,6 +25,7 @@ function VisionsSection(visionProps: VisionsProps) {
     });
     glide.mount();
   });
+   */
   return (
     <Section id={visionProps.id}>
       <SectionInner>
@@ -57,7 +56,7 @@ function VisionsSection(visionProps: VisionsProps) {
                               {vision.button?.text}
                             </ButtonLink>
                           </Link>
-                          <VerticalSpace size={20} />
+                          {/* <VerticalSpace size={20} />
                           <div
                             className="glide__arrows"
                             data-glide-el="controls"
@@ -76,7 +75,7 @@ function VisionsSection(visionProps: VisionsProps) {
                             >
                               <span className="next_arrow"></span>
                             </button>
-                          </div>
+                          </div> */}
                         </ButtonsContainer>
                       </li>
                     )

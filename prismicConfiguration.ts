@@ -1,3 +1,5 @@
+import { IMeta } from './src/utils/types';
+
 // -- Prismic Repo Name
 export const repoName = 'main-maisonfabiencarrichon';
 
@@ -14,9 +16,16 @@ export const accessToken =
 
 // -- Link resolution rules
 // Manages the url links to internal Prismic documents
-export const linkResolver = (doc: any) => {
+export const linkResolver = (doc: IMeta) => {
+  const langPrefix = doc.lang === 'fr' ? '' : '/en';
+  if (doc.type === 'post') {
+    return `${langPrefix}/blog/${doc.uid}`;
+  }
+  if (doc.type === 'service') {
+    return `${langPrefix}/service/${doc.uid}`;
+  }
   if (doc.type === 'home') {
-    return `/${doc.lang}`;
+    return `${langPrefix}`;
   }
   return '/';
 };

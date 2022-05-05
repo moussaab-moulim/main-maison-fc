@@ -10,5 +10,9 @@
   "section-footer-form-success": "Your message has been sent. We will contact you shortly.",
   "form-failed": "Unknown error. please try again later.",
   "form-field-required": "This field is required.",
-  "form-field-invalid": "Invalid format."
+  "form-field-invalid": "Invalid format.",
+  "section-blog-id": "blog",
+  "section-blog-title": "blog",
+  "section-blog-button-more": "Check all posts",
+  "post-section-blog-title": "Latest posts"
 }

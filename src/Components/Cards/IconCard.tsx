@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 
+import Link from 'next/link';
 import styled from 'styled-components';
 
 import { Heading3 } from '../Heading/Heading3';
@@ -15,14 +16,16 @@ interface IconCardProps {
 interface ServiceBoxProps {
   children: ReactNode;
   index: number;
+  link?: string;
 }
 
-const ServiceBoxWrapper = styled.div<ServiceBoxProps>`
+const ServiceBoxWrapper = styled.a<ServiceBoxProps>`
   --side-margin: 15px;
   flex-basis: 25%;
   margin: 24px var(--side-margin);
   transition: all 0.2s linear;
   position: relative;
+  cursor: pointer;
   .second {
     display: flex;
     flex-flow: column nowrap;
@@ -112,7 +115,6 @@ const ServiceBoxWrapper = styled.div<ServiceBoxProps>`
       width: ${({ index }) => (index % 2 === 1 ? '30%' : '100%')};
       transition-delay: ${({ index }) => (index % 2 === 0 ? '0s' : '0.2s')};
     }
-    cursor: pointer;
     svg {
       color: #999;
     }
@@ -136,12 +138,14 @@ const ServiceBoxWrapper = styled.div<ServiceBoxProps>`
     padding: 25px 24px;
   }
 `;
-const ServiceBox = ({ children, index }: ServiceBoxProps) => (
-  <ServiceBoxWrapper index={index}>
-    <span className="first">
-      <span className="second">{children}</span>
-    </span>
-  </ServiceBoxWrapper>
+const ServiceBox = ({ children, index, link }: ServiceBoxProps) => (
+  <Link href={link ?? '#'} passHref>
+    <ServiceBoxWrapper index={index}>
+      <span className="first">
+        <span className="second">{children}</span>
+      </span>
+    </ServiceBoxWrapper>
+  </Link>
 );
 
 const CardDescription = styled.div`
@@ -153,7 +157,7 @@ const CardDescription = styled.div`
 // TODO : ALT text
 function IconCard(iconCardProps: IconCardProps) {
   return (
-    <ServiceBox index={iconCardProps.index}>
+    <ServiceBox index={iconCardProps.index} link={iconCardProps.cardUrl}>
       {!!iconCardProps.iconUrl && (
         <IconWithCircleAnimation iconUrl={iconCardProps.iconUrl} />
       )}

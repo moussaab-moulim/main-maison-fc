@@ -1,42 +1,38 @@
+/* eslint-disable no-underscore-dangle */
 import React, { FC } from 'react';
 
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import About from '../Containers/About/About';
-import Blog from '../Containers/Blog/Blog';
-import Contact from '../Containers/Contact/Contact';
-import Header from '../Containers/Header/Header';
-import { Layout } from '../Containers/Layout/Layout';
-import Offer from '../Containers/Offer/Offer';
-import Prices from '../Containers/Prices/Prices';
-import Services from '../Containers/Services/Services';
-import Statement from '../Containers/Statement/Statement';
-import Visions from '../Containers/Visions/Visions';
+import BlogHeader from '../../Containers/Blog/BlogHeader';
+import { Layout } from '../../Containers/Layout/Layout';
 import {
+  mapBlog,
+  mapBlogPage,
   mapFooterData,
   mapGlobalSettingsData,
-  mapHomeData,
   mapMenuData,
   mapSeoData,
-} from '../utils/mapper';
+} from '../../utils/mapper';
 import {
+  getBolgPage,
   getBolgPosts,
   getGlobalSettings,
-  getHomePageData,
   getMenu,
-} from '../utils/queries';
+} from '../../utils/queries';
 import {
+  BlogDataType,
   FooterDataType,
   GlobalSettingsDataType,
-  HomeDataType,
   LangDataType,
   MenuDataType,
+  PageSettings,
   SeoDataType,
-} from '../utils/types';
+} from '../../utils/types';
 
 interface IndexProps {
-  homeData: HomeDataType;
+  pageData: PageSettings;
+  blogData: BlogDataType;
   menuData: MenuDataType;
   globalSettingsData: GlobalSettingsDataType;
   footerData: FooterDataType;
@@ -48,15 +44,16 @@ export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
   const fetchedMenu = (await getMenu(locale!)).data.menu;
   const fetchedSiteSettings = (await getGlobalSettings(locale!)).data
     .site_settings;
-  const fetchedHomeData = (await getHomePageData(locale!)).data.home;
+  const fetchedBlogData = (await getBolgPage(locale!)).data.blog;
   const fetchedBolgPosts = (await getBolgPosts(locale!, 3)).data.allPosts;
   // mapping fetched data
   const menuData: MenuDataType = mapMenuData(fetchedMenu);
   const globalSettingsData: GlobalSettingsDataType =
     mapGlobalSettingsData(fetchedSiteSettings);
-  const homeData: HomeDataType = mapHomeData(
-    fetchedHomeData,
-    globalSettingsData,
+  const pageData: PageSettings = mapBlogPage(fetchedBlogData);
+  console.log('blooog', pageData);
+  const blogData: BlogDataType = mapBlog(
+    'section-blog-title',
     fetchedBolgPosts
   );
 
@@ -66,12 +63,13 @@ export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
     menuData
   );
 
-  const seoData: SeoDataType = mapSeoData(globalSettingsData, homeData.seo);
+  const seoData: SeoDataType = mapSeoData(globalSettingsData, pageData);
   // const { currentLang, isMyMainLanguage } = manageLocal(locales!, locale!);
   return {
     props: {
       ...(await serverSideTranslations(locale!, ['common'])),
-      homeData,
+      pageData,
+      blogData,
       menuData,
       globalSettingsData,
       footerData,
@@ -85,7 +83,8 @@ export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
 };
 
 const Index: FC<IndexProps> = ({
-  homeData,
+  pageData,
+  blogData,
   menuData,
   globalSettingsData,
   footerData,
@@ -94,7 +93,6 @@ const Index: FC<IndexProps> = ({
 }) => {
   return (
     <Layout
-      documentMeta={homeData.seo.documentMeta}
       seoData={seoData}
       menuItems={menuData.menuItems}
       menuActions={menuData.menuActions}
@@ -102,16 +100,11 @@ const Index: FC<IndexProps> = ({
       logoInvert={globalSettingsData.logoInvert}
       footerData={footerData}
       langData={langData}
+      documentMeta={pageData.documentMeta}
     >
-      <Header {...homeData.header} />
-      <About {...homeData.about} />
-      <Services {...homeData.services} />
-      <Prices {...homeData.prices} />
-      <Visions {...homeData.visions} />
-      <Blog {...homeData.blog} />
-      <Offer {...homeData.offer} />
-      <Statement {...homeData.statement} />
-      <Contact {...homeData.contact} />
+      <BlogHeader {...pageData} {...blogData} />
+
+      {/* <BlogPosts {...blogData} /> */}
     </Layout>
   );
 };

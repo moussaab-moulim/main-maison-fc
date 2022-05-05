@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import React, { CSSProperties } from 'react';
 
 import { RichText, RichTextProps } from 'prismic-reactjs';
 import styled from 'styled-components';
