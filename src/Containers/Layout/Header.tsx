@@ -178,7 +178,9 @@ const Header = ({
   return (
     <HeaderContainer
       className={
-        offset > 0 || documentMeta.meta.type === 'service' ? 'sticky' : ''
+        offset > 0 || ['service', 'about'].includes(documentMeta.meta.type)
+          ? 'sticky'
+          : ''
       }
     >
       <SectionInner className="menu-inner">
@@ -203,10 +205,38 @@ const Header = ({
           <ul>
             {menuItems &&
               menuItems.map((item: MenuType, index: number) => (
-                <li key={index}>
-                  <Link href={item.url} passHref>
-                    <a onClick={handleToggle}>{item.label}</a>
-                  </Link>
+                <li
+                  key={index}
+                  className={`menu-item ${
+                    item.children.length > 0 ? 'has-menu' : ''
+                  }`}
+                >
+                  {item.clickabale ? (
+                    <Link href={item.url} passHref>
+                      <a onClick={handleToggle}>{item.label}</a>
+                    </Link>
+                  ) : (
+                    <span onClick={handleToggle}>{item.label}</span>
+                  )}
+                  {item.children.length > 0 && (
+                    <ul className="nested-menu">
+                      {item.children.map(
+                        (itemChild: MenuType, indexChild: number) => (
+                          <li className="nested-menu-item" key={indexChild}>
+                            {itemChild.clickabale ? (
+                              <Link href={itemChild.url} passHref>
+                                <a onClick={handleToggle}>{itemChild.label}</a>
+                              </Link>
+                            ) : (
+                              <span onClick={handleToggle}>
+                                {itemChild.label}
+                              </span>
+                            )}
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  )}
                 </li>
               ))}
           </ul>

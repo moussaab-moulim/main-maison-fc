@@ -1,14 +1,17 @@
 import React, { ReactNode } from 'react';
 
-import Link from 'next/link';
 import styled from 'styled-components';
 
+import { mainTheme } from '../../styles/theme';
+import { ImageType } from '../../utils/types';
 import { Heading3 } from '../Heading/Heading3';
+import { Text } from '../Text/Text';
 import IconWithCircleAnimation from './IconWithCircleAnimation';
 
 interface IconCardProps {
-  iconUrl?: string;
+  icon?: ImageType;
   title?: string;
+  subTitle?: string;
   description?: string;
   cardUrl?: string;
   index: number;
@@ -138,14 +141,14 @@ const ServiceBoxWrapper = styled.a<ServiceBoxProps>`
     padding: 25px 24px;
   }
 `;
-const ServiceBox = ({ children, index, link }: ServiceBoxProps) => (
-  <Link href={link ?? '#'} passHref>
-    <ServiceBoxWrapper index={index}>
-      <span className="first">
-        <span className="second">{children}</span>
-      </span>
-    </ServiceBoxWrapper>
-  </Link>
+const ServiceBox = ({ children, index /* , link */ }: ServiceBoxProps) => (
+  // <Link href={link ?? '#'} passHref>
+  <ServiceBoxWrapper index={index}>
+    <span className="first">
+      <span className="second">{children}</span>
+    </span>
+  </ServiceBoxWrapper>
+  // </Link>
 );
 
 const CardDescription = styled.div`
@@ -154,16 +157,26 @@ const CardDescription = styled.div`
   font-weight: 300;
   color: ${({ theme }) => theme.textColor};
 `;
-// TODO : ALT text
 function IconCard(iconCardProps: IconCardProps) {
   return (
     <ServiceBox index={iconCardProps.index} link={iconCardProps.cardUrl}>
-      {!!iconCardProps.iconUrl && (
-        <IconWithCircleAnimation iconUrl={iconCardProps.iconUrl} />
+      {!!iconCardProps.icon && (
+        <IconWithCircleAnimation icon={iconCardProps.icon} />
       )}
-      <Heading3 style={{ marginBottom: '25px' }}>
+      <Heading3 style={{ marginBottom: iconCardProps.subTitle ? '0' : '25px' }}>
         {iconCardProps.title}
       </Heading3>
+      {iconCardProps.subTitle && (
+        <Text
+          style={{
+            fontFamily: "'Atlantic Cruise',sans-serif",
+            fontSize: '18px',
+            color: mainTheme.textColorCmall,
+          }}
+        >
+          {iconCardProps.subTitle}
+        </Text>
+      )}
       <CardDescription>{iconCardProps.description}</CardDescription>
     </ServiceBox>
   );

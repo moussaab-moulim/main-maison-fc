@@ -1,8 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 import * as prismicH from '@prismicio/helpers';
 
-import { linkResolver } from '../../prismicConfiguration';
+import { linkResolver, webLinkResolver } from '../../prismicConfiguration';
 import {
+  AboutPageDataType,
   BlogDataType,
   ButtonLink,
   DocumentMeta,
@@ -11,7 +12,10 @@ import {
   HomeDataType,
   ImageType,
   IMeta,
+  LinkType,
+  MemberData,
   MenuDataType,
+  MenuType,
   PageSettings,
   PostDataType,
   SeoDataType,
@@ -21,19 +25,19 @@ import {
   VisionType,
 } from './types';
 
+export const mapImage = (image: any): ImageType => ({
+  url: image.url,
+  alt: image.alt,
+});
 export const mapServices = (services: any[]): ServiceType[] => {
   return services.map((item) => ({
-    iconUrl: item.icon.url,
+    icon: mapImage(item.icon),
     title: item.service_name[0].text,
     description: item.service_description[0].text,
     serviceUrl: linkResolver(item.link[0].spans[0].data),
   }));
 };
 
-export const mapImage = (image: any): ImageType => ({
-  url: image.url,
-  alt: image.alt,
-});
 export const mapImages = (images: any[]): ImageType[] => {
   return images.map((image) => mapImage(image));
 };
@@ -95,6 +99,7 @@ export const mapPost = (post: any, cursor?: string): PostDataType => {
   };
 };
 export const mapBlog = (title: string, blog: any): BlogDataType => ({
+  interface: 'BlogDataType',
   id: 'section-blog-id',
   blogTitle: title,
   totalCount: blog.totalCount,
@@ -181,17 +186,50 @@ export const mapHomeData = (
     },
   };
 };
-
-export const mapMenuData = (queryResult: any): MenuDataType => {
+export const mapMenuItem = (item: any): MenuType => {
   return {
-    menuItems: queryResult.menu_items.map((item: any) => ({
-      id: item.id,
-      label: item.label,
-      url: item.url,
-      class: item.class,
-      clickabale: item.clickabale,
-      parentId: item.parent_id,
-    })),
+    id: item.id,
+    label: item.label,
+    url:
+      // eslint-disable-next-line no-nested-ternary
+      item.url[0].spans.length > 0
+        ? // eslint-disable-next-line eqeqeq
+          item.url[0].spans[0].data.link_type == LinkType.Document
+          ? linkResolver(item.url[0].spans[0].data as IMeta)
+          : webLinkResolver(item.url[0].spans[0].data.url)
+        : '#',
+    class: item.class,
+    clickabale: item.clickabale,
+    parentId: item.parent_id ?? '',
+    isBroken: item.url[0].spans[0]?.data.isBroken ?? false,
+    children: [],
+  };
+};
+export const mapMenuData = (queryResult: any): MenuDataType => {
+  const menuByParent = new Map<string, MenuType>();
+  queryResult.menu_items.forEach((item: any) => {
+    const parentId = item.parent_id!;
+    const mappedMenuItem = mapMenuItem(item);
+    if (!mappedMenuItem.isBroken)
+      if (!parentId) {
+        menuByParent.set(item.id, mappedMenuItem);
+      } else {
+        const id = item.parent_id!;
+        const menuItem = menuByParent.get(id);
+        if (menuItem) {
+          menuItem.children.push(mappedMenuItem);
+        } else {
+          menuByParent.set(
+            id,
+            mapMenuItem(
+              queryResult.menu_items.find((element: any) => element.id === id)
+            )
+          );
+        }
+      }
+  });
+  return {
+    menuItems: Array.from(menuByParent.values()),
     menuActions: queryResult.menu_action.map((action: any) =>
       mapButton(action.button[0])
     ),
@@ -270,6 +308,59 @@ export const mapBlogPage = (blog: any): PageSettings => {
     metaTitle: blog.meta_title,
     metaDescription: blog.meta_description,
     keywords: blog.keywords,
+  };
+};
+export const mapPageSettings = (page: any): PageSettings => {
+  const documentMeta: DocumentMeta = {
+    meta: mapMeta(page._meta),
+
+    firstPublicationDate: page._meta.firstPublicationDate,
+    lastPublicationDate: page._meta.lastPublicationDate,
+    tags: page._meta.tags,
+    alternateLanguages: page._meta.alternateLanguages.map((doc: any) =>
+      mapMeta(doc)
+    ),
+  };
+  return {
+    documentMeta,
+    url: linkResolver(documentMeta.meta),
+    title: page.title,
+    metaTitle: page.meta_title,
+    metaDescription: page.meta_description,
+    keywords: page.keywords,
+  };
+};
+export const mapTeam = (team_members: any): MemberData[] => {
+  return team_members.map(
+    (member: any): MemberData => ({
+      memberImage: mapImage(member.member_image),
+      memberName: member.member_name,
+      memberRole: member.member_role,
+      memberText: member.member_text[0].text,
+    })
+  );
+};
+export const mapAboutPage = (about: any): AboutPageDataType => {
+  return {
+    interface: 'AboutPageDataType',
+    headerImage: about.header_image,
+    headerText: about.header_text,
+    headerGallery: mapImages(
+      about.header_gallery.map((image: any) => image.header_gallery_image)
+    ),
+    aboutTitle: about.about_title,
+    salonPresentationTitle: about.salon_presentation_title,
+    salonPresentationText: about.salon_presentation_text,
+    salonPresentationGallery: about.salon_presentation_gallery.map(
+      (image: any) => mapImage(image.salon_presentation_image)
+    ),
+
+    founderTitle: about.founder_title,
+    founderText: about.founder_text[0].text,
+    founderImage: mapImage(about.founder_image),
+    teamTitle: about.team_title,
+    teamText: about.team_text,
+    team: mapTeam(about.team_members),
   };
 };
 

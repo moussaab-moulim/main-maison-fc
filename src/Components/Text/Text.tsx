@@ -26,6 +26,15 @@ const RichTextWrapper = styled.div<TextPrismicProps>`
     margin: 0 0 18px;
     font-weight: 300;
   }
+  &.dark {
+    p {
+      color: ${(props) => props.theme.secondColor};
+    }
+    margin-bottom: 50px;
+  }
+  &.middle_text {
+    margin-block: 50px;
+  }
 `;
 
 export const TextPrismic = (props: RichTextProps & TextPrismicProps) => (

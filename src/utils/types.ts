@@ -5,6 +5,10 @@ interface Common {
 }
 type HrefTarget = '_blank' | '_self' | '_parent' | '_top' | 'framename';
 
+export enum LinkType {
+  Web = 'Web',
+  Document = 'Document',
+}
 export interface ButtonLink {
   text: string;
   target: HrefTarget;
@@ -80,6 +84,8 @@ export interface MenuType {
   class: string;
   clickabale: boolean;
   parentId: string;
+  isBroken: boolean;
+  children: MenuType[];
 }
 export interface HeaderDataType extends Common {
   title: string;
@@ -89,7 +95,7 @@ export interface HeaderDataType extends Common {
 }
 
 export interface ServiceType {
-  iconUrl?: string;
+  icon?: ImageType;
   title?: string;
   description?: string;
   serviceUrl?: string;
@@ -109,7 +115,7 @@ export interface ServicesDataType extends Common {
   services: ServiceType[];
 }
 export interface AboutDataType extends Common {
-  title: string;
+  title?: string;
   description: RichTextBlock[];
   button?: ButtonLink;
   images: ImageType[];
@@ -183,6 +189,7 @@ export interface PostDataType extends PageSettings {
   postContent?: RichTextBlock[];
 }
 export interface BlogDataType extends Common {
+  readonly interface: 'BlogDataType';
   blogTitle: string;
   totalCount?: number;
   hasNextPage?: boolean;
@@ -200,4 +207,26 @@ export interface PostPageDataType {
 export interface ServiceDataType extends PageSettings {
   serviceImage: ImageType;
   treatments: TreatmentType[];
+}
+export interface MemberData {
+  memberName: string;
+  memberText: string;
+  memberRole: string;
+  memberImage: ImageType;
+}
+export interface AboutPageDataType {
+  readonly interface: 'AboutPageDataType';
+  headerImage: ImageType;
+  headerText: RichTextBlock[];
+  headerGallery: ImageType[];
+  aboutTitle: string;
+  salonPresentationTitle: string;
+  salonPresentationText: RichTextBlock[];
+  salonPresentationGallery: ImageType[];
+  founderTitle: string;
+  founderText: string;
+  founderImage: ImageType;
+  teamTitle: string;
+  teamText: RichTextBlock[];
+  team: MemberData[];
 }

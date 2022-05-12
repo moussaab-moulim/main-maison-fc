@@ -61,6 +61,9 @@ const AboutWrapper = styled.section`
   padding-top: 90px;
   margin-bottom: 81px;
   background-color: ${({ theme }) => theme.backgrounColor};
+  &.dark {
+    background-color: ${({ theme }) => theme.firstColor};
+  }
   @media only screen and (max-width: 1440px) {
     margin-bottom: 60px;
   }
@@ -91,11 +94,14 @@ export const Container = styled.div`
   @media only screen and (max-width: 767px) {
     /* flex-direction: column; */
   }
+  &.dark {
+    padding: 0;
+    min-height: auto;
+  }
 `;
 
 export const ContentArea = styled.div`
   width: 100%;
-  padding-right: 88px;
   text-align: center;
   @media only screen and (max-width: 1600px) {
     /* width: 560px; */
@@ -156,6 +162,45 @@ export const CarouselArea = styled.div`
   align-items: center;
   justify-content: center;
   max-width: 1280px;
+  &.dark {
+    max-width: 100%;
+    .glide__controls {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      margin: 0 !important;
+      justify-content: space-between !important;
+      > div {
+        background: rgb(255 255 255 / 50%);
+        padding: 10px;
+        height: 100px;
+        width: 50px;
+        transition: all 0.2s ease-in;
+        > span {
+          width: 0 !important;
+
+          &::before,
+          &::after {
+            background-color: #000;
+            width: 30px;
+          }
+          &.prev_arrow {
+            transform: translateX(-15px);
+          }
+          &.next_arrow {
+            transform: translateX(10px);
+            &::after {
+              transform-origin: 30px 2px;
+            }
+          }
+        }
+        &:hover {
+          background: rgb(255 255 255 / 80%);
+        }
+      }
+    }
+  }
   @media only screen and (max-width: 1600px) {
     width: calc(100%);
   }
@@ -169,13 +214,15 @@ export const CarouselArea = styled.div`
     width: 100%;
   }
 
-  #interior_carousel {
+  #le-salon_carousel,
+  #about-descritpion_carousel,
+  #about-header_carousel {
     .glide__slide {
       .item_wrapper {
         display: block;
         height: 100vh;
         max-height: 421px;
-        border-radius: 20px;
+        /*  border-radius: 20px; */
         overflow: hidden;
         position: relative;
         @media only screen and (max-width: 1440px) {

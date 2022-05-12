@@ -43,19 +43,21 @@ function VisionsSection(visionProps: VisionsProps) {
                         <Heading2>{vision.title}</Heading2>
                         <Text>{vision.description}</Text>
                         <ButtonsContainer>
-                          <Link
-                            href={vision.button?.url!}
-                            passHref
-                            prefetch={false}
-                          >
-                            <ButtonLink
-                              style={{ maxWidth: 216 }}
-                              buttonType={ButtonType.Dark}
-                              target={vision.button?.target}
+                          {vision.button && (
+                            <Link
+                              href={vision.button.url!}
+                              passHref
+                              prefetch={false}
                             >
-                              {vision.button?.text}
-                            </ButtonLink>
-                          </Link>
+                              <ButtonLink
+                                style={{ maxWidth: 216 }}
+                                buttonType={ButtonType.Dark}
+                                target={vision.button.target}
+                              >
+                                {vision.button.text}
+                              </ButtonLink>
+                            </Link>
+                          )}
                           {/* <VerticalSpace size={20} />
                           <div
                             className="glide__arrows"

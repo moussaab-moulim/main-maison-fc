@@ -3,6 +3,8 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
+import { ImageType } from '../../utils/types';
+
 const IconWrapper = styled.div`
   position: relative;
   padding: 16px;
@@ -42,12 +44,12 @@ const IconWrapper = styled.div`
   }
 `;
 interface IconProps {
-  iconUrl: string;
+  icon: ImageType;
 }
-const IconWithCircleAnimation = ({ iconUrl }: IconProps) => (
+const IconWithCircleAnimation = ({ icon }: IconProps) => (
   <IconWrapper>
     <div className="icon-background" />
-    <Image src={iconUrl} alt={''} height={36} width={36} />
+    <Image src={icon.url} alt={icon.url} height={36} width={36} />
     <svg width="72px" height="72px" viewBox="0 0 72 72">
       <circle className="anicircle" cx="36" cy="36" r="35" />
     </svg>

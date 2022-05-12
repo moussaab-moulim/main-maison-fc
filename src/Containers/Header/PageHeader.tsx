@@ -8,7 +8,7 @@ import { Heading1 } from '../../Components/Heading/Heading1';
 import Section from '../../Components/Section/Section';
 import { ImageType } from '../../utils/types';
 
-interface ServiceHeaderProps {
+interface PageHeaderProps {
   image: ImageType;
   title: string;
 }
@@ -39,7 +39,7 @@ const CardDescription = styled.div`
   backdrop-filter: blur(13.7px);
   background-color: rgba(0, 0, 0, 0.5);
 `;
-const ServiceHeader = (serviceHeaderProps: ServiceHeaderProps) => {
+const PageHeader = (pageHeaderProps: PageHeaderProps) => {
   return (
     <Section
       style={{
@@ -50,8 +50,8 @@ const ServiceHeader = (serviceHeaderProps: ServiceHeaderProps) => {
     >
       <BackgroundWrapper>
         <Image
-          alt={serviceHeaderProps.image.alt}
-          src={serviceHeaderProps.image.url}
+          alt={pageHeaderProps.image.alt}
+          src={pageHeaderProps.image.url}
           layout="fill"
           objectFit="cover"
           quality={100}
@@ -60,10 +60,10 @@ const ServiceHeader = (serviceHeaderProps: ServiceHeaderProps) => {
       </BackgroundWrapper>
 
       <CardDescription>
-        <Heading1>{serviceHeaderProps.title}</Heading1>
+        <Heading1>{pageHeaderProps.title}</Heading1>
       </CardDescription>
     </Section>
   );
 };
 
-export default ServiceHeader;
+export default PageHeader;

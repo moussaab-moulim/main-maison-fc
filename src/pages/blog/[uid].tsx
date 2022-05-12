@@ -58,20 +58,19 @@ export const getStaticProps: GetStaticProps = async ({
   const fetchedMenu = (await getMenu(locale!)).data.menu;
   const fetchedSiteSettings = (await getGlobalSettings(locale!)).data
     .site_settings;
+
   const fetchedPostData = (await getBolgPost(params!.uid as string, locale!))
     .data.post;
   const fetchedBolgPosts = (await getBolgPosts(locale!, 3)).data.allPosts;
-  // mapping fetched data
-  const menuData: MenuDataType = mapMenuData(fetchedMenu);
-  const globalSettingsData: GlobalSettingsDataType =
-    mapGlobalSettingsData(fetchedSiteSettings);
   const postData: PostDataType = mapPost(fetchedPostData);
-
   const blogData: BlogDataType = mapBlog(
     'post-section-blog-title',
     fetchedBolgPosts
   );
 
+  const globalSettingsData: GlobalSettingsDataType =
+    mapGlobalSettingsData(fetchedSiteSettings);
+  const menuData: MenuDataType = mapMenuData(fetchedMenu);
   // mapping mapped data
   const footerData: FooterDataType = mapFooterData(
     globalSettingsData,

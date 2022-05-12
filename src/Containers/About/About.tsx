@@ -1,6 +1,7 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import Link from 'next/link';
+import { CSSProperties } from 'styled-components';
 
 import { ButtonLink } from '../../Components/Button/Button';
 import GlideCarousel from '../../Components/GlideCarousel';
@@ -15,10 +16,12 @@ import AboutWrapper, {
   Container,
   ContentArea,
   CarouselArea,
-  CircleLoader,
 } from './about.style';
 
-interface AboutProps extends AboutDataType {}
+interface AboutProps extends AboutDataType {
+  className?: string;
+  style?: CSSProperties;
+}
 const About = (aboutProps: AboutProps) => {
   const [lightBoxToggle, setLightBoxToggle] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -31,7 +34,7 @@ const About = (aboutProps: AboutProps) => {
     hoverpause: true,
     bound: true,
     perView: 3,
-    gap: 20,
+    gap: aboutProps.className === 'dark' ? 0 : 20,
     breakpoints: {
       1024: {
         perView: 2,
@@ -43,70 +46,69 @@ const About = (aboutProps: AboutProps) => {
     },
   };
 
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    setLoading(true);
-  }, []);
-
   const handleImageClick = (index: number) => {
     setLightBoxToggle(true);
     setLightboxIndex(index);
   };
   // add button from prismic
   return (
-    <AboutWrapper id={aboutProps.id}>
-      <Container>
+    <AboutWrapper
+      id={aboutProps.id}
+      className={aboutProps.className ?? ''}
+      style={aboutProps.style}
+    >
+      <Container className={aboutProps.className ?? ''}>
         <ContentArea>
           {/* <Fade direction="up" delay={30}> */}
-          <Heading2>{aboutProps.title}</Heading2>
+          {aboutProps.title && <Heading2>{aboutProps.title}</Heading2>}
+          <TextPrismic
+            render={aboutProps.description}
+            className={aboutProps.className ?? ''}
+          />
 
-          <TextPrismic render={aboutProps.description} />
-          <VerticalSpace size={40} />
-          <Link href={aboutProps.button?.url!} passHref prefetch={false}>
-            <ButtonLink
-              buttonType={ButtonType.Dark}
-              target={aboutProps.button?.target}
-            >
-              {aboutProps.button?.text}
-            </ButtonLink>
-          </Link>
+          {aboutProps.button && (
+            <Fragment>
+              <VerticalSpace size={40} />
+              <Link href={aboutProps.button?.url!} passHref prefetch={false}>
+                <ButtonLink
+                  buttonType={ButtonType.Dark}
+                  target={aboutProps.button?.target}
+                >
+                  {aboutProps.button?.text}
+                </ButtonLink>
+              </Link>
+              <VerticalSpace size={60} />
+            </Fragment>
+          )}
 
-          <VerticalSpace size={60} />
           {/* </Fade> */}
         </ContentArea>
 
-        <CarouselArea>
-          {loading ? (
-            <GlideCarousel
-              carouselSelector="interior_carousel"
-              options={glideOptions}
-              numberOfBullets={aboutProps.images.length}
-              nextButton={<span className="next_arrow" />}
-              prevButton={<span className="prev_arrow" />}
-              controls={true}
-              bullets={false}
-            >
-              <Fragment>
-                {aboutProps.images.map((item, index) => (
-                  <GlideSlide key={`carousel_key${index}`}>
-                    {/* TODO : picture pop up */}
-                    <div
-                      onClick={() => handleImageClick(index)}
-                      className="item_wrapper"
-                    >
-                      <Image src={item.url} alt={item.alt} layout="fill" />
-                      {/* TODO : picture title <Heading3>test</Heading3> */}
-                    </div>
-                  </GlideSlide>
-                ))}
-              </Fragment>
-            </GlideCarousel>
-          ) : (
-            <CircleLoader>
-              <div className="circle"></div>
-              <div className="circle"></div>
-            </CircleLoader>
-          )}
+        <CarouselArea className={aboutProps.className ?? ''}>
+          <GlideCarousel
+            carouselSelector={`${aboutProps.id}_carousel`}
+            options={glideOptions}
+            numberOfBullets={aboutProps.images.length}
+            nextButton={<span className="next_arrow" />}
+            prevButton={<span className="prev_arrow" />}
+            controls={true}
+            bullets={false}
+          >
+            <Fragment>
+              {aboutProps.images.map((item, index) => (
+                <GlideSlide key={`carousel_key${index}`}>
+                  {/* TODO : picture pop up */}
+                  <div
+                    onClick={() => handleImageClick(index)}
+                    className="item_wrapper"
+                  >
+                    <Image src={item.url} alt={item.alt} layout="fill" />
+                    {/* TODO : picture title <Heading3>test</Heading3> */}
+                  </div>
+                </GlideSlide>
+              ))}
+            </Fragment>
+          </GlideCarousel>
         </CarouselArea>
         <Lightbox
           toogle={lightBoxToggle}

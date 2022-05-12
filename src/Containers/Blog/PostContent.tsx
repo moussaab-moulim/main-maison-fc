@@ -26,12 +26,6 @@ const ContentContainer = styled.div`
       font-size: 30px;
     }
   }
-  ul {
-    list-style-position: inside;
-    li {
-      margin-bottom: 10px;
-    }
-  }
   @media only screen and (max-width: 425px) {
     align-items: center;
   }

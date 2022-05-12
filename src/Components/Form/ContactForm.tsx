@@ -45,6 +45,9 @@ const Form = styled.form`
     display: flex;
     flex-flow: row wrap;
     width: 100%;
+    & > div {
+      flex-basis: 50%;
+    }
     > div:nth-child(2) {
       @media only screen and (min-width: 426px) {
         padding-left: 5px;
@@ -81,6 +84,7 @@ const Input = styled.input`
 const TextArea = styled.textarea`
   min-height: 150px;
   width: 100%;
+  height: 100%;
 `;
 
 const ContactForm = () => {

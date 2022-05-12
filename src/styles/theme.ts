@@ -108,7 +108,12 @@ export const GlobalStyles = createGlobalStyle`
     background-color: #fff ;
   }
   a{text-decoration: none;}
-
+  ul {
+    list-style-position: inside;
+    li {
+      margin-bottom: 10px;
+    }
+  }
     /* ------------------------------- */
   /* Glide controls style */
   /* ------------------------------- */

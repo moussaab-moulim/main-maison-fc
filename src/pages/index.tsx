@@ -52,6 +52,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
   const fetchedBolgPosts = (await getBolgPosts(locale!, 3)).data.allPosts;
   // mapping fetched data
   const menuData: MenuDataType = mapMenuData(fetchedMenu);
+
   const globalSettingsData: GlobalSettingsDataType =
     mapGlobalSettingsData(fetchedSiteSettings);
   const homeData: HomeDataType = mapHomeData(

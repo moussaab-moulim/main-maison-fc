@@ -24,10 +24,19 @@ export const linkResolver = (doc: IMeta) => {
   if (doc.type === 'service') {
     return `${langPrefix}/service/${doc.uid}`;
   }
+  if (doc.type === 'about') {
+    return `${langPrefix}/${doc.uid}`;
+  }
+  if (doc.type === 'blog') {
+    return `${langPrefix}/${doc.uid}`;
+  }
   if (doc.type === 'home') {
     return `${langPrefix}`;
   }
   return '/';
+};
+export const webLinkResolver = (url: string) => {
+  return url.replace('https://', '');
 };
 
 export const hrefResolver = (doc: any) => {

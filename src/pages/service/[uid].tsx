@@ -5,9 +5,9 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { linkResolver } from '../../../prismicConfiguration';
+import PageHeader from '../../Containers/Header/PageHeader';
 import { Layout } from '../../Containers/Layout/Layout';
 import ServiceContent from '../../Containers/Services/ServiceContent';
-import ServiceHeader from '../../Containers/Services/ServiceHeader';
 import {
   mapFooterData,
   mapGlobalSettingsData,
@@ -63,7 +63,6 @@ export const getStaticProps: GetStaticProps = async ({
   const globalSettingsData: GlobalSettingsDataType =
     mapGlobalSettingsData(fetchedSiteSettings);
   const serviceData: ServiceDataType = mapServiceData(fetchedServiceData);
-  console.log('service data ===', serviceData);
   // mapping mapped data
   const footerData: FooterDataType = mapFooterData(
     globalSettingsData,
@@ -107,10 +106,7 @@ const Index: FC<IndexProps> = ({
       langData={langData}
       documentMeta={serviceData.documentMeta}
     >
-      <ServiceHeader
-        image={serviceData.serviceImage}
-        title={serviceData.title}
-      />
+      <PageHeader image={serviceData.serviceImage} title={serviceData.title} />
       <ServiceContent treatments={serviceData.treatments!} />
     </Layout>
   );

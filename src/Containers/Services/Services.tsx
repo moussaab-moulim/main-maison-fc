@@ -27,7 +27,7 @@ function Services(servicesProps: ServicesProps) {
               key={i}
               title={e.title}
               description={e.description}
-              iconUrl={e.iconUrl}
+              icon={e.icon}
               cardUrl={e.serviceUrl}
               index={i}
             />

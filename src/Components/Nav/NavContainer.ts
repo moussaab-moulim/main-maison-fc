@@ -10,20 +10,28 @@ export const NavContainer = styled.nav`
   ul {
     display: flex;
     list-style-type: none;
-    li a {
-      color: #3b3b3b;
-      position: relative;
-      font-size: 18px;
-      font-family: ${(props) => props.theme.titleFont};
-      font-weight: 300;
+    &.nested-menu {
+      display: none;
+      flex-flow: column nowrap;
+    }
+    li {
       padding: 10px;
-      transition: 0.3s;
-      color: ${({ theme }) => theme.doreColor};
-      &:hover {
+      a,
+      span {
+        color: #3b3b3b;
+        position: relative;
+        font-size: 18px;
+        font-family: ${(props) => props.theme.titleFont};
+        font-weight: 300;
+
+        transition: 0.3s;
         color: ${({ theme }) => theme.doreColor};
-      }
-      @media only screen and (max-width: 768px) {
-        font-size: 24px;
+        &:hover {
+          color: ${({ theme }) => theme.doreColor};
+        }
+        @media only screen and (max-width: 768px) {
+          font-size: 24px;
+        }
       }
     }
   }
@@ -40,11 +48,9 @@ export const NavContainer = styled.nav`
     }
   }
   &.header-nav {
-    li a {
-      &:hover::after {
-        width: 100%;
-      }
-      &::after {
+    li {
+      position: relative;
+      &.menu-item::after {
         content: '';
         height: 1px;
         width: 0;
@@ -53,6 +59,32 @@ export const NavContainer = styled.nav`
         left: 0px;
         bottom: 0;
         transition: 0.5s;
+      }
+      &.has-menu {
+        .nested-menu-item {
+          padding-inline: 30px;
+        }
+      }
+      &:hover {
+        &.menu-item:not(.has-menu)::after {
+          width: 100%;
+        }
+
+        &.has-menu {
+          .nested-menu {
+            position: absolute;
+            top: 100%;
+            display: flex;
+            min-width: 210px;
+            width: 100%;
+            background-color: ${({ theme }) => theme.secondColor};
+            .nested-menu-item {
+              &:hover {
+                background-color: rgb(223 223 223 / 26%);
+              }
+            }
+          }
+        }
       }
     }
 

@@ -189,11 +189,11 @@ export const getBolgPost = async (uid: string, lang: string) => {
     `,
   });
 };
-export const getBolgPage = async (lang: string) => {
+export const getBolgPage = async (uid: string, lang: string) => {
   return client.query({
     query: gql`
       query {
-        blog(uid:"blog",lang: "${lang}") {
+        blog(uid:"${uid}",lang: "${lang}") {
           
             ${metaQuery}
             title
@@ -250,6 +250,65 @@ export const getServicePage = async (uid: string, lang: string) => {
       sub_service_description
       sub_service_button
     }
+            
+        }
+      }
+    `,
+  });
+};
+
+export const getPages = async (types: string[]) => {
+  return client.query({
+    query: gql`
+      query {
+        _allDocuments(type_in: [${types.reduce(
+          (previousValue, currentValue) =>
+            `"${previousValue}","${currentValue}"`
+        )}]) {
+          edges {
+            node {
+              ${metaQuery}
+            }
+          }
+        }
+      }
+    `,
+  });
+};
+
+export const getAboutPage = async (uid: string, lang: string) => {
+  return client.query({
+    query: gql`
+      query {
+        about(uid:"${uid}",lang: "${lang}") {
+          
+              ${metaQuery}
+              title
+              meta_title
+              meta_description
+              keywords
+              header_image
+              header_text
+              header_gallery{
+                header_gallery_image
+              }
+              about_title
+              salon_presentation_title
+              salon_presentation_text
+              salon_presentation_gallery{
+                salon_presentation_image
+              }
+              founder_title
+              founder_text
+              founder_image
+              team_title
+              team_text
+              team_members{
+                member_image
+                member_name
+                member_text
+                member_role
+              }
             
         }
       }

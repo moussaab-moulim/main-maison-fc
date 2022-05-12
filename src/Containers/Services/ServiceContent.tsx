@@ -137,7 +137,6 @@ const ServiceContent = ({ treatments }: ServiceContentProps) => {
             <Treatment {...treatment} />
           </Column>
           <ColumnImage
-            index
             style={{ justifyContent: 'center', order: index % 2 === 1 ? 1 : 2 }}
             type={10 / 4}
           >
