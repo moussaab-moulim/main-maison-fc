@@ -172,13 +172,13 @@ const Layout = ({
           {
             rel: 'alternate',
             hrefLang: 'fr',
-            href: `${seoData.domain}/`,
+            href: `${seoData.domain}/${seoData.pathUrl}`,
           },
-          {
+          /*          TODO {
             rel: 'alternate',
             hrefLang: 'en',
-            href: `${seoData.domain}/en`,
-          },
+            href: `${seoData.domain}/en${seoData.pathUrl.replace("/en","/")}`,
+          }, */
         ]}
       />
       <Fragment>

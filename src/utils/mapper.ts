@@ -281,7 +281,7 @@ export const mapSeoData = (
   metaDescription: pageSettings.metaDescription,
   domain: siteSettings.domain,
   keywords: pageSettings.keywords ?? '',
-  pathUrl: '/',
+  pathUrl: pageSettings.url,
   image: siteSettings.svgIcon,
   siteName: siteSettings.siteName,
   favIcon: siteSettings.favicon,
