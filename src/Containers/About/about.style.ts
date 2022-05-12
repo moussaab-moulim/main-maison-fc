@@ -114,7 +114,7 @@ export const ContentArea = styled.div`
   }
   @media only screen and (max-width: 768px) {
     /* width: 100%; */
-    padding-right: 50px;
+    padding-right: 0px;
   }
   @media only screen and (max-width: 425px) {
     padding-right: 0;
@@ -208,7 +208,10 @@ export const CarouselArea = styled.div`
     width: 60%;
   }
   @media only screen and (max-width: 1200px) {
-    width: 55%;
+    width: 60%;
+  }
+  @media only screen and (max-width: 1024px) {
+    width: 100%;
   }
   @media only screen and (max-width: 767px) {
     width: 100%;

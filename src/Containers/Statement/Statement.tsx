@@ -15,6 +15,11 @@ interface StatementProps extends StatementDataType {}
 const StatementText = styled(TextPrismic)`
   text-align: center;
   padding: 0 10rem;
+  @media only screen and (max-width: 425px) {
+    p {
+      font-size: 21px;
+    }
+  }
   p:nth-child(2) {
     margin-top: 20px;
     font-size: 18px;
@@ -24,7 +29,7 @@ const StatementText = styled(TextPrismic)`
     padding: 0 5rem;
   }
   @media only screen and (max-width: 425px) {
-    padding-right: 0px;
+    padding: 0px;
   }
 `;
 const StatementBackground = styled(BackgroundWrapper)`

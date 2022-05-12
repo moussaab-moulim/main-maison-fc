@@ -20,6 +20,9 @@ export const TabsContentContainer = styled.div`
     gap: 10%;
     > div {
       max-width: 40%;
+      @media only screen and (max-width: 425px) {
+        max-width: 100%;
+      }
     }
   }
 `;

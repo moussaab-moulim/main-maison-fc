@@ -16,6 +16,9 @@ import { ButtonType, OfferDataType } from '../../utils/types';
 interface OfferProps extends OfferDataType {}
 const OfferText = styled(TextPrismic)`
   padding-right: 180px;
+  @media only screen and (max-width: 1024px) {
+    padding-right: 60px;
+  }
   @media only screen and (max-width: 768px) {
     padding-right: 60px;
   }

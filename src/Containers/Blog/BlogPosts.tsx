@@ -13,7 +13,7 @@ interface BlogHeaderProps extends BlogDataType, PageSettings {}
 
 export const BlogHeaderContainer = styled.div`
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: center;
   gap: 15px;
   width: 100%;

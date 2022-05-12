@@ -39,12 +39,17 @@ const PostBoxWrapper = styled.a`
   @media only screen and (max-width: 1200px) {
     max-height: 420px;
   }
+  @media only screen and (max-width: 1024px) {
+    &:nth-child(3) {
+      display: none;
+    }
+    flex-basis: calc(50% - (var(--side-margin) * 2));
+  }
   @media only screen and (max-width: 991px) {
     max-height: 400px;
   }
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: 768px) {
     max-height: 380px;
-    flex-basis: calc(50% - (var(--side-margin) * 2));
   }
   @media only screen and (max-width: 425px) {
     flex-basis: calc(100% - (var(--side-margin) * 2));

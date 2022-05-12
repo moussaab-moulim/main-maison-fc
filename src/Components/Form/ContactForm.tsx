@@ -47,9 +47,13 @@ const Form = styled.form`
     width: 100%;
     & > div {
       flex-basis: 50%;
+      @media only screen and (min-width: 425px) {
+        flex-basis: 100%;
+      }
     }
+
     > div:nth-child(2) {
-      @media only screen and (min-width: 426px) {
+      @media only screen and (min-width: 425px) {
         padding-left: 5px;
       }
     }

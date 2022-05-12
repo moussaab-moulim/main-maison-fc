@@ -86,6 +86,9 @@ export const CarouselWrapper = styled.div`
         padding: 0;
         box-shadow: none;
       }
+      @media only screen and (max-width: 425px) {
+        margin-bottom: 50px;
+      }
     }
     .glide__track {
       @media only screen and (max-width: 768px) {
