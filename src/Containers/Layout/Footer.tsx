@@ -1,11 +1,8 @@
-/* eslint-disable unused-imports/no-unused-vars */
 import React from 'react';
 
-import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { Heading2 } from '../../Components/Heading/Heading2';
 import Image from '../../Components/Image';
 import { LogoContainer } from '../../Components/Logo/LogoContainer';
 import Column from '../../Components/Section/Column';
@@ -55,27 +52,27 @@ const FooterText = styled(TextPrismic)`
     }
   }
 `;
-const FooterHeading = styled(Heading2)`
+/* const FooterHeading = styled(Heading2)`
   text-align: left;
   font-size: 22px;
   margin-bottom: 28px;
   @media only screen and (max-width: 768px) {
     text-align: center;
   }
-`;
+`; */
 const Line = styled.hr`
   width: 100%;
   border-top: 1px solid #cbcbcb;
 `;
 const Footer = ({
-  contactGroup,
-  menuItems,
+  // contactGroup,
+  // menuItems,
   logo,
   copyrightText,
-  langData,
-  documentMeta,
-}: FooterProps) => {
-  const { t } = useTranslation('common');
+}: // langData,
+// documentMeta,
+FooterProps) => {
+  // const { t } = useTranslation('common');
   return (
     <FooterContainer>
       {/**        <FooterInner>
