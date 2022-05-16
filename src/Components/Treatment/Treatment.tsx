@@ -1,8 +1,10 @@
 import React from 'react';
 
+import Link from 'next/link';
 import styled from 'styled-components';
 
-import { TreatmentType } from '../../utils/types';
+import { ButtonType, TreatmentType } from '../../utils/types';
+import { ButtonLink } from '../Button/Button';
 import { Heading3 } from '../Heading/Heading3';
 import { TextPrismic } from '../Text/Text';
 
@@ -12,11 +14,24 @@ interface TreatmentContainerProps {
 }
 const TreatmentContainer = styled.div<TreatmentContainerProps>`
   width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 20px;
+  > div * {
+    text-align: left;
+    margin: 0;
+  }
+  a {
+    margin: 0;
+  }
   .treatment-header {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     @media only screen and (max-width: 425px) {
       flex-direction: column;
       align-items: flex-start;
@@ -42,11 +57,14 @@ const TreatmentContainer = styled.div<TreatmentContainerProps>`
         border-radius: 50%;
         width: 26px;
         height: 26px;
+        min-height: 26px;
+        min-width: 26px;
       }
       .dots {
         /* style these as you wish, made simple for demo */
         border-top: dotted 2px ${({ theme }) => theme.textColor};
         flex: 1;
+        margin-right: 6px;
         @media only screen and (max-width: 425px) {
           display: none;
         }
@@ -62,14 +80,6 @@ const TreatmentContainer = styled.div<TreatmentContainerProps>`
         max-width: 100%;
       }
     }
-    margin-bottom: 20px;
-  }
-
-  > div {
-    text-align: center;
-    @media only screen and (max-width: 425px) {
-      text-align: left;
-    }
   }
 `;
 
@@ -77,6 +87,7 @@ export const Treatment = ({
   treatment,
   price,
   description,
+  button,
 }: TreatmentProps) => (
   <TreatmentContainer dots={price.length * 4}>
     <div className="treatment-header">
@@ -88,5 +99,12 @@ export const Treatment = ({
       <div className="treatment-price">{price}</div>
     </div>
     {description && <TextPrismic render={description} />}
+    {button && (
+      <Link href={button.url} passHref prefetch={false}>
+        <ButtonLink target={button.target} buttonType={ButtonType.Dark}>
+          {button.text}
+        </ButtonLink>
+      </Link>
+    )}
   </TreatmentContainer>
 );

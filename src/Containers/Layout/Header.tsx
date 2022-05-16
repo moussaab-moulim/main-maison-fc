@@ -222,7 +222,7 @@ const Header = ({
                     </Link>
                   ) : (
                     <span onClick={handleToggleNested} className="hover">
-                      {item.label} unc
+                      {item.label}
                     </span>
                   )}
                   {item.children.length > 0 && (
