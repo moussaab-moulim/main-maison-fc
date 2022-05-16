@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface MainColumnProps {
   type?: number; // column type if 2 then the column will be 50% is 4 then its 25%;
+  order?: number;
 }
 export interface ColumnProps extends MainColumnProps {
   responsive?: { breakpoints: Record<number, MainColumnProps> };
@@ -19,6 +20,7 @@ function generateQueries(responsive?: {
         
         width: ${100 / (cssCodes[i]?.[1].type ?? 1)}%;
   flex-basis:${100 / (cssCodes[i]?.[1].type ?? 1)}% ;
+  order:${cssCodes[i]?.[1].order ?? 1} ;
       }
        
      `;
@@ -39,6 +41,7 @@ const Column = styled.div<ColumnProps>`
   flex-basis: calc(
     (${(props) => (props.type ? `${100 / props.type}%` : '100%')}) - 15px
   );
+  order: ${({ order }) => order ?? 1};
   margin: 10px 0;
   &.right {
     margin-left: auto;

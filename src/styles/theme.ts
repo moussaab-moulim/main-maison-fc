@@ -114,6 +114,9 @@ export const GlobalStyles = createGlobalStyle`
       margin-bottom: 10px;
     }
   }
+  img{
+    transition: all 2s ease;
+  }
     /* ------------------------------- */
   /* Glide controls style */
   /* ------------------------------- */
@@ -194,14 +197,14 @@ export const GlobalStyles = createGlobalStyle`
         > span {
           width: 55px;
           border-radius: 4px;
-          background-color: ${({ theme }) => theme.firstColor};
+          background-color: ${({ theme }) => theme.doreColor};
           @media only screen and (max-width: 667px) {
             width: 30px;
           }
 
           &::before,
           &::after {
-            background-color: ${({ theme }) => theme.firstColor};
+            background-color: ${({ theme }) => theme.doreColor};
           }
 
           &.prev_arrow {

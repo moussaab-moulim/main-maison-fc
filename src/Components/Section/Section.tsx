@@ -9,6 +9,11 @@ const Section = styled.section`
   background-color: #ffffff;
   padding: 40px 0;
   min-height: 452px;
+  &:hover {
+    & > div > span > img {
+      transform: scale(1.1);
+    }
+  }
   &.blog-header {
     margin: 130px 0 0;
   }

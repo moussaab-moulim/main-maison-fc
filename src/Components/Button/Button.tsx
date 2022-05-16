@@ -118,7 +118,6 @@ export const ButtonLink = styled.a<ButtonProps>`
 `;
 const Button = styled.button<ButtonProps>`
   ${(props) => buttonCss(props)}
-  ${({ noBorder }) => noBorder && 'border: none'};
 `;
 
 export default Button;

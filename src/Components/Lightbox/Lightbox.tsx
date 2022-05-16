@@ -44,6 +44,11 @@ const LightboxContainer = styled.div`
     width: 100%;
     max-height: 640px;
     padding: 0 1.25rem;
+    &:hover {
+      img {
+        transform: scale(1.1);
+      }
+    }
   }
 `;
 const Lightbox = ({ toogle, onClose, image }: LightboxProps) => {

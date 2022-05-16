@@ -5,11 +5,11 @@ import styled from 'styled-components';
 
 import ContactForm from '../../Components/Form/ContactForm';
 import { Heading2 } from '../../Components/Heading/Heading2';
-import Map from '../../Components/Map/Map';
 import Column from '../../Components/Section/Column';
 import Section from '../../Components/Section/Section';
 import SectionInner from '../../Components/Section/SectionInner';
 import { TextPrismic } from '../../Components/Text/Text';
+import { mainTheme } from '../../styles/theme';
 import { ContactDataType } from '../../utils/types';
 
 interface ContactProps extends ContactDataType {}
@@ -37,7 +37,12 @@ const Contact = (contactProps: ContactProps) => {
   return (
     <Section
       id={contactProps.id}
-      style={{ flexDirection: 'column', marginBottom: 0, paddingBottom: 0 }}
+      style={{
+        flexDirection: 'column',
+        marginBottom: 0,
+        paddingBottom: 0,
+        backgroundColor: mainTheme.thirdColor,
+      }}
     >
       <SectionInner>
         <TitleWrapper>
@@ -72,7 +77,7 @@ const Contact = (contactProps: ContactProps) => {
           <ContactForm />
         </Column>
       </SectionInner>
-      <SectionInner
+      {/*       <SectionInner
         style={{
           maxWidth: '100%',
           width: '100%',
@@ -81,7 +86,7 @@ const Contact = (contactProps: ContactProps) => {
         }}
       >
         <Map mapEmbedLink={contactProps.mapEmbedUrl} />
-      </SectionInner>
+      </SectionInner> */}
     </Section>
   );
 };

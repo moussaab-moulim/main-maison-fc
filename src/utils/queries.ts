@@ -138,6 +138,7 @@ export const getGlobalSettings = async (lang: string) => {
           google_tag_id
           search_console_verification_key
           map_embed_url
+          map_coordinates
           theme_color
         }
       }

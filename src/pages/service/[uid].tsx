@@ -5,6 +5,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { linkResolver } from '../../../prismicConfiguration';
+import Contact from '../../Containers/Contact/Contact';
 import PageHeader from '../../Containers/Header/PageHeader';
 import { Layout } from '../../Containers/Layout/Layout';
 import ServiceContent from '../../Containers/Services/ServiceContent';
@@ -108,6 +109,12 @@ const Index: FC<IndexProps> = ({
     >
       <PageHeader image={serviceData.serviceImage} title={serviceData.title} />
       <ServiceContent treatments={serviceData.treatments!} />
+      <Contact
+        id="contact"
+        contactGroup={globalSettingsData.contactGroup}
+        mapEmbedUrl={globalSettingsData.mapEmbedUrl!}
+        mapCoordinates={globalSettingsData.mapCoordinates}
+      />
     </Layout>
   );
 };

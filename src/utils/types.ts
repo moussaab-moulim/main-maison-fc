@@ -9,6 +9,11 @@ export enum LinkType {
   Web = 'Web',
   Document = 'Document',
 }
+
+type GeoCoordinates = {
+  latitude: number;
+  longitude: number;
+};
 export interface ButtonLink {
   text: string;
   target: HrefTarget;
@@ -59,6 +64,7 @@ export interface GlobalSettingsDataType {
   copyrightText: RichTextBlock[];
   googleTagId?: string;
   mapEmbedUrl?: string;
+  mapCoordinates?: GeoCoordinates;
   svgIcon: ImageType;
   themeColor: string;
   lang: string;
@@ -141,6 +147,7 @@ export interface FooterDataType {
 export interface ContactDataType extends Common {
   contactGroup: ContactField[];
   mapEmbedUrl: string;
+  mapCoordinates?: GeoCoordinates;
 }
 
 export interface SeoDataType {

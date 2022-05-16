@@ -173,6 +173,11 @@ export const CarouselWrapper = styled.div`
       @media only screen and (max-width: 768px) {
         height: 535px;
       }
+      &:hover {
+        img {
+          transform: scale(1.1);
+        }
+      }
       .inside-box {
         display: block;
         &::before,

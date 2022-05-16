@@ -47,7 +47,7 @@ const Form = styled.form`
     width: 100%;
     & > div {
       flex-basis: 50%;
-      @media only screen and (min-width: 425px) {
+      @media only screen and (max-width: 425px) {
         flex-basis: 100%;
       }
     }

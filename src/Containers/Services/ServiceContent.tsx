@@ -25,8 +25,9 @@ const ColumnImage = styled(Column)`
     height: 346px;
   }
   @media only screen and (max-width: 768px) {
-    height: 535px;
+    margin-top: 40px;
   }
+
   .inside-box {
     display: block;
     &::before,
@@ -99,11 +100,11 @@ const ColumnImage = styled(Column)`
       width: 85%;
       max-width: 85%;
       height: 531px;
-      left: 50%;
-      transform: translateX(-50%);
     }
     @media only screen and (max-width: 425px) {
       height: 335px;
+      width: 90%;
+      max-width: 90%;
     }
     @media only screen and (max-width: 375px) {
       height: 289px;
@@ -120,25 +121,52 @@ const ColumnImage = styled(Column)`
     &:focus {
       outline: 0;
     }
+    &:hover {
+      img {
+        transform: scale(1.1);
+      }
+    }
   }
 `;
 
 const ServiceContent = ({ treatments }: ServiceContentProps) => {
   return (
     <Section
-      style={{ backgroundColor: 'transparent', flexFlow: 'column nowrap' }}
+      style={{
+        backgroundColor: 'transparent',
+        flexFlow: 'column nowrap',
+        marginTop: 50,
+      }}
     >
       {treatments.map((treatment: TreatmentType, index: number) => (
         <SectionInner key={index} className="service-page">
           <Column
-            style={{ justifyContent: 'center', order: index % 2 === 0 ? 1 : 2 }}
-            type={10 / 6}
+            style={{ justifyContent: 'center' }}
+            type={2}
+            order={index % 2 === 0 ? 1 : 2}
+            responsive={{
+              breakpoints: {
+                768: {
+                  order: 2,
+                  type: 1,
+                },
+              },
+            }}
           >
             <Treatment {...treatment} />
           </Column>
           <ColumnImage
-            style={{ justifyContent: 'center', order: index % 2 === 1 ? 1 : 2 }}
+            style={{ justifyContent: 'center' }}
             type={10 / 4}
+            order={index % 2 === 1 ? 1 : 2}
+            responsive={{
+              breakpoints: {
+                768: {
+                  order: 1,
+                  type: 1,
+                },
+              },
+            }}
           >
             <div className="image_container">
               <span className="inside-box">

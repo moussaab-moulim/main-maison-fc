@@ -1,23 +1,17 @@
+/* eslint-disable unused-imports/no-unused-vars */
 import React from 'react';
 
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import LanguageSwitcher from '../../Components/Button/LanguageSwitcher';
 import { Heading2 } from '../../Components/Heading/Heading2';
 import Image from '../../Components/Image';
 import { LogoContainer } from '../../Components/Logo/LogoContainer';
-import { NavContainer } from '../../Components/Nav/NavContainer';
 import Column from '../../Components/Section/Column';
 import SectionInner from '../../Components/Section/SectionInner';
 import { TextPrismic } from '../../Components/Text/Text';
-import {
-  DocumentMeta,
-  FooterDataType,
-  LangDataType,
-  MenuType,
-} from '../../utils/types';
+import { DocumentMeta, FooterDataType, LangDataType } from '../../utils/types';
 
 interface FooterProps extends FooterDataType {
   langData: LangDataType;
@@ -84,7 +78,7 @@ const Footer = ({
   const { t } = useTranslation('common');
   return (
     <FooterContainer>
-      <FooterInner>
+      {/**        <FooterInner>
         <Column
           type={4}
           responsive={{
@@ -120,7 +114,7 @@ const Footer = ({
                 ))}
             </ul>
           </NavContainer>
-          {/* <SubscriptionForm /> */}
+           <SubscriptionForm /> 
           {langData && documentMeta.alternateLanguages.length > 0 && (
             <LanguageSwitcher
               meta={documentMeta.meta}
@@ -130,6 +124,7 @@ const Footer = ({
           )}
         </Column>
       </FooterInner>
+      */}
       <Line />
       <FooterInner className="footer-copyright">
         <Column type={4}>

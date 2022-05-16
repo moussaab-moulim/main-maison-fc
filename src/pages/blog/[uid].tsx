@@ -8,6 +8,7 @@ import { linkResolver } from '../../../prismicConfiguration';
 import Blog from '../../Containers/Blog/Blog';
 import PostContent from '../../Containers/Blog/PostContent';
 import PostHeader from '../../Containers/Blog/PostHeader';
+import Contact from '../../Containers/Contact/Contact';
 import { Layout } from '../../Containers/Layout/Layout';
 import {
   mapBlog,
@@ -123,6 +124,12 @@ const Index: FC<IndexProps> = ({
       />
       <PostContent content={postData.postContent!} />
       <Blog {...blogData} />
+      <Contact
+        id="contact"
+        contactGroup={globalSettingsData.contactGroup}
+        mapEmbedUrl={globalSettingsData.mapEmbedUrl!}
+        mapCoordinates={globalSettingsData.mapCoordinates}
+      />
     </Layout>
   );
 };

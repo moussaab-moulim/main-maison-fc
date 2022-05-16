@@ -163,9 +163,14 @@ const Header = ({
 }: HeaderProps) => {
   const [offset, setOffset] = useState(0);
   const [toggleMobileMenu, setToggleMobileMenu] = useState(false);
-  const handleToggle = () => {
+  const [toggleMobileNestedMenu, setToggleMobileNestedMenu] = useState(false);
+  const handleToggleMenu = () => {
     setToggleMobileMenu(!toggleMobileMenu);
   };
+  const handleToggleNested = () => {
+    setToggleMobileNestedMenu(!toggleMobileNestedMenu);
+  };
+
   useEffect(() => {
     const onScroll = () => setOffset(window.pageYOffset);
 
@@ -213,10 +218,12 @@ const Header = ({
                 >
                   {item.clickabale ? (
                     <Link href={item.url} passHref>
-                      <a onClick={handleToggle}>{item.label}</a>
+                      <a onClick={handleToggleMenu}>{item.label}</a>
                     </Link>
                   ) : (
-                    <span onClick={handleToggle}>{item.label}</span>
+                    <span onClick={handleToggleNested} className="hover">
+                      {item.label} unc
+                    </span>
                   )}
                   {item.children.length > 0 && (
                     <ul className="nested-menu">
@@ -225,10 +232,12 @@ const Header = ({
                           <li className="nested-menu-item" key={indexChild}>
                             {itemChild.clickabale ? (
                               <Link href={itemChild.url} passHref>
-                                <a onClick={handleToggle}>{itemChild.label}</a>
+                                <a onClick={handleToggleMenu}>
+                                  {itemChild.label}
+                                </a>
                               </Link>
                             ) : (
-                              <span onClick={handleToggle}>
+                              <span onClick={handleToggleMenu}>
                                 {itemChild.label}
                               </span>
                             )}
@@ -245,7 +254,7 @@ const Header = ({
               <Link key={index} href={menuAction.url} passHref>
                 <MenuActionButton
                   buttonType={ButtonType.Light}
-                  onClick={handleToggle}
+                  onClick={handleToggleMenu}
                 >
                   <span>{menuAction.text}</span>
                 </MenuActionButton>
@@ -255,11 +264,11 @@ const Header = ({
             <LanguageSwitcher
               {...langData}
               meta={documentMeta.meta}
-              onClick={handleToggle}
+              onClick={handleToggleMenu}
             />
           )}
         </NavContainer>
-        <MobileMenuButton onClick={handleToggle}>
+        <MobileMenuButton onClick={handleToggleMenu}>
           {toggleMobileMenu ? (
             <FaTimes size={20} color="#fff" />
           ) : (

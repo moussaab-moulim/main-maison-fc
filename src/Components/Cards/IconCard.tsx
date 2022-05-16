@@ -127,6 +127,7 @@ const ServiceBoxWrapper = styled.a<ServiceBoxProps>`
     }
     img {
       filter: brightness(0) invert(1);
+      transition: all 0ms ease;
     }
     .anicircle {
       stroke-dashoffset: 140;

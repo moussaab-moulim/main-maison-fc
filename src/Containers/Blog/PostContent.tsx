@@ -15,7 +15,7 @@ interface PostContentProps {
 const ContentContainer = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  text-align: center;
+  text-align: left;
   h2 {
     font-family: ${({ theme }) => theme.titleFont};
     font-size: 36px;

@@ -29,6 +29,7 @@ const OfferText = styled(TextPrismic)`
 const OfferImqgeContainer = styled.div`
   display: block;
   height: 100vh;
+  width: 100%;
   max-height: 421px;
   overflow: hidden;
   position: relative;
@@ -49,7 +50,28 @@ const OfferImqgeContainer = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+  }
+  &:hover {
+    img {
+      transform: scale(1.1);
+    }
+  }
+`;
+const OfferSectionInner = styled(SectionInner)`
+  @media only screen and (max-width: 425px) {
+    position: relative;
+  }
+`;
+const OfferImageColumn = styled(Column)`
+  @media only screen and (max-width: 425px) {
+    position: absolute;
+    z-index: -1;
+    opacity: 0.3;
+  }
+`;
+const OfferContentColumn = styled(Column)`
+  @media only screen and (max-width: 425px) {
+    margin-top: 30px;
   }
 `;
 
@@ -61,8 +83,8 @@ const Offer = (offerProps: OfferProps) => {
       id={offerProps.id}
       style={{ backgroundColor: 'transparent', marginTop: '60px' }}
     >
-      <SectionInner>
-        <Column type={2} style={{ padding: 16 }}>
+      <OfferSectionInner>
+        <OfferImageColumn type={2} style={{ padding: 16 }}>
           <OfferImqgeContainer>
             <Image
               src={offerProps.offerImage.url}
@@ -71,8 +93,11 @@ const Offer = (offerProps: OfferProps) => {
             />
             {/* TODO : picture title <Heading3>test</Heading3> */}
           </OfferImqgeContainer>
-        </Column>
-        <Column type={2} style={{ padding: 16, justifyContent: 'center' }}>
+        </OfferImageColumn>
+        <OfferContentColumn
+          type={2}
+          style={{ padding: 16, justifyContent: 'center' }}
+        >
           <Heading2 style={{ color: mainTheme.doreColor }}>
             {offerProps.offerTitle}
           </Heading2>
@@ -85,8 +110,8 @@ const Offer = (offerProps: OfferProps) => {
               {offerProps.offerButton.text}
             </ButtonLink>
           </Link>
-        </Column>
-      </SectionInner>
+        </OfferContentColumn>
+      </OfferSectionInner>
     </Section>
   );
 };

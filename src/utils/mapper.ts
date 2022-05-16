@@ -175,6 +175,7 @@ export const mapHomeData = (
       id: queryResult.contact_id,
       contactGroup: siteSettings.contactGroup,
       mapEmbedUrl: siteSettings.mapEmbedUrl!,
+      mapCoordinates: siteSettings.mapCoordinates,
     },
     seo: {
       documentMeta,
@@ -255,6 +256,10 @@ export const mapGlobalSettingsData = (
     copyrightText: queryResult.copyright_text,
     googleTagId: queryResult.google_tag_id,
     mapEmbedUrl: queryResult.map_embed_url,
+    mapCoordinates: {
+      latitude: queryResult.map_coordinates.latitude,
+      longitude: queryResult.map_coordinates.longitude,
+    },
     svgIcon: mapImage(queryResult.svgicon),
     themeColor: queryResult.theme_color,
     lang: queryResult._meta.lang,

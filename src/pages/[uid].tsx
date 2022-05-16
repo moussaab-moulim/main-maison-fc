@@ -210,6 +210,7 @@ const Index: FC<IndexProps> = ({
         id="contact"
         contactGroup={globalSettingsData.contactGroup}
         mapEmbedUrl={globalSettingsData.mapEmbedUrl!}
+        mapCoordinates={globalSettingsData.mapCoordinates}
       />
       {/* <BlogPosts {...blogData} /> */}
     </Layout>

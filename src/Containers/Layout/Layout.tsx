@@ -38,6 +38,7 @@ const Layout = ({
   documentMeta,
 }: LayoutProps) => {
   const router = useRouter();
+  console.log('pss', router.basePath + seoData.pathUrl);
   return (
     <Fragment>
       {/* @ts-ignore */}

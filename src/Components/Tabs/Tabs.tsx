@@ -6,6 +6,7 @@ import Button from '../Button/Button';
 
 export const TabsNavigationContainer = styled.div`
   display: flex;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: center;
   padding: 10px 0 30px;
@@ -22,8 +23,21 @@ export const TabsContentContainer = styled.div`
       max-width: 40%;
       @media only screen and (max-width: 425px) {
         max-width: 100%;
+        justify-content: flex-start;
       }
     }
+  }
+`;
+const TabButton = styled(Button)`
+  color: ${({ theme }) => theme.doreColor};
+  border-color: ${({ theme }) => theme.doreColor};
+  border: none;
+  &:hover,
+  &.hover {
+    border: solid 1px;
+    border-color: ${({ theme }) => theme.doreColor};
+    color: ${({ theme }) => theme.doreColor};
+    background-color: transparent;
   }
 `;
 
@@ -37,14 +51,14 @@ export const Navigation = (props: NavigationProps) => {
   return (
     <TabsNavigationContainer>
       {props.tabsTitles.map((item: string, index: number) => (
-        <Button
+        <TabButton
           key={index}
           onClick={() => props.onNavClick(item)}
           style={{ maxWidth: 160 }}
-          noBorder={props.activeTabTitle !== item}
+          className={props.activeTabTitle === item ? 'hover' : ''}
         >
           {item}
-        </Button>
+        </TabButton>
       ))}
     </TabsNavigationContainer>
   );

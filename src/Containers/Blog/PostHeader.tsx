@@ -36,6 +36,7 @@ const OfferImqgeContainer = styled.div`
   overflow: hidden;
   position: relative;
   border-bottom: 4px solid ${({ theme }) => theme.doreColor};
+  width: 100%;
   @media only screen and (max-width: 991px) {
     max-height: 480px;
   }
@@ -47,7 +48,11 @@ const OfferImqgeContainer = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+  }
+  &:hover {
+    img {
+      transform: scale(1.1);
+    }
   }
 `;
 
@@ -62,7 +67,7 @@ const PostHeader = (postHeaderProps: PostHeaderProps) => {
     >
       <SectionInner className="post-page">
         <Column className="postHeader-column">
-          <Heading1 style={{ textAlign: 'center' }}>
+          <Heading1 style={{ textAlign: 'center', fontSize: 40 }}>
             {postHeaderProps.title}
           </Heading1>
 
