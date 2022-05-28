@@ -15,6 +15,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@artsy/fresnel": "^3.5.0",
     "@glidejs/glide": "^3.5.2",
     "@prismicio/client": "^5.1.0",
     "@prismicio/helpers": "^2.3.0",
@@ -37,6 +38,7 @@
     "react-dom": "^17.0.2",
     "react-gtm-module": "^2.0.11",
     "react-icons": "^4.3.1",
+    "react-responsive": "^9.0.0-beta.8",
     "react-reveal": "^1.2.2",
     "styled-components": "^5.3.3",
     "styled-jsx-plugin-postcss": "^4.0.1",
@@ -50,6 +52,7 @@
     "@types/nodemailer": "^6.4.4",
     "@types/react": "^17.0.33",
     "@types/react-gtm-module": "^2.0.1",
+    "@types/react-responsive": "^8.0.5",
     "@types/styled-components": "^5.1.19",
     "@types/yup": "^0.29.13",
     "@typescript-eslint/eslint-plugin": "^4.33.0",

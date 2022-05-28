@@ -1,4 +1,4 @@
-import React, { Fragment, ReactNode } from 'react';
+import React, { Fragment, ReactNode, useEffect, useState } from 'react';
 
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
@@ -14,6 +14,7 @@ import {
 } from '../../utils/types';
 import Footer from './Footer';
 import Header from './Header';
+import HeaderMobile from './HeaderMobile';
 
 type LayoutProps = {
   seoData: SeoDataType;
@@ -38,7 +39,11 @@ const Layout = ({
   documentMeta,
 }: LayoutProps) => {
   const router = useRouter();
-  console.log('pss', router.basePath + seoData.pathUrl);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 768);
+  }, []);
+
   return (
     <Fragment>
       {/* @ts-ignore */}
@@ -183,13 +188,23 @@ const Layout = ({
         ]}
       />
       <Fragment>
-        <Header
-          documentMeta={documentMeta}
-          menuItems={menuItems}
-          logo={logo}
-          menuActions={menuActions}
-          langData={langData}
-        />
+        {isMobile ? (
+          <HeaderMobile
+            documentMeta={documentMeta}
+            menuItems={menuItems}
+            logo={logo}
+            menuActions={menuActions}
+            langData={langData}
+          />
+        ) : (
+          <Header
+            documentMeta={documentMeta}
+            menuItems={menuItems}
+            logo={logo}
+            menuActions={menuActions}
+            langData={langData}
+          />
+        )}
         <main>{children}</main>
 
         <Footer

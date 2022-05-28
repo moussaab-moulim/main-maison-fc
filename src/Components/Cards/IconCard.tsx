@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 
+import Link from 'next/link';
 import styled from 'styled-components';
 
 import { mainTheme } from '../../styles/theme';
@@ -142,14 +143,14 @@ const ServiceBoxWrapper = styled.a<ServiceBoxProps>`
     padding: 25px 24px;
   }
 `;
-const ServiceBox = ({ children, index /* , link */ }: ServiceBoxProps) => (
-  // <Link href={link ?? '#'} passHref>
-  <ServiceBoxWrapper index={index}>
-    <span className="first">
-      <span className="second">{children}</span>
-    </span>
-  </ServiceBoxWrapper>
-  // </Link>
+const ServiceBox = ({ children, index, link }: ServiceBoxProps) => (
+  <Link href={link ?? '#'} passHref>
+    <ServiceBoxWrapper index={index}>
+      <span className="first">
+        <span className="second">{children}</span>
+      </span>
+    </ServiceBoxWrapper>
+  </Link>
 );
 
 const CardDescription = styled.div`

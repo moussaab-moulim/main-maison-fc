@@ -112,12 +112,108 @@ const buttonCss = (props: ButtonProps & any) => css`
       : props.theme.secondColor};
   }
 `;
-
 export const ButtonLink = styled.a<ButtonProps>`
   ${(props) => buttonCss(props)}
 `;
 const Button = styled.button<ButtonProps>`
   ${(props) => buttonCss(props)}
+`;
+export const MobileMenuButton = styled.button`
+  display: none;
+  background: ${(props) => props.theme.doreColor};
+  border-radius: 300px;
+  border: none;
+  height: 40px;
+  width: 40px;
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10001;
+  }
+`;
+export const MenuActionButton = styled(Button)`
+  padding: 9px 24px;
+  position: relative;
+  color: ${(props) => props.theme.doreColor};
+  background-color: transparent;
+  font-family: ${(props) => props.theme.titleFont};
+  font-weight: 300;
+  cursor: pointer;
+  font-size: 16px;
+
+  border: none;
+  &::before,
+  &::after {
+    content: '';
+    width: 0;
+    height: 1px;
+    position: absolute;
+    transition: all 0.2s linear;
+    background: ${(props) => props.theme.doreColor};
+  }
+  &::before {
+    width: 100%;
+
+    right: 0;
+    top: 0;
+  }
+  &::after {
+    width: 50%;
+    right: 0;
+    bottom: 0;
+    transition-delay: 0.2s;
+  }
+  span {
+    display: block;
+    &::before,
+    &::after {
+      content: '';
+      width: 1px;
+      height: 0;
+      position: absolute;
+      transition: all 0.2s linear;
+      background: ${(props) => props.theme.doreColor};
+    }
+    &::after {
+      height: 100%;
+
+      right: 0;
+      bottom: 0;
+    }
+    ::before {
+      transition-delay: 0s;
+      left: 0;
+      bottom: 0;
+    }
+  }
+  &:hover {
+    border: none;
+    background: transparent;
+    color: ${(props) => props.theme.doreColor};
+
+    ::before,
+    ::after {
+      width: 100%;
+    }
+    ::after {
+      transition-delay: 0s;
+    }
+    span {
+      ::before,
+      ::after {
+        height: 100%;
+      }
+      ::before {
+        transition-delay: 0.2s;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    border: none;
+    font-size: 18px;
+  }
 `;
 
 export default Button;

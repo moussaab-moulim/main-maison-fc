@@ -28,7 +28,12 @@ function Team(teamProps: TeamProps) {
     <Section id={teamProps.id} style={{ marginBottom: 130 }}>
       <SectionInner>
         <Heading2>{teamProps.title}</Heading2>
-        <TextPrismic render={teamProps.description} className={'middle_text'} />
+        {teamProps.description && (
+          <TextPrismic
+            render={teamProps.description}
+            className={'middle_text'}
+          />
+        )}
         <TeamContainer>
           {teamProps.members.map((e, i) => (
             <IconCard
