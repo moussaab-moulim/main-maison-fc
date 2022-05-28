@@ -71,6 +71,7 @@ export const getHomePageData = async (lang: string) => {
             offer
             offer_price
             offer_description
+            offer_link
           }
           salon_title
           salon_description

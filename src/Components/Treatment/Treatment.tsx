@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -88,23 +89,26 @@ export const Treatment = ({
   price,
   description,
   button,
-}: TreatmentProps) => (
-  <TreatmentContainer dots={price.length * 4}>
-    <div className="treatment-header">
-      <div className="treatment-title">
-        <div className="circle" />
-        <Heading3>{treatment}</Heading3>
-        <div className="dots" />
+}: TreatmentProps) => {
+  const { t } = useTranslation('common');
+  return (
+    <TreatmentContainer dots={price.length * 4}>
+      <div className="treatment-header">
+        <div className="treatment-title">
+          <div className="circle" />
+          <Heading3>{treatment}</Heading3>
+          <div className="dots" />
+        </div>
+        <div className="treatment-price">{price}</div>
       </div>
-      <div className="treatment-price">{price}</div>
-    </div>
-    {description && <TextPrismic render={description} />}
-    {button && (
-      <Link href={button.url} passHref prefetch={false}>
-        <ButtonLink target={button.target} buttonType={ButtonType.Dark}>
-          {button.text}
-        </ButtonLink>
-      </Link>
-    )}
-  </TreatmentContainer>
-);
+      {description && <TextPrismic render={description} />}
+      {button && (
+        <Link href={button.url} passHref prefetch={false}>
+          <ButtonLink target={button.target} buttonType={ButtonType.Dark}>
+            {t('treatment-button-text')}
+          </ButtonLink>
+        </Link>
+      )}
+    </TreatmentContainer>
+  );
+};

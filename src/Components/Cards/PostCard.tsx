@@ -101,7 +101,7 @@ const CardDescription = styled.div`
   backdrop-filter: blur(13.7px);
   background-color: rgba(0, 0, 0, 0.5);
 `;
-// TODO : ALT text
+
 function PostCard(postCardProps: PostCardProps) {
   return (
     <Link href={postCardProps.postUrl} passHref>

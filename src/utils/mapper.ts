@@ -43,9 +43,9 @@ export const mapImages = (images: any[]): ImageType[] => {
 };
 
 export const mapButton = (button: any): ButtonLink => ({
-  text: button.text,
-  url: button.spans?.[0]?.data?.url ?? '#',
-  target: button.spans?.[0]?.data?.target ?? '_self',
+  text: button?.text ?? '',
+  url: button?.spans?.[0]?.data?.url ?? '#',
+  target: button?.spans?.[0]?.data?.target ?? '_self',
 });
 
 export const mapVisions = (visions: any[]): VisionType[] => {
@@ -62,6 +62,7 @@ export const mapOffers = (offers: any[]): TreatmentType[] => {
     treatment: offer.offer[0].text,
     price: offer.offer_price,
     description: offer.offer_description,
+    button: mapButton(offer.offer_link?.[0]),
   }));
 };
 export const mapMeta = (meta: any): IMeta => ({
