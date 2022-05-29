@@ -21,7 +21,7 @@ export const BlogContainer = styled.div`
   justify-content: center;
   gap: 15px;
   width: 100%;
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     flex-flow: row wrap;
   }
 `;

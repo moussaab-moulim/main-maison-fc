@@ -45,11 +45,11 @@ const Column = styled.div<ColumnProps>`
   margin: 10px 0;
   &.right {
     margin-left: auto;
-    @media only screen and (max-width: 425px) {
+    @media only screen and (max-width: 576px) {
       margin-left: unset;
     }
   }
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     width: 100%;
     flex-basis: 100%;
     align-items: center;

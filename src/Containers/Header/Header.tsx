@@ -19,7 +19,7 @@ const ContentContainer = styled.div`
   display: flex;
   flex-flow: column nowrap;
   max-width: 380px;
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     max-width: unset;
     align-items: center;
     text-align: center;

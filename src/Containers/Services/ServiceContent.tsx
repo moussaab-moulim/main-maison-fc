@@ -101,7 +101,7 @@ const ColumnImage = styled(Column)`
       max-width: 85%;
       height: 531px;
     }
-    @media only screen and (max-width: 425px) {
+    @media only screen and (max-width: 576px) {
       height: 335px;
       width: 90%;
       max-width: 90%;

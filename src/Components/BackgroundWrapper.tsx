@@ -6,7 +6,7 @@ const BackgroundWrapper = styled.div`
   width: 100%;
   overflow: hidden;
   z-index: -1;
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     img {
       object-position: 30% 50%;
     }

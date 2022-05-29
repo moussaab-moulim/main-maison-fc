@@ -15,7 +15,7 @@ const SectionInner = styled.div`
     padding-right: 40px;
   }
 
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     padding-left: 20px;
     padding-right: 20px;
   }

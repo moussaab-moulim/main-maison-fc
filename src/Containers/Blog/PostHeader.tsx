@@ -23,7 +23,7 @@ const ContentContainer = styled.div`
   align-self: flex-end;
   margin-top: 5px;
 
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     max-width: unset;
     align-items: center;
     text-align: center;

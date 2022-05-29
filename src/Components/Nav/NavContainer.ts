@@ -201,7 +201,7 @@ export const NavContainerMobile = styled.nav`
     opacity: 1;
   }
 
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     width: 100%;
   }
 `;

@@ -22,11 +22,11 @@ const ContentContainer = styled.div`
     font-weight: 300;
     color: ${({ theme }) => theme.textColor};
     margin: 20px 0;
-    @media only screen and (max-width: 425px) {
+    @media only screen and (max-width: 576px) {
       font-size: 30px;
     }
   }
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     align-items: center;
   }
 `;

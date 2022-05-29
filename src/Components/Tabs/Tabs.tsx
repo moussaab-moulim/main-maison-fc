@@ -21,7 +21,7 @@ export const TabsContentContainer = styled.div`
     gap: 10%;
     > div {
       max-width: 40%;
-      @media only screen and (max-width: 425px) {
+      @media only screen and (max-width: 576px) {
         max-width: 100%;
         justify-content: flex-start;
       }

@@ -86,7 +86,7 @@ export const CarouselWrapper = styled.div`
         padding: 0;
         box-shadow: none;
       }
-      @media only screen and (max-width: 425px) {
+      @media only screen and (max-width: 576px) {
         margin-bottom: 50px;
       }
     }
@@ -256,7 +256,7 @@ export const CarouselWrapper = styled.div`
           left: 50%;
           transform: translateX(-50%);
         }
-        @media only screen and (max-width: 425px) {
+        @media only screen and (max-width: 576px) {
           height: 335px;
         }
         @media only screen and (max-width: 375px) {
@@ -284,7 +284,7 @@ export const CarouselWrapper = styled.div`
             margin-left: 20px;
             margin-top: -20px;
           }
-          @media only screen and (max-width: 425px) {
+          @media only screen and (max-width: 576px) {
             margin-left: -20px;
             margin-top: 20px;
           }

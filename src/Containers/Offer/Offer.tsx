@@ -22,7 +22,7 @@ const OfferText = styled(TextPrismic)`
   @media only screen and (max-width: 768px) {
     padding-right: 60px;
   }
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     padding-right: 0px;
   }
 `;
@@ -58,19 +58,19 @@ const OfferImqgeContainer = styled.div`
   }
 `;
 const OfferSectionInner = styled(SectionInner)`
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     position: relative;
   }
 `;
 const OfferImageColumn = styled(Column)`
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     position: absolute;
     z-index: -1;
     opacity: 0.3;
   }
 `;
 const OfferContentColumn = styled(Column)`
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     margin-top: 30px;
   }
 `;

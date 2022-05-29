@@ -8,7 +8,7 @@ const Heading = styled.h2`
   font-size: 36px;
   font-weight: 300;
   color: ${({ theme }) => theme.textColor};
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     font-size: 30px;
   }
 `;

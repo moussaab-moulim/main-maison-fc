@@ -16,7 +16,7 @@ export const LogoContainer = styled.figure`
       /* filter: invert(100%); */
     }
   }
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     z-index: 10001;
   }
 `;

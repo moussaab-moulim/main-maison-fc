@@ -56,7 +56,7 @@ const PostBoxWrapper = styled.a`
   @media only screen and (max-width: 768px) {
     max-height: 380px;
   }
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     flex-basis: calc(100% - (var(--side-margin) * 2));
     margin: 10px var(--side-margin);
     padding: 25px 24px;

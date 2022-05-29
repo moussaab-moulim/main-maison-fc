@@ -137,7 +137,7 @@ const ServiceBoxWrapper = styled.a<ServiceBoxProps>`
   @media only screen and (max-width: 768px) {
     flex-basis: calc(50% - (var(--side-margin) * 2));
   }
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     flex-basis: calc(100% - (var(--side-margin) * 2));
     margin: 10px var(--side-margin);
     padding: 25px 24px;

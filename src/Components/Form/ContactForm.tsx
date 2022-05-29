@@ -15,7 +15,7 @@ const FormWrapper = styled.div`
   position: relative;
   width: auto;
   height: 100%;
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     width: 100%;
     height: auto;
     min-height: 8rem;
@@ -47,13 +47,13 @@ const Form = styled.form`
     width: 100%;
     & > div {
       flex-basis: 50%;
-      @media only screen and (max-width: 425px) {
+      @media only screen and (max-width: 576px) {
         flex-basis: 100%;
       }
     }
 
     > div:nth-child(2) {
-      @media only screen and (min-width: 425px) {
+      @media only screen and (min-width: 576px) {
         padding-left: 5px;
       }
     }
@@ -81,7 +81,7 @@ const Form = styled.form`
 `;
 const Input = styled.input`
   width: 100%;
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     margin-bottom: 10px;
   }
 `;

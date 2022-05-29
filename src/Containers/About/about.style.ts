@@ -116,7 +116,7 @@ export const ContentArea = styled.div`
     /* width: 100%; */
     padding-right: 0px;
   }
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 576px) {
     padding-right: 0;
     /* text-align: center; */
     margin-bottom: 20px;

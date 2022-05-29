@@ -33,7 +33,7 @@ const TreatmentContainer = styled.div<TreatmentContainerProps>`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    @media only screen and (max-width: 425px) {
+    @media only screen and (max-width: 576px) {
       flex-direction: column;
       align-items: flex-start;
       gap: 6px;
@@ -47,7 +47,7 @@ const TreatmentContainer = styled.div<TreatmentContainerProps>`
         margin-bottom: 0;
       }
       gap: 4px;
-      @media only screen and (max-width: 425px) {
+      @media only screen and (max-width: 576px) {
         width: 100%;
         align-items: center;
         flex-direction: row-reverse;
@@ -66,7 +66,7 @@ const TreatmentContainer = styled.div<TreatmentContainerProps>`
         border-top: dotted 2px ${({ theme }) => theme.textColor};
         flex: 1;
         margin-right: 6px;
-        @media only screen and (max-width: 425px) {
+        @media only screen and (max-width: 576px) {
           display: none;
         }
       }
@@ -77,7 +77,7 @@ const TreatmentContainer = styled.div<TreatmentContainerProps>`
       max-width: ${({ dots }) => dots}px;
       color: ${({ theme }) => theme.doreColor};
       font-size: 14px;
-      @media only screen and (max-width: 425px) {
+      @media only screen and (max-width: 576px) {
         max-width: 100%;
       }
     }
