@@ -166,6 +166,7 @@ export interface SeoDataType {
   themeColor: string;
   locale: string;
   searchConsoleKey: string;
+  type: string;
 }
 
 export interface LangDataType {

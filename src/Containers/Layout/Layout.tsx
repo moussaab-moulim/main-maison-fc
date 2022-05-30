@@ -55,6 +55,7 @@ const Layout = ({
           title: seoData.metaTitle,
           description: seoData.metaDescription,
           url: seoData.domain + seoData.pathUrl,
+          type: 'website',
           locale: seoData.locale,
           site_name: seoData.siteName,
           images: seoData.image

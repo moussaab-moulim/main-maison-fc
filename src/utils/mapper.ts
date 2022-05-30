@@ -303,6 +303,7 @@ export const mapSeoData = (
   themeColor: siteSettings.themeColor,
   locale: siteSettings.lang,
   searchConsoleKey: siteSettings.searchConsoleKey,
+  type: pageSettings.documentMeta.meta.type === 'post' ? 'article' : 'website',
 });
 export const mapBlogPage = (blog: any): PageSettings => {
   const documentMeta: DocumentMeta = {
