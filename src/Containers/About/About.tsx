@@ -86,7 +86,7 @@ const About = (aboutProps: AboutProps) => {
 
         <CarouselArea className={aboutProps.className ?? ''}>
           <GlideCarousel
-            carouselSelector={`${aboutProps.id}_carousel`}
+            carouselSelector={`home-about_carousel`}
             options={glideOptions}
             numberOfBullets={aboutProps.images.length}
             nextButton={<span className="next_arrow" />}

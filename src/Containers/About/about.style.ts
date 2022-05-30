@@ -217,7 +217,7 @@ export const CarouselArea = styled.div`
     width: 100%;
   }
 
-  #le-salon_carousel,
+  #home-about_carousel,
   #about-descritpion_carousel,
   #about-header_carousel {
     .glide__slide {
