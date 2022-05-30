@@ -28,6 +28,7 @@ export const linkResolver = (doc: IMeta) => {
     return `${langPrefix}/${doc.uid}`;
   }
   if (doc.type === 'blog') {
+    // TODO add blog en version
     return `${langPrefix}/${doc.uid}`;
   }
   if (doc.type === 'home') {

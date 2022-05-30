@@ -141,7 +141,7 @@ const Header = ({
               </Link>
             ))}
           {langData && documentMeta.alternateLanguages.length > 0 && (
-            <LanguageSwitcher {...langData} meta={documentMeta.meta} />
+            <LanguageSwitcher {...langData} documentMeta={documentMeta} />
           )}
         </NavContainer>
       </SectionInner>

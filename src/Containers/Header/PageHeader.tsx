@@ -54,6 +54,7 @@ const PageHeader = (pageHeaderProps: PageHeaderProps) => {
           src={pageHeaderProps.image.url}
           layout="fill"
           objectFit="cover"
+          objectPosition="center"
           quality={100}
           priority
         />

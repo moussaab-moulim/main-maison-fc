@@ -32,6 +32,12 @@ const TabButton = styled(Button)`
   color: ${({ theme }) => theme.doreColor};
   border-color: ${({ theme }) => theme.doreColor};
   border: none;
+  max-width: unset;
+  min-width: unset;
+  width: fit-content;
+  @media only screen and (max-width: 576px) {
+    padding: 6px 12px;
+  }
   &:hover,
   &.hover {
     border: solid 1px;
@@ -54,7 +60,6 @@ export const Navigation = (props: NavigationProps) => {
         <TabButton
           key={index}
           onClick={() => props.onNavClick(item)}
-          style={{ maxWidth: 160 }}
           className={props.activeTabTitle === item ? 'hover' : ''}
         >
           {item}

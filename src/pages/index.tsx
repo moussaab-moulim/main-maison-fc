@@ -45,14 +45,13 @@ interface IndexProps {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
-  const fetchedMenu = (await getMenu(locale!)).data.menu;
   const fetchedSiteSettings = (await getGlobalSettings(locale!)).data
     .site_settings;
   const fetchedHomeData = (await getHomePageData(locale!)).data.home;
   const fetchedBolgPosts = (await getBolgPosts(locale!, 3)).data.allPosts;
+  const fetchedMenu = (await getMenu(locale!)).data.menu;
   // mapping fetched data
   const menuData: MenuDataType = mapMenuData(fetchedMenu);
-
   const globalSettingsData: GlobalSettingsDataType =
     mapGlobalSettingsData(fetchedSiteSettings);
   const homeData: HomeDataType = mapHomeData(
@@ -69,6 +68,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
 
   const seoData: SeoDataType = mapSeoData(globalSettingsData, homeData.seo);
   // const { currentLang, isMyMainLanguage } = manageLocal(locales!, locale!);
+
   return {
     props: {
       ...(await serverSideTranslations(locale!, ['common'])),
@@ -109,7 +109,7 @@ const Index: FC<IndexProps> = ({
       <Services {...homeData.services} />
       <Prices {...homeData.prices} />
       <Visions {...homeData.visions} />
-      <Blog {...homeData.blog} />
+      {homeData.blog.totalCount! > 0 && <Blog {...homeData.blog} />}
       <Offer {...homeData.offer} />
       <Statement {...homeData.statement} />
       <Contact {...homeData.contact} />

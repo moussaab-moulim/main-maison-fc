@@ -1,8 +1,7 @@
 module.exports = {
   i18n: {
     localeDetection: false,
-    // todo add en
-    locales: ['fr'],
+    locales: ['fr', 'en'],
     defaultLocale: 'fr',
   },
 };

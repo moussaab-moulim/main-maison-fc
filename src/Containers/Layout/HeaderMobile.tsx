@@ -166,7 +166,7 @@ const HeaderMobile = ({
           {langData && documentMeta.alternateLanguages.length > 0 && (
             <LanguageSwitcher
               {...langData}
-              meta={documentMeta.meta}
+              documentMeta={documentMeta}
               onClick={handleToggleMenu}
             />
           )}

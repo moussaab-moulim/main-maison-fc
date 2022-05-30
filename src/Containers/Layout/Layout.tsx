@@ -1,13 +1,14 @@
 import React, { Fragment, ReactNode, useEffect, useState } from 'react';
 
 import { NextSeo } from 'next-seo';
-import { useRouter } from 'next/router';
 
+import { linkResolver } from '../../../prismicConfiguration';
 import {
   ButtonLink,
   DocumentMeta,
   FooterDataType,
   ImageType,
+  IMeta,
   LangDataType,
   MenuType,
   SeoDataType,
@@ -38,7 +39,6 @@ const Layout = ({
   langData,
   documentMeta,
 }: LayoutProps) => {
-  const router = useRouter();
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     setIsMobile(window.innerWidth <= 768);
@@ -54,15 +54,20 @@ const Layout = ({
         openGraph={{
           title: seoData.metaTitle,
           description: seoData.metaDescription,
-          url: router.basePath + seoData.pathUrl,
+          url: seoData.domain + seoData.pathUrl,
           locale: seoData.locale,
           site_name: seoData.siteName,
-          images: [
-            {
-              url: seoData.image.url,
-              alt: seoData.image.alt,
-            },
-          ],
+          images: seoData.image
+            ? [
+                {
+                  url: seoData.image.url,
+                  alt: seoData.image.alt,
+                  type: 'image/jpeg',
+                  width: 1200,
+                  height: 630,
+                },
+              ]
+            : [],
         }}
         twitter={{
           cardType: 'summary_large_image',
@@ -177,14 +182,14 @@ const Layout = ({
           },
           {
             rel: 'alternate',
-            hrefLang: 'fr',
-            href: `${seoData.domain}/${seoData.pathUrl}`,
+            hrefLang: documentMeta.meta.lang,
+            href: `${seoData.domain}${linkResolver(documentMeta.meta)}`,
           },
-          /*          TODO {
+          ...documentMeta.alternateLanguages.map((doc: IMeta) => ({
             rel: 'alternate',
-            hrefLang: 'en',
-            href: `${seoData.domain}/en${seoData.pathUrl.replace("/en","/")}`,
-          }, */
+            hrefLang: doc.lang,
+            href: `${seoData.domain}${linkResolver(doc)}`,
+          })),
         ]}
       />
       <Fragment>

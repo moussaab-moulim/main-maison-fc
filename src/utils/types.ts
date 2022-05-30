@@ -52,6 +52,7 @@ export interface PageSettings {
   metaDescription?: string;
   keywords?: string;
   url: string;
+  image?: ImageType;
 }
 export interface GlobalSettingsDataType {
   siteName: string;
@@ -158,7 +159,7 @@ export interface SeoDataType {
   keywords: string;
   twitterHandle?: string;
   pathUrl: string;
-  image: ImageType;
+  image?: ImageType;
   siteName: string;
   favIcon: FavIcon;
   safariIcon: ImageType;

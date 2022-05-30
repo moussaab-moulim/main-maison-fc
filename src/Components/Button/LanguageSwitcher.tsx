@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import { linkResolver } from '../../../prismicConfiguration';
-import { IMeta, LangDataType } from '../../utils/types';
+import { DocumentMeta, IMeta, LangDataType } from '../../utils/types';
 
 interface ContainerProps {
   count: number;
@@ -83,14 +83,14 @@ const Flag = styled.div<FlagProps>`
 interface LanguageSwitcherProps
   extends LangDataType,
     ComponentPropsWithoutRef<'div'> {
-  meta: IMeta;
+  documentMeta: DocumentMeta;
 }
 const LanguageSwitcher = ({
   onClick,
   languages,
-  currentLanguage,
+
   className,
-  meta,
+  documentMeta,
 }: LanguageSwitcherProps) => {
   return (
     <LanguageContainer className={className} count={languages.length}>
@@ -102,30 +102,32 @@ const LanguageSwitcher = ({
           height={30}
           layout="responsive"
         /> */}
-        {currentLanguage}
+        {documentMeta.meta.lang}
       </Flag>
       <ul className="dropdown">
-        {languages.map(
-          (language: string, index: number) =>
-            language !== currentLanguage && (
-              <li key={index}>
-                <Link locale={language} href={linkResolver(meta)} passHref>
-                  <a>
-                    <Flag onClick={onClick}>
-                      {/* <Image
+        {documentMeta.alternateLanguages.map((doc: IMeta, index: number) => (
+          <li key={index}>
+            <Link
+              locale={doc.lang}
+              href={linkResolver(doc)}
+              passHref
+              prefetch={false}
+            >
+              <a>
+                <Flag onClick={onClick}>
+                  {/* <Image
                         src={`/assets/icons/${language}.svg`}
                         alt={language}
                         width={30}
                         height={30}
                         layout="responsive"
                       /> */}
-                      {language}
-                    </Flag>
-                  </a>
-                </Link>
-              </li>
-            )
-        )}
+                  {doc.lang}
+                </Flag>
+              </a>
+            </Link>
+          </li>
+        ))}
       </ul>
     </LanguageContainer>
   );

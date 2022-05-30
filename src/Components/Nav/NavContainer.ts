@@ -136,7 +136,7 @@ export const NavContainerMobile = styled.nav`
           position: absolute;
           left: 100%;
           top: 50%;
-          width: 35px;
+          width: 25px;
           cursor: pointer;
           margin-left: 10px;
           &:before,
@@ -152,12 +152,12 @@ export const NavContainerMobile = styled.nav`
           }
 
           &:before {
-            transform: rotate(210deg);
-            left: 0;
+            transform: rotate(220deg);
+            left: 1px;
           }
           &:after {
-            transform: rotate(-210deg);
-            right: 0;
+            transform: rotate(-220deg);
+            right: 1px;
           }
         }
       }
@@ -184,12 +184,12 @@ export const NavContainerMobile = styled.nav`
 
           .arrow-open-close {
             &:before {
-              transform: rotate(150deg);
-              left: 0;
+              transform: rotate(140deg);
+              left: 1px;
             }
             &:after {
-              transform: rotate(-150deg);
-              right: 0;
+              transform: rotate(-140deg);
+              right: 1px;
             }
           }
         }

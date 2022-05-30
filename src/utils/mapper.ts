@@ -97,6 +97,7 @@ export const mapPost = (post: any, cursor?: string): PostDataType => {
     metaTitle: post.meta_title ?? '',
     metaDescription: post.meta_description ?? '',
     keywords: post.keywords ?? '',
+    image: mapImage(post.featrured_image),
   };
 };
 export const mapBlog = (title: string, blog: any): BlogDataType => ({
@@ -185,6 +186,7 @@ export const mapHomeData = (
       metaTitle: queryResult.meta_title,
       metaDescription: queryResult.meta_description,
       keywords: queryResult.keywords,
+      image: mapImage(queryResult.featrured_image),
     },
   };
 };
@@ -251,9 +253,15 @@ export const mapGlobalSettingsData = (
       icon32: mapImage(queryResult.favicon.icon32),
       icon180: mapImage(queryResult.favicon.icon180),
     },
-    contactGroup: queryResult.contact_group.map(
-      (item: any) => item.contact_field
-    ),
+    contactGroup: queryResult.contact_group.map((item: any) => {
+      const contactField = item.contact_field;
+
+      if (contactField[0].spans.length >= 1) {
+        contactField[0].spans[0].data.url =
+          contactField[0].spans[0].data.url.replace('https://geo:', 'geo:');
+      }
+      return contactField;
+    }),
     copyrightText: queryResult.copyright_text,
     googleTagId: queryResult.google_tag_id,
     mapEmbedUrl: queryResult.map_embed_url,
@@ -288,7 +296,7 @@ export const mapSeoData = (
   domain: siteSettings.domain,
   keywords: pageSettings.keywords ?? '',
   pathUrl: pageSettings.url,
-  image: siteSettings.svgIcon,
+  image: pageSettings.image,
   siteName: siteSettings.siteName,
   favIcon: siteSettings.favicon,
   safariIcon: siteSettings.svgIcon,
@@ -314,6 +322,7 @@ export const mapBlogPage = (blog: any): PageSettings => {
     metaTitle: blog.meta_title,
     metaDescription: blog.meta_description,
     keywords: blog.keywords,
+    image: mapImage(blog.featrured_image),
   };
 };
 export const mapPageSettings = (page: any): PageSettings => {
@@ -334,6 +343,7 @@ export const mapPageSettings = (page: any): PageSettings => {
     metaTitle: page.meta_title,
     metaDescription: page.meta_description,
     keywords: page.keywords,
+    image: mapImage(page.featrured_image),
   };
 };
 export const mapTeam = (team_members: any): MemberData[] => {
@@ -394,6 +404,7 @@ export const mapServiceData = (service: any): ServiceDataType => {
     metaTitle: service.meta_title ?? '',
     metaDescription: service.meta_description ?? '',
     keywords: service.keywords ?? '',
+    image: mapImage(service.featrured_image),
     treatments: service.sub_service.map(
       (subService: any): TreatmentType => ({
         treatment: subService.sub_service_title,

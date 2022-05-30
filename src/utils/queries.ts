@@ -28,9 +28,11 @@ _meta {
     type
     id
   }
-}`;
+}
+`;
 const postMainQuery = `
 ${metaQuery}
+featrured_image
 title
 post_image`;
 export const getHomePageData = async (lang: string) => {
@@ -39,6 +41,7 @@ export const getHomePageData = async (lang: string) => {
       query {
         home(uid: "home", lang: "${lang}") {
           ${metaQuery}
+          featrured_image
           title
           meta_title
           meta_description
@@ -198,6 +201,7 @@ export const getBolgPage = async (uid: string, lang: string) => {
         blog(uid:"${uid}",lang: "${lang}") {
           
             ${metaQuery}
+            featrured_image
             title
               meta_title
               meta_description
@@ -236,23 +240,23 @@ export const getServicePage = async (uid: string, lang: string) => {
   return client.query({
     query: gql`
       query {
-        service(uid:"${uid}",lang: "${lang}") {
-          
-            ${metaQuery}
-              meta_title
-              meta_description
-              keywords
-              title
-    header_id
-    service_image
-    sub_service{
-      sub_service_title
-      sub_service_image
-      sub_service_price
-      sub_service_description
-      sub_service_button
-    }
-            
+        service(uid:"${uid}",lang: "${lang}")
+        {
+          ${metaQuery}
+          featrured_image
+          meta_title
+          meta_description
+          keywords
+          title
+          header_id
+          service_image
+          sub_service {
+            sub_service_title
+            sub_service_image
+            sub_service_price
+            sub_service_description
+            sub_service_button
+          }
         }
       }
     `,
@@ -285,6 +289,7 @@ export const getAboutPage = async (uid: string, lang: string) => {
         about(uid:"${uid}",lang: "${lang}") {
           
               ${metaQuery}
+              featrured_image
               title
               meta_title
               meta_description
