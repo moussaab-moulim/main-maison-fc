@@ -60,7 +60,7 @@ const Layout = ({
           images: seoData.image
             ? [
                 {
-                  url: seoData.image.url,
+                  url: seoData.image.url.replace('auto=compress,format&', ''),
                   alt: seoData.image.alt,
                   type: 'image/jpeg',
                   width: 1200,
