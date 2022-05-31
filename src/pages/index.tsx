@@ -7,6 +7,7 @@ import About from '../Containers/About/About';
 import Blog from '../Containers/Blog/Blog';
 import Contact from '../Containers/Contact/Contact';
 import Header from '../Containers/Header/Header';
+import Instagram from '../Containers/Instagram/Instagram';
 import { Layout } from '../Containers/Layout/Layout';
 import Offer from '../Containers/Offer/Offer';
 import Prices from '../Containers/Prices/Prices';
@@ -17,6 +18,7 @@ import {
   mapFooterData,
   mapGlobalSettingsData,
   mapHomeData,
+  mapInstagramData,
   mapMenuData,
   mapSeoData,
 } from '../utils/mapper';
@@ -24,12 +26,14 @@ import {
   getBolgPosts,
   getGlobalSettings,
   getHomePageData,
+  getInstagramFeed,
   getMenu,
 } from '../utils/queries';
 import {
   FooterDataType,
   GlobalSettingsDataType,
   HomeDataType,
+  InstagramDataType,
   LangDataType,
   MenuDataType,
   SeoDataType,
@@ -42,9 +46,11 @@ interface IndexProps {
   footerData: FooterDataType;
   seoData: SeoDataType;
   langData: LangDataType;
+  instagramData: InstagramDataType;
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
+  const fetchInstagramFeed = (await getInstagramFeed()).data;
   const fetchedSiteSettings = (await getGlobalSettings(locale!)).data
     .site_settings;
   const fetchedHomeData = (await getHomePageData(locale!)).data.home;
@@ -65,6 +71,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
     globalSettingsData,
     menuData
   );
+  const instagramData: InstagramDataType = mapInstagramData(fetchInstagramFeed);
 
   const seoData: SeoDataType = mapSeoData(globalSettingsData, homeData.seo);
   // const { currentLang, isMyMainLanguage } = manageLocal(locales!, locale!);
@@ -76,6 +83,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
       menuData,
       globalSettingsData,
       footerData,
+      instagramData,
       seoData,
       langData: {
         currentLanguage: locale,
@@ -92,6 +100,7 @@ const Index: FC<IndexProps> = ({
   footerData,
   seoData,
   langData,
+  instagramData,
 }) => {
   return (
     <Layout
@@ -112,6 +121,7 @@ const Index: FC<IndexProps> = ({
       {homeData.blog.totalCount! > 0 && <Blog {...homeData.blog} />}
       <Offer {...homeData.offer} />
       <Statement {...homeData.statement} />
+      <Instagram {...instagramData} />
       <Contact {...homeData.contact} />
     </Layout>
   );

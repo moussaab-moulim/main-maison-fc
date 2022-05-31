@@ -95,7 +95,7 @@ function VisionsSection(visionProps: VisionsProps) {
                 {visionProps.visions.map(
                   (vision: VisionType, index: number) => (
                     <button
-                      className="glide__bullet"
+                      className={`glide__bullet ${visionProps.id}`}
                       data-glide-dir={`=${index}`}
                       key={`glide_bullet--key${index}`}
                     >
@@ -103,7 +103,6 @@ function VisionsSection(visionProps: VisionsProps) {
                         src={vision.image.url}
                         alt={vision.image.alt}
                         layout="fill"
-                        objectFit="cover"
                       />
                     </button>
                   )

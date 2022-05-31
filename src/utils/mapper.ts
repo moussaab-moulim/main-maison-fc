@@ -12,6 +12,7 @@ import {
   HomeDataType,
   ImageType,
   IMeta,
+  InstagramDataType,
   LinkType,
   MemberData,
   MenuDataType,
@@ -415,5 +416,24 @@ export const mapServiceData = (service: any): ServiceDataType => {
         button: mapButton(subService.sub_service_button[0]),
       })
     ),
+  };
+};
+
+export const mapInstagramData = (instafeed: any): InstagramDataType => {
+  return {
+    id: 'instagram',
+    title: 'section-instagram-title',
+    instagramUrl: 'https://www.instagram.com/maisonbeautefabiencarrichon/',
+    images: instafeed
+      .filter(
+        (image: any) =>
+          image.media_type === 'IMAGE' && !image.caption.includes('!!not-add!!')
+      )
+      .map((image: any) => ({
+        url: image.media_url,
+        alt: '',
+        linkTo: image.permalink,
+      }))
+      .slice(0, 5),
   };
 };

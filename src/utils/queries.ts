@@ -4,6 +4,7 @@ import { PrismicLink } from 'apollo-link-prismic';
 import gql from 'graphql-tag';
 
 import { accessToken, apiGraphqlEndpoint } from '../../prismicConfiguration';
+import { instagramFeedEndpoint } from './appConstants';
 
 export const client = new ApolloClient({
   link: PrismicLink({
@@ -321,4 +322,10 @@ export const getAboutPage = async (uid: string, lang: string) => {
       }
     `,
   });
+};
+
+export const getInstagramFeed = async () => {
+  const endpoint = instagramFeedEndpoint(process.env.INSTAGRAM_TOKEN!);
+  const feed = await (await fetch(endpoint)).json();
+  return feed;
 };

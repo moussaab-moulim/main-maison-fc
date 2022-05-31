@@ -46,7 +46,9 @@ const Contact = (contactProps: ContactProps) => {
     >
       <SectionInner>
         <TitleWrapper>
-          <Heading2>{t('section-contact-title')}</Heading2>
+          <Heading2 style={{ color: mainTheme.doreColor }}>
+            {t('section-contact-title')}
+          </Heading2>
         </TitleWrapper>
       </SectionInner>
       <SectionInner>

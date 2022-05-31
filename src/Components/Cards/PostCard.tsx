@@ -9,10 +9,11 @@ import Image from '../Image';
 
 interface PostCardProps {
   postUrl: string;
-  title: string;
-  postDate: string;
+  title?: string;
+  postDate?: string;
   postImage: ImageType;
   className?: string;
+  isExternalLink?: boolean;
 }
 
 const PostBoxWrapper = styled.a`
@@ -25,7 +26,6 @@ const PostBoxWrapper = styled.a`
   height: 100vh;
   max-height: 401px;
   overflow: hidden;
-  position: relative;
   &:hover {
     img {
       transform: scale(1.1);
@@ -105,17 +105,24 @@ const CardDescription = styled.div`
 function PostCard(postCardProps: PostCardProps) {
   return (
     <Link href={postCardProps.postUrl} passHref>
-      <PostBoxWrapper className={postCardProps.className ?? ''}>
+      <PostBoxWrapper
+        className={postCardProps.className ?? ''}
+        target={postCardProps.isExternalLink ? '_blank' : '_self'}
+      >
         <Image
           src={postCardProps.postImage.url}
           alt={postCardProps.postImage.alt}
           layout="fill"
         />
 
-        <CardDescription>
-          <Heading3>{postCardProps.title}</Heading3>
-          <div className="post-date">{postCardProps.postDate}</div>
-        </CardDescription>
+        {(postCardProps.title || postCardProps.postDate) && (
+          <CardDescription>
+            {postCardProps.title && <Heading3>{postCardProps.title}</Heading3>}
+            {postCardProps.postDate && (
+              <div className="post-date">{postCardProps.postDate}</div>
+            )}
+          </CardDescription>
+        )}
       </PostBoxWrapper>
     </Link>
   );

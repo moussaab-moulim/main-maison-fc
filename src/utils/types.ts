@@ -110,6 +110,7 @@ export interface ServiceType {
 export interface ImageType {
   url: string;
   alt?: string;
+  linkTo?: string;
 }
 export interface VisionType {
   image: ImageType;
@@ -238,4 +239,10 @@ export interface AboutPageDataType {
   teamTitle: string;
   teamText: RichTextBlock[];
   team: MemberData[];
+}
+
+export interface InstagramDataType extends Common {
+  title: string;
+  images: ImageType[];
+  instagramUrl: string;
 }

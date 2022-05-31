@@ -167,17 +167,30 @@ export const CarouselWrapper = styled.div`
       flex-wrap: wrap;
       height: 531px;
       position: relative;
-      @media only screen and (max-width: 1024px) {
-        height: 346px;
+      img {
+        object-fit: cover;
+        object-position: center center;
       }
-      @media only screen and (max-width: 768px) {
-        height: 535px;
+      .founder {
+        img {
+          object-position: 80% 100%;
+        }
+      }
+      .nos-partenaires,
+      .our-partners {
+        img {
+          object-fit: contain;
+        }
       }
       &:hover {
         img {
           transform: scale(1.1);
         }
       }
+      @media only screen and (max-width: 1024px) {
+        height: 346px;
+      }
+
       .inside-box {
         display: block;
         &::before,
