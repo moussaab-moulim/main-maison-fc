@@ -7,6 +7,7 @@ import About from '../Containers/About/About';
 import Blog from '../Containers/Blog/Blog';
 import Contact from '../Containers/Contact/Contact';
 import Header from '../Containers/Header/Header';
+import Instagram from '../Containers/Instagram/Instagram';
 import { Layout } from '../Containers/Layout/Layout';
 import Offer from '../Containers/Offer/Offer';
 import Prices from '../Containers/Prices/Prices';
@@ -101,7 +102,6 @@ const Index: FC<IndexProps> = ({
   langData,
   instagramData,
 }) => {
-  console.log(instagramData);
   return (
     <Layout
       documentMeta={homeData.seo.documentMeta}
@@ -121,7 +121,7 @@ const Index: FC<IndexProps> = ({
       {homeData.blog.totalCount! > 0 && <Blog {...homeData.blog} />}
       <Offer {...homeData.offer} />
       <Statement {...homeData.statement} />
-      {/*  {instagramData.images.length > 0 && <Instagram {...instagramData} />} */}
+      {instagramData.images.length > 0 && <Instagram {...instagramData} />}
       <Contact {...homeData.contact} />
     </Layout>
   );

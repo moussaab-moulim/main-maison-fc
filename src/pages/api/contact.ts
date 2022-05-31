@@ -5,8 +5,8 @@ const contactFunction = (req: any, res: any) => {
     port: 465,
     host: 'mail.infomaniak.com',
     auth: {
-      user: 'contact@fabiencarrichon.ch',
-      pass: 'Qwertz.1',
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
     },
     secure: true,
     tls: {
