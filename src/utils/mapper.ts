@@ -429,11 +429,14 @@ export const mapInstagramData = (instafeed: any): InstagramDataType => {
         (image: any) =>
           image.media_type === 'IMAGE' && !image.caption.includes('!!not-add!!')
       )
-      .map((image: any) => ({
-        url: image.media_url,
-        alt: '',
-        linkTo: image.permalink,
-      }))
+      .map((image: any) => {
+        const url = image.media_url;
+        return {
+          url: url.replace(url.slice(0, url.indexOf('.')), 'https://scontent'),
+          alt: '',
+          linkTo: image.permalink,
+        };
+      })
       .slice(0, 5),
   };
 };
