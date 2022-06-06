@@ -92,7 +92,7 @@ export const Treatment = ({
 }: TreatmentProps) => {
   const { t } = useTranslation('common');
   return (
-    <TreatmentContainer dots={price.length * 4}>
+    <TreatmentContainer dots={(price?.length ?? 0) * 4}>
       <div className="treatment-header">
         <div className="treatment-title">
           <div className="circle" />

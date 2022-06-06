@@ -66,7 +66,7 @@ const OfferImageColumn = styled(Column)`
   @media only screen and (max-width: 576px) {
     position: absolute;
     z-index: -1;
-    opacity: 0.3;
+    opacity: 0.5;
   }
 `;
 const OfferContentColumn = styled(Column)`
