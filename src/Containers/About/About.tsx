@@ -1,8 +1,10 @@
 import React, { Fragment, useState } from 'react';
 
 import Link from 'next/link';
+import { useInView } from 'react-intersection-observer';
 import { CSSProperties } from 'styled-components';
 
+import { useAnimateInView } from '../../../hooks/animateInView';
 import { ButtonLink } from '../../Components/Button/Button';
 import GlideCarousel from '../../Components/GlideCarousel';
 import GlideSlide from '../../Components/GlideCarousel/glideSlide';
@@ -11,6 +13,11 @@ import Image from '../../Components/Image';
 import Lightbox from '../../Components/Lightbox/Lightbox';
 import { VerticalSpace } from '../../Components/Space/Space';
 import { TextPrismic } from '../../Components/Text/Text';
+import {
+  fadeInUp,
+  motionParams,
+  stagerContainer,
+} from '../../utils/animations';
 import { AboutDataType, ButtonType } from '../../utils/types';
 import AboutWrapper, {
   Container,
@@ -25,6 +32,10 @@ interface AboutProps extends AboutDataType {
 const About = (aboutProps: AboutProps) => {
   const [lightBoxToggle, setLightBoxToggle] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [ref, inView] = useInView();
+  const animation = useAnimateInView(inView);
+  const [ref2, inView2] = useInView();
+  const animation2 = useAnimateInView(inView2);
   const glideOptions = {
     type: 'slider',
     rewind: true,
@@ -58,10 +69,18 @@ const About = (aboutProps: AboutProps) => {
       style={aboutProps.style}
     >
       <Container className={aboutProps.className ?? ''}>
-        <ContentArea>
+        <ContentArea
+          variants={stagerContainer}
+          {...motionParams}
+          ref={ref}
+          animate={animation}
+        >
           {/* <Fade direction="up" delay={30}> */}
-          {aboutProps.title && <Heading2>{aboutProps.title}</Heading2>}
+          {aboutProps.title && (
+            <Heading2 variants={fadeInUp()}>{aboutProps.title}</Heading2>
+          )}
           <TextPrismic
+            variants={fadeInUp()}
             render={aboutProps.description}
             className={aboutProps.className ?? ''}
           />
@@ -71,6 +90,7 @@ const About = (aboutProps: AboutProps) => {
               <VerticalSpace size={40} />
               <Link href={aboutProps.button?.url!} passHref prefetch={false}>
                 <ButtonLink
+                  variants={fadeInUp()}
                   buttonType={ButtonType.Dark}
                   target={aboutProps.button?.target}
                 >
@@ -84,7 +104,13 @@ const About = (aboutProps: AboutProps) => {
           {/* </Fade> */}
         </ContentArea>
 
-        <CarouselArea className={aboutProps.className ?? ''}>
+        <CarouselArea
+          variants={fadeInUp()}
+          {...motionParams}
+          ref={ref2}
+          animate={animation2}
+          className={aboutProps.className ?? ''}
+        >
           <GlideCarousel
             carouselSelector={`home-about_carousel`}
             options={glideOptions}

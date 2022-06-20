@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-const BackgroundWrapper = styled.div`
+const BackgroundWrapper = styled(motion.div)`
   position: absolute;
   height: 100vh;
   width: 100%;

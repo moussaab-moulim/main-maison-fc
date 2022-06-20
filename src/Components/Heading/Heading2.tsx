@@ -1,8 +1,7 @@
-import React from 'react';
-
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-const Heading = styled.h2`
+export const Heading2 = styled(motion.h2)`
   margin: 0 0 18px;
   font-family: ${({ theme }) => theme.titleFont};
   font-size: 36px;
@@ -12,5 +11,3 @@ const Heading = styled.h2`
     font-size: 30px;
   }
 `;
-
-export const Heading2 = ({ ...props }: any) => <Heading {...props} />;

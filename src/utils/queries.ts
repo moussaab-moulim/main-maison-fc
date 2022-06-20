@@ -325,7 +325,7 @@ export const getAboutPage = async (uid: string, lang: string) => {
 };
 
 export const getInstagramFeed = async () => {
-  const endpoint = instagramFeedEndpoint(process.env.INSTAGRAM_TOKEN!);
+  const endpoint = instagramFeedEndpoint(9);
   const feed = await (await fetch(endpoint)).json();
   return feed;
 };

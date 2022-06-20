@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
 import { ButtonType } from '../../utils/types';
@@ -112,10 +113,10 @@ const buttonCss = (props: ButtonProps & any) => css`
       : props.theme.secondColor};
   }
 `;
-export const ButtonLink = styled.a<ButtonProps>`
+export const ButtonLink = styled(motion.a)<ButtonProps>`
   ${(props) => buttonCss(props)}
 `;
-const Button = styled.button<ButtonProps>`
+const Button = styled(motion.button)<ButtonProps>`
   ${(props) => buttonCss(props)}
 `;
 export const MobileMenuButton = styled.button`

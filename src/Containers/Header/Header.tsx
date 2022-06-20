@@ -1,21 +1,28 @@
 import React from 'react';
 
-import Image from 'next/image';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import styled from 'styled-components';
 
 import BackgroundWrapper from '../../Components/BackgroundWrapper';
 import { ButtonLink } from '../../Components/Button/Button';
 import { Heading1 } from '../../Components/Heading/Heading1';
+import Image from '../../Components/Image';
 import Column from '../../Components/Section/Column';
 import Section from '../../Components/Section/Section';
 import SectionInner from '../../Components/Section/SectionInner';
 import { Text } from '../../Components/Text/Text';
+import {
+  fadeInUp,
+  motionParams,
+  stagerContainer,
+  zoomIn,
+} from '../../utils/animations';
 import { ButtonType, HeaderDataType } from '../../utils/types';
 
 interface HeaderProps extends HeaderDataType {}
 
-const ContentContainer = styled.div`
+const ContentContainer = styled(motion.div)`
   display: flex;
   flex-flow: column nowrap;
   max-width: 380px;
@@ -23,6 +30,8 @@ const ContentContainer = styled.div`
     max-width: unset;
     align-items: center;
     text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 25px 11px;
   }
 `;
 
@@ -32,7 +41,7 @@ const Header = (headerProps: HeaderProps) => {
       id={headerProps.id}
       style={{ height: '100vh', backgroundColor: 'transparent' }}
     >
-      <BackgroundWrapper>
+      <BackgroundWrapper variants={zoomIn()} {...motionParams}>
         <Image
           alt=""
           src={headerProps.backgroundUrl}
@@ -44,14 +53,15 @@ const Header = (headerProps: HeaderProps) => {
       </BackgroundWrapper>
       <SectionInner>
         <Column type={2} className="right header-column">
-          <ContentContainer>
-            <Heading1>{headerProps.title}</Heading1>
-            <Text>{headerProps.description}</Text>
+          <ContentContainer variants={stagerContainer} {...motionParams}>
+            <Heading1 variants={fadeInUp()}>{headerProps.title}</Heading1>
+            <Text variants={fadeInUp()}>{headerProps.description}</Text>
             <Link href={headerProps.button?.url!} passHref prefetch={false}>
               <ButtonLink
                 style={{ maxWidth: 216 }}
                 target={headerProps.button?.target}
                 buttonType={ButtonType.Dark}
+                variants={fadeInUp()}
               >
                 {headerProps.button?.text}
               </ButtonLink>

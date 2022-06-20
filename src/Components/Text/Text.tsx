@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 
+import { motion, Variant, Variants } from 'framer-motion';
 import { RichText, RichTextProps } from 'prismic-reactjs';
 import styled from 'styled-components';
 
@@ -8,16 +9,17 @@ interface TextPrismicProps {
   color?: string;
   size?: string;
   className?: string;
+  variants?: Variants & Variant;
 }
 
-export const Text = styled.p`
+export const Text = styled(motion.p)`
   font-family: ${({ theme }) => theme.bodyFont};
   color: ${({ theme }) => theme.textColor};
   font-size: ${({ theme }) => theme.normalFontSize};
   font-weight: 300;
   margin: 0 0 18px;
 `;
-const RichTextWrapper = styled.div<TextPrismicProps>`
+const RichTextWrapper = styled(motion.div)<TextPrismicProps>`
   p {
     font-family: ${({ theme }) => theme.bodyFont};
     color: ${(props) => (props.color ? props.color : props.theme.textColor)};

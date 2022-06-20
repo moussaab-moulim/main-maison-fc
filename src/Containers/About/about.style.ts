@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled, { keyframes } from 'styled-components';
 
 const shake = keyframes`
@@ -100,7 +101,7 @@ export const Container = styled.div`
   }
 `;
 
-export const ContentArea = styled.div`
+export const ContentArea = styled(motion.div)`
   width: 100%;
   text-align: center;
   @media only screen and (max-width: 1600px) {
@@ -156,7 +157,7 @@ export const ButtonGroup = styled.div`
   }
 `;
 
-export const CarouselArea = styled.div`
+export const CarouselArea = styled(motion.div)`
   width: calc(100% - 595px);
   display: flex;
   align-items: center;

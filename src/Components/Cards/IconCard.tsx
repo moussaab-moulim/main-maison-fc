@@ -1,9 +1,13 @@
 import React, { ReactNode } from 'react';
 
+import { Variants, Variant, motion } from 'framer-motion';
 import Link from 'next/link';
+import { useInView } from 'react-intersection-observer';
 import styled from 'styled-components';
 
+import { useAnimateInView } from '../../../hooks/animateInView';
 import { mainTheme } from '../../styles/theme';
+import { fadeInUp, motionParams } from '../../utils/animations';
 import { ImageType } from '../../utils/types';
 import { Heading3 } from '../Heading/Heading3';
 import { Text } from '../Text/Text';
@@ -21,9 +25,10 @@ interface ServiceBoxProps {
   children: ReactNode;
   index: number;
   link?: string;
+  variants?: Variants & Variant;
 }
 
-const ServiceBoxWrapper = styled.a<ServiceBoxProps>`
+const ServiceBoxWrapper = styled(motion.a)<ServiceBoxProps>`
   --side-margin: 15px;
   flex-basis: 25%;
   margin: 24px var(--side-margin);
@@ -36,6 +41,9 @@ const ServiceBoxWrapper = styled.a<ServiceBoxProps>`
     align-items: center;
     text-align: center;
     padding: 40px 24px;
+    @media only screen and (max-width: 576px) {
+      padding: 0;
+    }
   }
   &::before,
   &::after,
@@ -109,7 +117,8 @@ const ServiceBoxWrapper = styled.a<ServiceBoxProps>`
     bottom: 0;
   }
 
-  &:hover {
+  &:hover,
+  .hover {
     /* animating the border lines */
     &::before {
       height: ${({ index }) => (index % 2 === 0 ? '30%' : '100%')};
@@ -143,15 +152,6 @@ const ServiceBoxWrapper = styled.a<ServiceBoxProps>`
     padding: 25px 24px;
   }
 `;
-const ServiceBox = ({ children, index, link }: ServiceBoxProps) => (
-  <Link href={link ?? '#'} passHref>
-    <ServiceBoxWrapper index={index}>
-      <span className="first">
-        <span className="second">{children}</span>
-      </span>
-    </ServiceBoxWrapper>
-  </Link>
-);
 
 const CardDescription = styled.div`
   font-family: ${({ theme }) => theme.bodyFont};
@@ -160,27 +160,44 @@ const CardDescription = styled.div`
   color: ${({ theme }) => theme.textColor};
 `;
 function IconCard(iconCardProps: IconCardProps) {
+  const { ref, inView } = useInView();
+  const animation = useAnimateInView(inView);
+
   return (
-    <ServiceBox index={iconCardProps.index} link={iconCardProps.cardUrl}>
-      {!!iconCardProps.icon && (
-        <IconWithCircleAnimation icon={iconCardProps.icon} />
-      )}
-      <Heading3 style={{ marginBottom: iconCardProps.subTitle ? '0' : '25px' }}>
-        {iconCardProps.title}
-      </Heading3>
-      {iconCardProps.subTitle && (
-        <Text
-          style={{
-            fontFamily: "'Atlantic Cruise',sans-serif",
-            fontSize: '18px',
-            color: mainTheme.textColorCmall,
-          }}
-        >
-          {iconCardProps.subTitle}
-        </Text>
-      )}
-      <CardDescription>{iconCardProps.description}</CardDescription>
-    </ServiceBox>
+    <Link href={iconCardProps.cardUrl ?? '#'} passHref>
+      <ServiceBoxWrapper
+        variants={fadeInUp()}
+        ref={ref}
+        {...motionParams}
+        animate={animation}
+        index={iconCardProps.index}
+      >
+        <span className="first">
+          <span className="second">
+            {!!iconCardProps.icon && (
+              <IconWithCircleAnimation icon={iconCardProps.icon} />
+            )}
+            <Heading3
+              style={{ marginBottom: iconCardProps.subTitle ? '0' : '25px' }}
+            >
+              {iconCardProps.title}
+            </Heading3>
+            {iconCardProps.subTitle && (
+              <Text
+                style={{
+                  fontFamily: "'Atlantic Cruise',sans-serif",
+                  fontSize: '18px',
+                  color: mainTheme.textColorCmall,
+                }}
+              >
+                {iconCardProps.subTitle}
+              </Text>
+            )}
+            <CardDescription>{iconCardProps.description}</CardDescription>
+          </span>
+        </span>
+      </ServiceBoxWrapper>
+    </Link>
   );
 }
 

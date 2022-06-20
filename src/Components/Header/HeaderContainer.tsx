@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.header`
+export const HeaderContainer = styled(motion.header)`
   position: absolute;
   background: transparent;
   top: 0;

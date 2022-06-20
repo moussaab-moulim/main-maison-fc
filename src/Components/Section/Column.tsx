@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
 interface MainColumnProps {
@@ -31,7 +32,7 @@ function generateQueries(responsive?: {
     ${styles}
   `;
 }
-const Column = styled.div<ColumnProps>`
+const Column = styled(motion.div)<ColumnProps>`
   display: flex;
   flex-flow: column nowrap;
   gap: 15px;
