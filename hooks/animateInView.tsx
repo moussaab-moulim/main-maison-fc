@@ -14,7 +14,6 @@ export const useAnimateInView = (inView: boolean) => {
     } else {
       animation.start(motionParams.initial);
     }
-    console.log('inviez', inView);
 
     return () => {
       animation.stop();

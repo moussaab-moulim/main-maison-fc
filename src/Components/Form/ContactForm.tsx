@@ -120,6 +120,7 @@ const ContactForm = () => {
         },
         body: JSON.stringify(data),
       }).then((res) => {
+        res.json().then((ress) => console.log('ress', ress));
         setSubmitting(false);
         if (res.status === 200) {
           setSuccessMessage(t('section-footer-form-success'));

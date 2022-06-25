@@ -14,7 +14,7 @@ const contactFunction = (req: any, res: any) => {
     },
   });
   const mailData = {
-    from: `${req.body.name} <contac@fabiencarrichon.ch>`,
+    from: `${req.body.name} <contact@fabiencarrichon.ch>`,
     to: 'contact@fabiencarrichon.ch',
     subject: `Maison de beauté - ${req.body.subject}`,
     replyTo: req.body.email,
@@ -26,6 +26,8 @@ const contactFunction = (req: any, res: any) => {
         <p>message: ${req.body.message}</p>
       </div>`,
   };
+  console.log('mail data', mailData);
+
   transporter.sendMail(mailData, (err: any, info: any) => {
     if (err) {
       res.json(err);
