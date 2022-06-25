@@ -12,12 +12,7 @@ import Column from '../../Components/Section/Column';
 import Section from '../../Components/Section/Section';
 import SectionInner from '../../Components/Section/SectionInner';
 import { Text } from '../../Components/Text/Text';
-import {
-  fadeInUp,
-  motionParams,
-  stagerContainer,
-  zoomIn,
-} from '../../utils/animations';
+import { motionParams, zoomIn } from '../../utils/animations';
 import { ButtonType, HeaderDataType } from '../../utils/types';
 
 interface HeaderProps extends HeaderDataType {}
@@ -53,15 +48,14 @@ const Header = (headerProps: HeaderProps) => {
       </BackgroundWrapper>
       <SectionInner>
         <Column type={2} className="right header-column">
-          <ContentContainer variants={stagerContainer} {...motionParams}>
-            <Heading1 variants={fadeInUp()}>{headerProps.title}</Heading1>
-            <Text variants={fadeInUp()}>{headerProps.description}</Text>
+          <ContentContainer>
+            <Heading1>{headerProps.title}</Heading1>
+            <Text>{headerProps.description}</Text>
             <Link href={headerProps.button?.url!} passHref prefetch={false}>
               <ButtonLink
                 style={{ maxWidth: 216 }}
                 target={headerProps.button?.target}
                 buttonType={ButtonType.Dark}
-                variants={fadeInUp()}
               >
                 {headerProps.button?.text}
               </ButtonLink>
