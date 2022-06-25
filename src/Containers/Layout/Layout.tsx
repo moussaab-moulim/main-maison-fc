@@ -39,7 +39,7 @@ const Layout = ({
   langData,
   documentMeta,
 }: LayoutProps) => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
   useEffect(() => {
     setIsMobile(window.innerWidth <= 768);
   }, []);
