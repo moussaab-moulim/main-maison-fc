@@ -113,10 +113,14 @@ const buttonCss = (props: ButtonProps & any) => css`
       : props.theme.secondColor};
   }
 `;
-export const ButtonLink = styled(motion.a)<ButtonProps>`
+export const ButtonLink = styled(motion.a).withConfig<ButtonProps>({
+  shouldForwardProp: (prop) => !['buttonType'].includes(prop),
+})`
   ${(props) => buttonCss(props)}
 `;
-const Button = styled(motion.button)<ButtonProps>`
+const Button = styled(motion.button).withConfig<ButtonProps>({
+  shouldForwardProp: (prop) => !['buttonType'].includes(prop),
+})`
   ${(props) => buttonCss(props)}
 `;
 export const MobileMenuButton = styled.button`
