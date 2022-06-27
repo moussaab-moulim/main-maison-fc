@@ -34,7 +34,11 @@ const Header = (headerProps: HeaderProps) => {
   return (
     <Section
       id={headerProps.id}
-      style={{ height: '100vh', backgroundColor: 'transparent' }}
+      style={{
+        height: '100vh',
+        backgroundColor: 'transparent',
+        overflow: 'hidden',
+      }}
     >
       <BackgroundWrapper variants={zoomIn()} {...motionParams}>
         <Image
