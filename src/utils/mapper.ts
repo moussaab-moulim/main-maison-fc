@@ -427,7 +427,7 @@ export const mapInstagramData = (instafeed: any): InstagramDataType => {
     images: instafeed
       .filter(
         (image: any) =>
-          image.media_type === 'IMAGE' && !image.caption.includes('!!not-add!!')
+          image.media_type === 'IMAGE' && !image.caption.includes('!!exclude!!')
       )
       .map((image: any) => {
         const url = image.media_url;
