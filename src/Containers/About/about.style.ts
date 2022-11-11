@@ -218,9 +218,7 @@ export const CarouselArea = styled(motion.div)`
     width: 100%;
   }
 
-  #home-about_carousel,
-  #about-descritpion_carousel,
-  #about-header_carousel {
+  .carousel_selector[id$='_carousel'] {
     .glide__slide {
       .item_wrapper {
         display: block;

@@ -112,6 +112,7 @@ const About = (aboutProps: AboutProps) => {
           className={aboutProps.className ?? ''}
         >
           <GlideCarousel
+            className="carousel_selector"
             carouselSelector={`${aboutProps.id}_carousel`}
             options={glideOptions}
             numberOfBullets={aboutProps.images.length}
