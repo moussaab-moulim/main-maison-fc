@@ -1,5 +1,6 @@
 {
   "name": "main-maisonfabiencarrichon",
+  "homepage": "https://maisonfabiencarrichon.ch",
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
