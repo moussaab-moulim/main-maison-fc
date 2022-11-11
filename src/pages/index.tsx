@@ -71,7 +71,9 @@ export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
     globalSettingsData,
     menuData
   );
-  const instagramData: InstagramDataType = mapInstagramData(fetchInstagramFeed);
+  const instagramData: InstagramDataType = mapInstagramData(
+    fetchInstagramFeed ?? []
+  );
 
   const seoData: SeoDataType = mapSeoData(globalSettingsData, homeData.seo);
   // const { currentLang, isMyMainLanguage } = manageLocal(locales!, locale!);

@@ -45,6 +45,7 @@ const About = (aboutProps: AboutProps) => {
     hoverpause: true,
     bound: true,
     perView: 3,
+    controls: false,
     gap: aboutProps.className === 'dark' ? 0 : 20,
     breakpoints: {
       1024: {
@@ -56,7 +57,6 @@ const About = (aboutProps: AboutProps) => {
       },
     },
   };
-
   const handleImageClick = (index: number) => {
     setLightBoxToggle(true);
     setLightboxIndex(index);
@@ -112,12 +112,12 @@ const About = (aboutProps: AboutProps) => {
           className={aboutProps.className ?? ''}
         >
           <GlideCarousel
-            carouselSelector={`home-about_carousel`}
+            carouselSelector={`${aboutProps.id}_carousel`}
             options={glideOptions}
             numberOfBullets={aboutProps.images.length}
             nextButton={<span className="next_arrow" />}
             prevButton={<span className="prev_arrow" />}
-            controls={true}
+            controls={aboutProps.images.length > 3}
             bullets={false}
           >
             <Fragment>
