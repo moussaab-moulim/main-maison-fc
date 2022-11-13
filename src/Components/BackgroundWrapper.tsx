@@ -9,7 +9,7 @@ const BackgroundWrapper = styled(motion.div)`
   z-index: -1;
   @media only screen and (max-width: 576px) {
     img {
-      object-position: 30% 50%;
+      /* object-position: 30% 50%; */
     }
   }
 `;
