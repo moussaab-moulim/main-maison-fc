@@ -15,7 +15,9 @@ import { Text } from '../../Components/Text/Text';
 import { motionParams, zoomIn } from '../../utils/animations';
 import { ButtonType, HeaderDataType } from '../../utils/types';
 
-interface HeaderProps extends HeaderDataType {}
+interface HeaderProps extends HeaderDataType {
+  className?: string;
+}
 
 const ContentContainer = styled(motion.div)`
   display: flex;
@@ -40,7 +42,11 @@ const Header = (headerProps: HeaderProps) => {
         overflow: 'hidden',
       }}
     >
-      <BackgroundWrapper variants={zoomIn()} {...motionParams}>
+      <BackgroundWrapper
+        className={headerProps.className}
+        variants={zoomIn()}
+        {...motionParams}
+      >
         <Image
           alt=""
           src={headerProps.backgroundUrl}

@@ -115,7 +115,7 @@ const Index: FC<IndexProps> = ({
       footerData={footerData}
       langData={langData}
     >
-      <Header {...homeData.header} />
+      <Header className="home" {...homeData.header} />
       <About {...homeData.about} />
       <Services {...homeData.services} />
       <Prices {...homeData.prices} />
