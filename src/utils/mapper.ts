@@ -428,12 +428,9 @@ export const mapInstagramData = (instafeed: any): InstagramDataType => {
     title: 'section-instagram-title',
     instagramUrl: 'https://www.instagram.com/maisonbeautefabiencarrichon/',
     images: instafeed
-      .filter(
-        (image: any) =>
-          image.media_type === 'IMAGE' && !image.caption.includes('!!exclude!!')
-      )
       .map((image: any) => {
-        const url = image.media_url;
+        const url =
+          image.media_type === 'VIDEO' ? image.thumbnail_url : image.media_url;
         return {
           url: url.replace(url.slice(0, url.indexOf('.')), 'https://scontent'),
           alt: '',
