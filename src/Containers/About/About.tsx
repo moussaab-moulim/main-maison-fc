@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { CSSProperties } from 'styled-components';
 
 import { useAnimateInView } from '../../../hooks/animateInView';
-import { ButtonLink } from '../../Components/Button/Button';
+import { ButtonLink as Button } from '../../Components/Button/Button';
 import GlideCarousel from '../../Components/GlideCarousel';
 import GlideSlide from '../../Components/GlideCarousel/glideSlide';
 import { Heading2 } from '../../Components/Heading/Heading2';
@@ -18,17 +18,26 @@ import {
   motionParams,
   stagerContainer,
 } from '../../utils/animations';
-import { AboutDataType, ButtonType } from '../../utils/types';
+import {
+  AboutDataType,
+  ButtonLink,
+  ButtonType,
+  Modify,
+} from '../../utils/types';
 import AboutWrapper, {
   Container,
   ContentArea,
   CarouselArea,
 } from './about.style';
 
-interface AboutProps extends AboutDataType {
-  className?: string;
-  style?: CSSProperties;
-}
+type AboutProps = Modify<
+  AboutDataType,
+  {
+    className?: string;
+    style?: CSSProperties;
+    button?: ButtonLink | null;
+  }
+>;
 const About = (aboutProps: AboutProps) => {
   const [lightBoxToggle, setLightBoxToggle] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -89,13 +98,13 @@ const About = (aboutProps: AboutProps) => {
             <Fragment>
               <VerticalSpace size={40} />
               <Link href={aboutProps.button?.url!} passHref prefetch={false}>
-                <ButtonLink
+                <Button
                   variants={fadeInUp()}
                   buttonType={ButtonType.Dark}
                   target={aboutProps.button?.target}
                 >
                   {aboutProps.button?.text}
-                </ButtonLink>
+                </Button>
               </Link>
               <VerticalSpace size={60} />
             </Fragment>

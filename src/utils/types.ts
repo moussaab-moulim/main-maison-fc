@@ -3,7 +3,10 @@ import { RichTextBlock } from 'prismic-reactjs';
 interface Common {
   id: string;
 }
+
 type HrefTarget = '_blank' | '_self' | '_parent' | '_top' | 'framename';
+
+export type Modify<T, R> = Omit<T, keyof R> & R;
 
 export enum LinkType {
   Web = 'Web',
@@ -98,7 +101,7 @@ export interface HeaderDataType extends Common {
   title: string;
   description: string;
   backgroundUrl: string;
-  button?: ButtonLink;
+  button: ButtonLink | null;
 }
 
 export interface ServiceType {
@@ -116,7 +119,7 @@ export interface VisionType {
   image: ImageType;
   title: string;
   description: string;
-  button?: ButtonLink;
+  button?: ButtonLink | null;
 }
 export interface ServicesDataType extends Common {
   title: string;
@@ -125,7 +128,7 @@ export interface ServicesDataType extends Common {
 export interface AboutDataType extends Common {
   title?: string;
   description: RichTextBlock[];
-  button?: ButtonLink;
+  button: ButtonLink | null;
   images: ImageType[];
 }
 export interface VisionDataType extends Common {
@@ -179,7 +182,7 @@ export interface TreatmentType {
   treatment: string;
   price: string;
   description: RichTextBlock[];
-  button?: ButtonLink;
+  button: ButtonLink | null;
   image?: ImageType;
 }
 export interface PricesDataType extends Common {
@@ -190,7 +193,7 @@ export interface OfferDataType extends Common {
   offerTitle: string;
   offerImage: ImageType;
   offerDescription: RichTextBlock[];
-  offerButton: ButtonLink;
+  offerButton: ButtonLink | null;
 }
 
 export interface PostDataType extends PageSettings {

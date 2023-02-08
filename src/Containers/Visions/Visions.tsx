@@ -2,18 +2,35 @@ import React from 'react';
 
 import Link from 'next/link';
 
-import { ButtonLink } from '../../Components/Button/Button';
+import { ButtonLink as Button } from '../../Components/Button/Button';
 import { Heading2 } from '../../Components/Heading/Heading2';
 import Image from '../../Components/Image';
 import Column from '../../Components/Section/Column';
 import Section from '../../Components/Section/Section';
 import SectionInner from '../../Components/Section/SectionInner';
 import { Text } from '../../Components/Text/Text';
-import { ButtonType, VisionDataType, VisionType } from '../../utils/types';
+import {
+  ButtonLink,
+  ButtonType,
+  ImageType,
+  Modify,
+  VisionDataType,
+  VisionType,
+} from '../../utils/types';
 import '@glidejs/glide/dist/css/glide.core.min.css';
 import { ButtonsContainer, CarouselWrapper } from './Visions.style';
 
-interface VisionsProps extends VisionDataType {}
+type VisionsProps = Modify<
+  VisionDataType,
+  {
+    visions: {
+      image: ImageType;
+      title: string;
+      description: string;
+      button?: ButtonLink | null;
+    }[];
+  }
+>;
 
 function VisionsSection(visionProps: VisionsProps) {
   /*  useEffect(() => {
@@ -49,13 +66,13 @@ function VisionsSection(visionProps: VisionsProps) {
                               passHref
                               prefetch={false}
                             >
-                              <ButtonLink
+                              <Button
                                 style={{ maxWidth: 216 }}
                                 buttonType={ButtonType.Dark}
                                 target={vision.button.target}
                               >
                                 {vision.button.text}
-                              </ButtonLink>
+                              </Button>
                             </Link>
                           )}
                           {/* <VerticalSpace size={20} />

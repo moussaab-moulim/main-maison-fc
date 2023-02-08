@@ -102,14 +102,16 @@ const Offer = (offerProps: OfferProps) => {
             {offerProps.offerTitle}
           </Heading2>
           <OfferText render={offerProps.offerDescription} />
-          <Link href={offerProps.offerButton.url} passHref prefetch={false}>
-            <ButtonLink
-              target={offerProps.offerButton.target}
-              buttonType={ButtonType.Dark}
-            >
-              {offerProps.offerButton.text}
-            </ButtonLink>
-          </Link>
+          {offerProps.offerButton && (
+            <Link href={offerProps.offerButton.url} passHref prefetch={false}>
+              <ButtonLink
+                target={offerProps.offerButton.target}
+                buttonType={ButtonType.Dark}
+              >
+                {offerProps.offerButton.text}
+              </ButtonLink>
+            </Link>
+          )}
         </OfferContentColumn>
       </OfferSectionInner>
     </Section>

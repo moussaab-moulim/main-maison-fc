@@ -43,11 +43,14 @@ export const mapImages = (images: any[]): ImageType[] => {
   return images.map((image) => mapImage(image));
 };
 
-export const mapButton = (button: any): ButtonLink => ({
-  text: button?.text ?? '',
-  url: button?.spans?.[0]?.data?.url ?? '#',
-  target: button?.spans?.[0]?.data?.target ?? '_self',
-});
+export const mapButton = (button: any): ButtonLink | null =>
+  button
+    ? {
+        text: button?.text ?? '',
+        url: button?.spans?.[0]?.data?.url ?? '#',
+        target: button?.spans?.[0]?.data?.target ?? '_self',
+      }
+    : null;
 
 export const mapVisions = (visions: any[]): VisionType[] => {
   return visions.map((vision) => ({
@@ -413,7 +416,7 @@ export const mapServiceData = (service: any): ServiceDataType => {
         price: subService.sub_service_price,
         image: mapImage(subService.sub_service_image),
         description: subService.sub_service_description,
-        button: mapButton(subService.sub_service_button[0]),
+        button: mapButton(subService.sub_service_button?.[0]),
       })
     ),
   };
