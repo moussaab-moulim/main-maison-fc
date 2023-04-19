@@ -9,6 +9,8 @@ const ImageWrapper = styled(NextImage)({
   height: 'auto',
 });
 
-const Image = ({ ...props }: ImageProps) => <ImageWrapper {...props} />;
+const Image = ({ ...props }: ImageProps) => (
+  <ImageWrapper {...props} quality={100} />
+);
 
 export default Image;

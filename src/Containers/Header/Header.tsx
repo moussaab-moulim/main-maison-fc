@@ -52,7 +52,6 @@ const Header = (headerProps: HeaderProps) => {
           src={headerProps.backgroundUrl}
           layout="fill"
           objectFit="cover"
-          quality={70}
           priority
         />
       </BackgroundWrapper>

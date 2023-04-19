@@ -76,6 +76,7 @@ const PostHeader = (postHeaderProps: PostHeaderProps) => {
               src={postHeaderProps.image.url}
               alt={postHeaderProps.image.alt}
               layout="fill"
+              quality={100}
             />
             {/* TODO : picture title <Heading3>test</Heading3> */}
           </OfferImqgeContainer>

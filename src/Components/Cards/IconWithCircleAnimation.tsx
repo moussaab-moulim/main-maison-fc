@@ -49,7 +49,7 @@ interface IconProps {
 const IconWithCircleAnimation = ({ icon }: IconProps) => (
   <IconWrapper>
     <div className="icon-background" />
-    <Image src={icon.url} alt={icon.url} height={36} width={36} />
+    <Image src={icon.url} alt={icon.url} height={36} width={36} quality={100} />
     <svg width="72px" height="72px" viewBox="0 0 72 72">
       <circle className="anicircle" cx="36" cy="36" r="35" />
     </svg>
